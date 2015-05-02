@@ -1,0 +1,234 @@
+==Test1==
+module M {
+  foo() {}
+  bar() {}
+}
+import M as N   
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+from C1 import N  
+# TEST N.bar() should get message is not declared
+module Test1 {
+   test1() {
+      N.foo()
+      N.bar()
+   }
+   pollen.run() {}
+}
+========
+==Test2==
+module M {
+  foo() {}
+  bar() {}
+}
+import M as N   
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+from C1 import N 
+composition C2 {
+  export N.bar
+}
+from C2 import N
+# TEST Test2 imports C2 which imports C1
+# TEST N.foo is exported from C1 not C2
+# TEST N.foo() should get message not declared
+
+module Test2 {
+  test() {
+    N.foo()
+    N.bar()
+  }
+  pollen.run() {}
+}
+  
+========
+==Test3==
+module M {
+  foo() {}
+  bar() {}
+}
+import M as N   
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+from C1 import N as P
+composition C3 {
+  export P.bar
+}
+from C3 import P
+# TEST Same as Test2 with renaming.
+# TEST N.foo() should get message not declared
+module Test3 {
+  test() {
+    P.foo()
+    P.bar()
+  }
+  pollen.run() {}
+}
+========
+==Test4==
+module M1 {
+  foo() {}
+  bar() {}
+}
+module N {
+  bar() {}
+}
+import M1 
+import N   
+composition C4 {
+  export M1.foo
+  export N.bar
+}
+import C4 
+# TEST exports when whole composition is imported,
+# TEST not a module from composition.
+# TEST Only fully qualified call is resolved.
+module Test4 {
+  test() {
+    M1.foo()
+    M1.bar() // should fail to find M1.bar
+    C4.N.bar()
+  }
+  pollen.run() { }
+}
+========
+==Test5==
+module M1 {
+  foo() {}
+  bar() {}
+}
+module N {
+  bar() {}
+}
+import M1 
+import N   
+composition C4 {
+  export M1.foo
+  export N.bar
+}
+#import C4   
+from C4 import M1
+from C4 import N
+# TEST Multiple levels of compositions that change
+# TEST export list
+# Note if C5 extends C4 M1.bar is found
+composition C5 { # different exports than C4, no M1.foo
+  export M1.bar
+  export N.bar
+}
+import C5
+#from C5 import M1
+#from C5 import N
+# TEST exports when whole composition is imported,
+# TEST should get message that M1.foo is not exported
+module Test5 {
+  test() {
+    M1.foo() // should fail to find M1.foo
+    M1.bar() 
+    N.bar()
+  }
+  pollen.run() { }
+}
+========
+==Test6==
+module M {
+  foo() {}
+  bar() {}
+}
+module Q {
+  cycle() {}
+  reset() {}
+}
+import M as N   
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+import C1  
+from C1 import N
+composition C6 extends C1 { 
+  export N.bar
+}
+import Q as R
+composition C11 {
+  export R
+  export R.cycle
+  export R.reset
+}
+from C6 import N
+from C11 import R as P
+# TEST Use extends to resolve
+# TEST P.foo should not resolve
+module Test6 {
+  test() {
+    N.foo() # resolves via extends
+    N.bar()
+    P.foo() # does not resolve
+    P.cycle()
+    P.reset()
+  }
+  pollen.run() { }
+}
+========
+==Test7==
+module M {
+  foo() {}
+  bar() {}
+}
+import M 
+composition C9 {
+  export M
+  export M.foo
+  export M.bar
+}
+import C9  as N
+composition C7 {
+  export N
+}
+from C7 import N
+import C7
+composition C8 extends C7 { 
+  export N.bar
+  #export N   
+}
+import C8
+#TEST Both N.foo and N.bar should resolve.
+#TEST Tests 'extends' and exports.
+#TEST C7 exports all fcns, C8 exports 1.
+#TEST Together all are exported.
+module Test7  {
+  test() {
+    N.foo() 
+    N.bar()
+  }
+  pollen.run() { }
+}
+========
+==Test8==
+module M {
+  foo() {}
+  bar() {}
+}
+module N {
+  bar() {}
+}
+import M 
+import N 
+composition C12 {
+  export N
+}
+from C12 import M  
+#TEST should not be able to import M
+#TEST M is not exported from C12
+module Test8 {
+   test1() {
+     M.foo()
+   }
+   pollen.run() {}
+}

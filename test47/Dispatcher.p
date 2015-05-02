@@ -1,0 +1,31 @@
+----
+
+Event Dispatcher
+
+----
+import Event {uint8} as Ev 
+import Queue {Ev, uint8} as EvQueue
+
+module Dispatcher {
+
+    host new EvQueue myEventQueue(10)
+    host public Dispatcher() {
+    }
+
+    public post(Ev e) {
+        myEventQueue.add(e)
+    }
+
+    public run() {
+
+        while(true) {
+
+            Ev e = myEventQueue.remove()
+
+            if (e != null) {
+                e.handle(e.getData())   # handle event
+                break;
+            }
+        }
+    }
+}

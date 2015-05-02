@@ -1,0 +1,91 @@
+from pollen.text import Strings
+
+# TEST pollen Strings library Strings.p
+# TEST strncmp, strlen
+
+module Mod1 {
+
+    +{ #include <stdlib.h> }+
+
+    string s1 = "xxx1"
+    string s2 = "xyz1"
+
+    string test_strncmp(string s1, string s2, uint16 n) {
+
+        int32 r = Strings.strncmp(s1, s2, n)
+        string rslt = r > 0 ? "s2 less than s1" : r < 0 ? "s1 less than s2" : "s1, s2 equal"
+
+        print "1. For operands s1 = " + s1 + ", s2 = " + s2 + ", n = " + n + "\n"
+        print "   strncmp() returned " + rslt + "\n"
+
+        return rslt
+    }
+
+    string test_strcmp(string s1, string s2) {
+
+        int32 r = Strings.strcmp(s1, s2)
+        string rslt = r > 0 ? "s2 less than s1" : r < 0 ? "s1 less than s2" : "s1, s2 equal"
+
+        print "2. For operands s1 = " + s1 + ", s2 = " + s2  + "\n"
+        print "   strcmp() returned " + rslt + "\n"
+
+        return rslt
+    }
+
+    test_strlen(string s1) {
+
+        uint16 r = Strings.strlen(s1)
+
+        print "3. For operand s1 = " + s1 
+        print "   strlen() returned " + r + "\n"
+    }
+
+    pollen.run() {
+
+      string rslt = test_strncmp(s1, s2, 3)
+      rslt = test_strcmp(s1, s2)
+      test_strlen(s1)
+      print "\n"
+
+      s2 = s1
+      string s3 = "lxkjdkajfkajsd;lfkajsd;lfkja;lsefjl;asjk"
+      rslt = test_strncmp(s1, s2, 3)
+      rslt = test_strcmp(s1, s2)
+      test_strlen(s3)
+      print "\n"
+
+      s2 = "x"
+      s3 = ""
+      rslt = test_strncmp(s1, s2, 3)
+      rslt = test_strcmp(s1, s2)
+      test_strlen(s3)
+      print "\n"
+
+      s2 = "x"
+      s3 = s2
+      rslt = test_strncmp(s1, s2, 1)
+      rslt = test_strcmp(s1, s2)
+      test_strlen(s3)
+      print "\n"
+
+      s2 = "c"
+      rslt = test_strncmp(s1, s2, 1)
+      rslt = test_strcmp(s1, s2)
+      print "\n"
+
+      s2 = ""
+      rslt = test_strncmp(s1, s2, 1)
+      rslt = test_strcmp(s1, s2)
+      print "\n"
+
+      s1 = ""
+      s2 = ""
+      rslt = test_strncmp(s1, s2, 1)
+      rslt = test_strcmp(s1, s2)
+      print "\n"
+
+      +{ exit(0) }+
+    }
+
+
+}

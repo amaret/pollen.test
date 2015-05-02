@@ -1,0 +1,1365 @@
+#!/bin/bash
+
+# Translate the test using pollen.jar. 
+# Then run script testResults which
+# checks errors and code generated against a master (h,c and js)
+# and reports any diffs to stdout.
+# Deleting a master will generate a new one.
+# Adding a new test will trigger creation of results directories and master.
+
+# gcclocal: use gcc to run after gccAvr flag. NOTE no longer works because include path changed.
+# run_a.out: use gcc to run after gcc flag. 
+
+# Can set environment variable $POLLEN to identify pollen.jar to be tested.
+
+# $POLLEN_BUNDLES and $POLLEN_TARGET may be reset in the script as needed. 
+
+pushd `dirname $0` > /dev/null
+SCRIPTPATH=`pwd`
+popd > /dev/null
+export RUNDIR=`pwd`
+
+# Note otherwise there can be spurious regressions due to file path differences.
+if [ $SCRIPTPATH != $RUNDIR ] ; then echo "testPollen must be run from test bin directory" ; exit 1; fi
+
+# Note 't' has to be relative or there can be 
+# spurious regressions due to file path differences
+export t=..
+export POLLEN_TARGET=${t}/pollen.target
+export TESTSUITE_BUNDLES=${t}/pollen_test/bundles
+export TESTRESULTS=${SCRIPTPATH}/testResults
+export RUNTEST=${SCRIPTPATH}/run_a.out
+export TOOLCHAIN=${SCRIPTPATH}/../../acc.toolchain
+export pol=${TOOLCHAIN}/translator/pollen.jar
+export tstout=${t}/tstout
+export save=${POLLEN_ROOT}
+
+# check for missing files
+export MSG="testPollen required file or directory missing: "
+if [ ! -e $t ] ; then MSG+="test directory"; echo $MSG ; exit 1 ; fi
+if [ ! -e ${pol} ]
+then
+    if [ -z "${POLLEN}" ]
+    then
+        MSG+="pollen.jar (set POLLEN to pollen.jar)"
+        echo $MSG ; exit 1 ;
+    else
+        export pol=${POLLEN}
+    fi
+fi
+# supports older tests
+if [ ! -z "$POLLEN_ROOT" ] ; then export POLLEN_ROOT=$t/pollen.core ; fi 
+
+case $1 in
+-clean) echo removing test masters and history...
+        rm  ${t}/test_results/*/*/*.MASTER
+        rm  -f ${t}/test_results/*/*/diff.*
+        rm  -f ${t}/test_results/*/*/test*.*
+        ;;
+-refresh) echo removing test results...
+        rm  -Rf ${t}/*_out/*
+	    exit 0
+        ;;
+-help|-h)  echo '-clean' deletes all masters and runs tests to remake masters.
+        echo '-refresh' deletes translated files in the test output directories
+        echo " and exits."
+        echo '-help' for options.
+        echo No options runs and diffs the test suite. Diffs to stdout.
+        exit 1
+        ;;
+"") ;;
+*)  echo Unrecognized option $1. Use -help for options.
+        exit 1
+        ;;
+esac
+                
+
+export num=test1;export n=1
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkMilli.p 
+# report test description, if it exists
+grep -h -r TEST ${t}/${num}/*.p    >> ${tstout}
+export dir1=${t}/${num}/base
+export dir2=${t}/${num}/amaret
+java -jar ${pol} -w -gccAvr ${tst} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test2;export n=2
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkMilli2.p 
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+export dir1=${t}/${num}/base
+export dir2=${t}/${num}/amaret
+java -jar ${pol} -gccAvr ${tst} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test3;export n=3
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/PrintTest.p 
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr -a ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test4;export n=4
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestExports.p
+export dir1=${t}/${num}/base
+export dir2=${t}/${num}/pollen.hardware
+export dir3=${t}/${num}/pollen.core
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test5;export n=5
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkMilli.p 
+export dir1=${t}/${num}/base
+export dir2=${t}/${num}/amaret
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout  ${tstout} ${pol}
+
+export num=test6;export n=6
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/T.p
+export dir1=${t}/${num}/base
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir1}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test7;export n=7
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/T.p
+export dir1=${t}/${num}/base
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir1}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test8;export n=8
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+export dir1=${t}/${num}/base
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir1}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test9;export n=9
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+export dir1=${t}/${num}/base
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir1}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test10;export n=10
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+export dir1=${t}/${num}/base
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir1}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test11;export n=11
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test12;export n=12
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test13;export n=13
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test14;export n=14
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink0.p
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test15;export n=15
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Msp430g2231.p
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test16;export n=16
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test17;export n=17
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TimerManagerTest.p
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+export dir1=${t}/${num}/base
+export dir2=${t}/${num}/amaret
+java -jar ${pol} -gccAvr ${dir1} ${dir2} ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test18;export n=18
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestImporExport.p
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test19
+export n=19
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkMilli2
+export dir1=${t}/${num}/base
+export dir2=${t}/${num}/amaret
+export envDir=${dir2}/cc.arduino/Environment
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gcc ${tst} -e ${envDir} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} BlinkMilli2 >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test20;export n=20
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink1
+export dir1=${t}/${num}/parts
+export dir2=${t}/${num}/boards
+export dir3=${t}/${num}/core
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir3} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test21;export n=21
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink2
+export dir1=${t}/${num}/parts
+export dir2=${t}/${num}/boards
+export dir3=${t}/${num}/core
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir3} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test22;export n=22
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink3
+export dir1=${t}/${num}/parts
+export dir2=${t}/${num}/boards
+export dir3=${t}/${num}/core
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir3} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test23;export n=23
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink4
+export dir1=${t}/${num}/parts
+export dir2=${t}/${num}/boards
+export dir3=${t}/${num}/core
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir3} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test24;export n=24
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink5
+export dir1=${t}/${num}/parts
+export dir2=${t}/${num}/boards
+export dir3=${t}/${num}/core
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir3} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test25;export n=25
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkUno1
+export dir1=${t}/${num}/parts
+export dir2=${t}/${num}/boards
+export dir3=${t}/${num}/core
+grep -h -r TEST ${t}/${num}/*.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir3} ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test26;export n=26
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkAvr.p
+grep -h -r TEST ${t}/${num}/BlinkAvr.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test27;export n=27
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink3.p
+grep -h -r TEST ${t}/${num}/Blink3.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test28;export n=28
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink2.p
+grep -h -r TEST ${t}/${num}/Blink2.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test29;export n=29
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink4.p
+grep -h -r TEST ${t}/${num}/Blink4.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test30;export n=30
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink5.p
+grep -h -r TEST ${t}/${num}/Blink5.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test31;export n=31
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkMsp430.p
+grep -h -r TEST ${t}/${num}/BlinkMsp430.p >> ${tstout}
+#java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+java -jar ${pol} ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export POLLEN_ROOT=${t}/pollen_local/pollen.core
+# USING LOCAL POLLEN_ROOT
+export num=test32
+export n=32
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink2.p
+grep -h -r TEST ${t}/${num}/Blink2.p >> ${tstout}
+export dir1=${t}/${num}/amaret.distro
+export dir2=${t}/${num}/amaret.mcu
+java -jar ${pol} -gcc ${tst}  ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout  ${tstout} ${pol}
+
+
+# USING LOCAL POLLEN_ROOT
+export num=test33
+export n=33
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink1.p
+grep -h -r TEST ${t}/${num}/Blink1.p >> ${tstout}
+export dir1=${t}/${num}/amaret.mcu
+java -jar ${pol} -gcc ${tst}  ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export num=test34
+export n=34
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/TestProg.p >> ${tstout}
+export dir1=${t}/${num}/amaret.mcu
+java -jar ${pol} -gcc ${tst}  ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} TestProg >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export num=test35
+export n=35
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/ATmega328.p
+grep -h -r TEST ${t}/${num}/ATmega328.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export num=test36
+export n=36
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink3.p
+grep -h -r TEST ${t}/${num}/Blink3.p >> ${tstout}
+export dir1=${t}/${num}/amaret.mcu
+export dir2=${t}/${num}/amaret.distro
+java -jar ${pol} -gcc ${tst}  ${dir2} ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} Blink3 >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export num=test37
+export n=37
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST}  ${n} Test >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test38
+export n=38
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test0.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export POLLEN_ROOT=${t}/pollen_local/pollen.core
+# USING LOCAL POLLEN_ROOT
+export num=test39
+export n=39
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test0.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/amaret.mcu
+java -jar ${pol} -gccAvr ${tst}  ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test40
+export n=40
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test0.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+#  Using Test local POLLEN_ROOT
+export num=test41
+export n=41
+export POLLEN_ROOT=${t}/${num}/pollen.core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink2.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/amaret.mcu
+export dir2=${t}/${num}/amaret.distro
+java -jar ${pol} -gcc ${tst}  ${dir2} ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} Blink2 >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen_local/pollen.core
+export num=test42
+export n=42
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+#gcclocal ${n} TestProg >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+#  Using Test local POLLEN_ROOT
+export num=test43
+export n=43
+export POLLEN_ROOT=${t}/${num}/pollen.core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkEnvLed.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/amaret.mcu
+export dir2=${t}/${num}/distro.arduino
+java -jar ${pol} -gccAvr ${tst}  ${dir2} ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+#  Using Test local POLLEN_ROOT
+export num=test44
+export n=44
+export POLLEN_ROOT=${t}/${num}/pollen.core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkEnvPin.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/amaret.mcu
+export dir2=${t}/${num}/distro.arduino
+java -jar ${pol} -gccAvr ${tst}  ${dir2} ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen_local/pollen.core
+export num=test45
+export n=45
+# NOTE A set of tests
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test1.p
+grep -h -r TEST ${t}/${num}/Test1.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+export tst=${t}/${num}/Test2.p
+grep -h -r TEST ${t}/${num}/Test2.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+export tst=${t}/${num}/Test3.p
+grep -h -r TEST ${t}/${num}/Test3.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+export tst=${t}/${num}/Test4.p
+grep -h -r TEST ${t}/${num}/Test4.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+export tst=${t}/${num}/Test5.p
+grep -h -r TEST ${t}/${num}/Test5.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+export tst=${t}/${num}/Test6.p
+grep -h -r TEST ${t}/${num}/Test6.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+export tst=${t}/${num}/Test7.p
+grep -h -r TEST ${t}/${num}/Test7.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+export tst=${t}/${num}/Test8.p
+grep -h -r TEST ${t}/${num}/Test8.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+export tst=${t}/${num}/Test9.p
+grep -h -r TEST ${t}/${num}/Test9.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+export tst=${t}/${num}/Test10.p
+grep -h -r TEST ${t}/${num}/Test10.p >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen_local/pollen.core
+export num=test46
+export n=46
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test1.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen_local/pollen.core
+export num=test47
+export n=47
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/DispatcherTest.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} ${tst}  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} DispatcherTest >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test49
+export n=49
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Client.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test50
+export n=50
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test51
+export n=51
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BufferTest.p
+export dir1=${t}/${num}/transport
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test52
+export n=52
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+export dir1=${t}/${num}/base
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/test61/PrintImpl ${tst} ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} HelloWorld >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test53
+export n=53
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test54
+export n=54
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/${num}/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} TestProg >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen_local/pollen.core
+export num=test55
+export n=55
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -a -p ${t}/${num}/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} TestProg >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test56
+export n=56
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/${num}/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} TestProg >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test57
+export n=57
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/SetFuncRefOnHost.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}
+java -jar ${pol} -gcc ${tst} ${dir1} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} SetFuncRefOnHost >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test58
+export n=58
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/OrderOfOp.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} OrderOfOp >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test59
+export n=59
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/InitTestM.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test60
+export n=60
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr -p ${t}/${num}/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test61
+export n=61
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Blink.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/${num}/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} Blink  >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test62
+export n=62
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test63
+export n=63
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} HelloWorld  >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test64
+export n=64
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestFuncRefPass.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} TestFuncRefPass  >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+#export POLLEN_ROOT=${t}/${num}/bundles/pollen-core
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test66
+export n=66
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_08.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/bundles/virtual
+export dir2=${t}/${num}/bundles/environments
+java -jar ${pol} ${tst}  -gcc -e ${t}/${num}/bundles/environments/virtual/LocalHost -p ${t}/test54/PrintImpl \
+  ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} Test_08 >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test67  # non-working
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+
+# USING LOCAL POLLEN_ROOT
+export num=test68
+export n=68
+export POLLEN_ROOT=${t}/${num}/bundles/pollen-core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_11.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/bundles/virtual
+export dir2=${t}/${num}/bundles/environments
+java -jar ${pol} ${tst}  -gcc -e ${t}/${num}/bundles/environments/virtual/LocalHost -p ${t}/test54/PrintImpl \
+  ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export num=test69
+export n=69
+export POLLEN_ROOT=${t}/${num}/bundles/pollen-core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_12.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/bundles/virtual
+export dir2=${t}/${num}/bundles/environments
+java -jar ${pol} ${tst}  -gcc -e ${t}/${num}/bundles/environments/virtual/LocalHost -p ${t}/test54/PrintImpl \
+  ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+
+# USING LOCAL POLLEN_ROOT
+export num=test70
+export n=70
+export POLLEN_ROOT=${t}/${num}/bundles/pollen-core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/QueueBug_01.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/bundles/virtual
+export dir2=${t}/${num}/bundles/environments
+java -jar ${pol} ${tst}  -gcc -e ${t}/${num}/bundles/environments/virtual/LocalHost -p ${t}/test54/PrintImpl \
+  ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# NOT USING LOCAL POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen.core
+export num=test71
+export n=71
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gccAvr -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export num=test72
+export n=72
+export POLLEN_ROOT=${t}/${num}/bundles/pollen-core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_13.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/bundles/virtual
+export dir2=${t}/${num}/bundles/environments
+java -jar ${pol} -gcc ${tst}  -e ${t}/${num}/bundles/environments/virtual/LocalHost -p ${t}/test54/PrintImpl \
+  ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} Test_13 >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING LOCAL POLLEN_ROOT
+export num=test73
+export n=73
+export POLLEN_ROOT=${t}/${num}/bundles/pollen-core
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_16.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/bundles/virtual
+export dir2=${t}/${num}/bundles/environments
+java -jar ${pol} ${tst}  -gcc -e ${t}/${num}/bundles/environments/virtual/LocalHost -gcc -w  \
+  ${dir1} ${dir2} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test74
+export n=74
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_20.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/bundles/virtual
+export dir2=${t}/${num}/bundles/environments
+export dir3=${t}/${num}/bundles/test
+java -jar ${pol} ${tst}  -gcc -e ${t}/${num}/bundles/environments/virtual/LocalHost \
+  ${dir1} ${dir2} ${dir3} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test75
+export n=75
+export POLLEN_ROOT=${t}/${num}/bundles/pollen-core
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} ${tst} -gcc -p ${t}/test54/PrintImpl  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} Test >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+export num=test76
+export n=76
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} ${tst}  -gcc -p ${t}/test54/PrintImpl  ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} Test >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test77
+export n=77
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_21.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=${t}/${num}/bundles/virtual
+export dir3=${t}/${num}/bundles/atmel
+java -jar ${pol} ${tst}  -gcc -e ${t}/${num}/bundles/environments/virtual/LocalHost \
+  ${dir1} ${dir2} ${dir3} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test78
+export n=78
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HostCallThruProtoBug.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} ${tst}  -gcc -p ${t}/test54/PrintImpl ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} HostCallThruProtoBug  >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test79
+export n=79
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} ${tst}  -gcc -a ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} TestProg >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test80
+export n=80
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/HelloWorld.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} HelloWorld  >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test81
+export n=81
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} TestProg  >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test82
+export n=82
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test83
+export n=83
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test1.p
+export dir1=${t}/${num}/bundles1/virtual
+export dir2=${t}/${num}/bundles2/virtual2
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -p ${t}/test61/PrintImpl -gcc ${dir1} ${dir2} ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/pollen-core
+export num=test84
+export n=84
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/MetaPinTestMod.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} MetaPinTestMod  >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, POLLEN_BUNDLES, cFlags
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test85
+export n=85
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${t}/${num}/bundles
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_11.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@virtual
+export dir2=@environments
+export dir3=@pollen-core
+# deleted -cFlags "-v" because it causes diffs in every run 
+# which creates spurious regressions.
+java -jar ${pol} ${tst}  -gcc \
+	-e @environments/virtual/LocalHost \
+	-p ${t}/test54/PrintImpl \
+	  ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, POLLEN_BUNDLES, user specified props
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test86
+export n=86
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${t}/${num}/bundles
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_11.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@virtual
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+	-props ${t}/pollen_target/props \
+	-e @environments/virtual/LocalHost \
+	-p ${t}/test54/PrintImpl \
+	  ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test90
+export n=90
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_03.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+export dir4=@bijou
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} ${dir4} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test93
+export n=93
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Mod1.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test94
+export n=94
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Mod1.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test95
+export n=95
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test96
+export n=96
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test97
+export n=97
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test98
+export n=98
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test99
+export n=99
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test100
+export n=100
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test101
+export n=101
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/NullProgram.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} ${tst}  -gcc \
+      > ${t}/xout 2>&1
+
+# USING Test pollen-core as POLLEN_ROOT
+export POLLEN_ROOT=${t}/bundles/pollen-core
+export num=test104
+export n=104
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Mod1.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+java -jar ${pol} -gcc -p ${t}/test61/PrintImpl ${tst} ${POLLEN_ROOT} > ${t}/xout 2>&1
+${RUNTEST} ${n} Mod1  >> ${t}/xout 2>&1
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test116
+export n=116
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/ArrayInitBug.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test117
+export n=117
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test118
+export n=118
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkMilli.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+#${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test119
+export n=119
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/BlinkMilli.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, ami POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test120
+export n=120
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Mod.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@localhost
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+     -e @environments/localhost/LocalHost \
+     -p ${t}/test54/PrintImpl \
+     ${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+#${RUNTEST} ${n} >> ${t}/xout 2>&1  not runnable
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, POLLEN_BUNDLES, user specified props
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test121
+export n=121
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${t}/${num}/bundles
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/Test_01.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir1=@virtual
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} -gcc \
+	-props ${t}/pollen_target/props \
+	-e @environments/virtual/LocalHost \
+	-p ${t}/test54/PrintImpl \
+	${t}/${num}/bundles/atmel ${dir1} ${dir2} ${dir3}  \
+    ${tst} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+
+# USING POLLEN_TARGET, POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test122
+export n=122
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+	-e @environments/localhost/LocalHost \
+	-p ${t}/test54/PrintImpl \
+	${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+# USING POLLEN_TARGET, POLLEN_BUNDLES
+# POLLEN_ROOT NOT DEFINED 
+export POLLEN_ROOT=
+export num=test123
+export n=123
+export POLLEN_TARGET=${t}/pollen.target
+export POLLEN_BUNDLES=${TESTSUITE_BUNDLES}
+echo "========================== ${num} ==========================" > ${tstout}
+export tst=${t}/${num}/TestProg.p
+grep -h -r TEST ${t}/${num}/* >> ${tstout}
+export dir2=@environments
+export dir3=@pollen-core
+java -jar ${pol} ${tst}  -gcc \
+	-e @environments/localhost/LocalHost \
+	-p ${t}/test54/PrintImpl \
+	${dir1} ${dir2} ${dir3} > ${t}/xout 2>&1
+${RUNTEST} ${n} >> ${t}/xout 2>&1
+${TESTRESULTS} ${t} ${num} ${t}/xout ${tstout} ${pol}
+
+rm ${t}/xout
+rm ${t}/tstout
+
+# clean up for commit:
+# delete files other than .c, .h, .js
+case $1 in
+-clean) find ${t}/*_out/test* -name *.[^chj]\* \
+          -exec rm -Rf {} \; > /dev/null 2>&1
+        find ${t}/*_out/test* -name *.[ch][A-z]\* \
+          -exec rm -Rf {} \; > /dev/null 2>&1
+        find ${t}/*_out/test* -name *.[j][^s]\* \
+          -exec rm -Rf {} \; > /dev/null 2>&1
+        ;;
+esac

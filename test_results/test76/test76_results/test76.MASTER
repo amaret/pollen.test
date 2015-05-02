@@ -1,0 +1,1185 @@
+pollen version 0.2.137
+pollen version 0.2.137
+test76.ArrNoDim.p, line 8:9, '=': operand type error: <uint8[], uint8>
+test76.FcnArrParm.p, line 7:9, '=': operand type error: <uint8[], uint8>
+go to Test
+Now run executeable
+Print array without dimensions, elements assigned to host array: 
+arr[0] 7, arr[1] 7, arr[2] 7
+Print targ array passed as parameter: 
+arr[0] 7, arr[1] 7, arr[2] 7
+Print host array passed as parameter: 
+arr[0] 7, arr[1] 7, arr[2] 7
+Print host array in module scope: 
+arr[0] 7, arr[1] 7, arr[2] 7
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test54_PrintImpl__s__fileName[] = "PrintImpl.p";
+static const char test54_PrintImpl__s__0[] = "PrintImpl";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test54_PrintImpl_printUint__E( uint32 u ) {
+     printf("%u", (unsigned int)u) ;
+
+}
+
+void test54_PrintImpl_printInt__E( int32 i ) {
+     printf("%i", (int)i) ;
+
+}
+
+void test54_PrintImpl_printReal__E( float f ) {
+     printf("%f", (float)f) ;
+
+}
+
+void test54_PrintImpl_printBool__E( bool b ) {
+    if ((b)) {
+         printf("%s", "true") ;
+
+    }
+    else {
+         printf("%s", "false") ;
+
+    }
+}
+
+void test54_PrintImpl_targetInit__I() {
+}
+
+void test54_PrintImpl_printStr__E( string s ) {
+     printf("%s", s) ;
+
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test76_Test_pollen__reset__E();
+void test76_Test_pollen__ready__E();
+void test76_Test_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test54_PrintImpl_ test54_PrintImpl;
+
+/*
+ * ======== struct module definition (unit PrintImpl) ========
+ */
+
+struct test54_PrintImpl_ {
+};
+typedef struct test54_PrintImpl_ test54_PrintImpl_;
+
+/*
+ * ======== function members (unit PrintImpl) ========
+ */
+
+extern void test54_PrintImpl_printUint__E( uint32 u );
+extern void test54_PrintImpl_printInt__E( int32 i );
+extern void test54_PrintImpl_printReal__E( float f );
+extern void test54_PrintImpl_printBool__E( bool b );
+extern void test54_PrintImpl_targetInit__I();
+extern void test54_PrintImpl_printStr__E( string s );
+
+/*
+ * ======== data members (unit PrintImpl) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test76_ArrNoDim__s__fileName[] = "ArrNoDim.p";
+static const char test76_ArrNoDim__s__3[] = ", arr[2] ";
+static const char test76_ArrNoDim__s__2[] = ", arr[1] ";
+static const char test76_ArrNoDim__s__1[] = "arr[0] ";
+static const char test76_ArrNoDim__s__0[] = "Print array without dimensions, elements assigned to host array: \n";
+static const char test76_ArrNoDim__s__4[] = "\n";
+static const char test76_ArrNoDim__s__5[] = "ArrNoDim";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test76_ArrNoDim_foo__E() {
+    uint8 i;
+    uint8 j;
+    uint8 k;
+    (test76_ArrNoDim_arr__V) = (test76_ArrNoDim_arrh__A);
+    i = (test76_ArrNoDim_arr__V[0]);
+    j = (test76_ArrNoDim_arr__V[1]);
+    k = (test76_ArrNoDim_arr__V[2]);
+    test76_Test_pollen__printStr((string)test76_ArrNoDim__s__0);
+    test76_Test_pollen__printStr((string)test76_ArrNoDim__s__1);
+	test76_Test_pollen__printUint((uint32)(i));
+	test76_Test_pollen__printStr((string)test76_ArrNoDim__s__2);
+	test76_Test_pollen__printUint((uint32)(j));
+	test76_Test_pollen__printStr((string)test76_ArrNoDim__s__3);
+	test76_Test_pollen__printUint((uint32)(k));
+	test76_Test_pollen__printStr((string)test76_ArrNoDim__s__4);
+}
+
+void test76_ArrNoDim_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test76_Test_pollen__reset__E();
+void test76_Test_pollen__ready__E();
+void test76_Test_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test76_ArrNoDim_ test76_ArrNoDim;
+
+/*
+ * ======== struct module definition (unit ArrNoDim) ========
+ */
+
+struct test76_ArrNoDim_ {
+    uint8 * arr;
+};
+typedef struct test76_ArrNoDim_ test76_ArrNoDim_;
+
+/*
+ * ======== host variables (unit ArrNoDim) ========
+ */
+
+typedef uint8 test76_ArrNoDim_arrh__TYPE;
+extern test76_ArrNoDim_arrh__TYPE test76_ArrNoDim_arrh__A[];
+
+/*
+ * ======== function members (unit ArrNoDim) ========
+ */
+
+extern void test76_ArrNoDim_foo__E();
+extern void test76_ArrNoDim_targetInit__I();
+
+/*
+ * ======== data members (unit ArrNoDim) ========
+ */
+
+#define test76_ArrNoDim_arr__V test76_ArrNoDim.arr
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test76_FcnArrParm__s__fileName[] = "FcnArrParm.p";
+static const char test76_FcnArrParm__s__6[] = "Print host array in module scope: \n";
+static const char test76_FcnArrParm__s__3[] = ", arr[2] ";
+static const char test76_FcnArrParm__s__2[] = ", arr[1] ";
+static const char test76_FcnArrParm__s__1[] = "arr[0] ";
+static const char test76_FcnArrParm__s__5[] = "Print host array passed as parameter: \n";
+static const char test76_FcnArrParm__s__0[] = "Print targ array passed as parameter: \n";
+static const char test76_FcnArrParm__s__7[] = "FcnArrParm";
+static const char test76_FcnArrParm__s__4[] = "\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test76_FcnArrParm_foo__E() {
+    (test76_FcnArrParm_arr__V) = (test76_FcnArrParm_arrh__A);
+    test76_FcnArrParm_bar_targ__E((test76_FcnArrParm_arr__V));
+    test76_FcnArrParm_bar_host__E((test76_FcnArrParm_arrh__A));
+}
+
+void test76_FcnArrParm_bar_targ__E( uint8  arr[] ) {
+    test76_Test_pollen__printStr((string)test76_FcnArrParm__s__0);
+    test76_Test_pollen__printStr((string)test76_FcnArrParm__s__1);
+	test76_Test_pollen__printUint((uint32)(arr[0]));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__2);
+	test76_Test_pollen__printUint((uint32)(arr[1]));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__3);
+	test76_Test_pollen__printUint((uint32)(arr[2]));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__4);
+}
+
+void test76_FcnArrParm_bar_host__E( uint8  arr[] ) {
+    uint8 i;
+    test76_Test_pollen__printStr((string)test76_FcnArrParm__s__5);
+    test76_Test_pollen__printStr((string)test76_FcnArrParm__s__1);
+	test76_Test_pollen__printUint((uint32)(arr[0]));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__2);
+	test76_Test_pollen__printUint((uint32)(arr[1]));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__3);
+	test76_Test_pollen__printUint((uint32)(arr[2]));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__4);
+    test76_Test_pollen__printStr((string)test76_FcnArrParm__s__6);
+    i = (arr[0]);
+    test76_Test_pollen__printStr((string)test76_FcnArrParm__s__1);
+	test76_Test_pollen__printUint((uint32)(i));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__2);
+	test76_Test_pollen__printUint((uint32)(arr[1]));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__3);
+	test76_Test_pollen__printUint((uint32)(arr[2]));
+	test76_Test_pollen__printStr((string)test76_FcnArrParm__s__4);
+}
+
+void test76_FcnArrParm_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test76_Test_pollen__reset__E();
+void test76_Test_pollen__ready__E();
+void test76_Test_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test76_FcnArrParm_ test76_FcnArrParm;
+
+/*
+ * ======== struct module definition (unit FcnArrParm) ========
+ */
+
+struct test76_FcnArrParm_ {
+    uint8 * arr;
+};
+typedef struct test76_FcnArrParm_ test76_FcnArrParm_;
+
+/*
+ * ======== host variables (unit FcnArrParm) ========
+ */
+
+typedef uint8 test76_FcnArrParm_arrh__TYPE;
+extern test76_FcnArrParm_arrh__TYPE test76_FcnArrParm_arrh__A[];
+
+/*
+ * ======== function members (unit FcnArrParm) ========
+ */
+
+extern void test76_FcnArrParm_foo__E();
+extern void test76_FcnArrParm_bar_targ__E( uint8  arr[] );
+extern void test76_FcnArrParm_bar_host__E( uint8  arr[] );
+extern void test76_FcnArrParm_targetInit__I();
+
+/*
+ * ======== data members (unit FcnArrParm) ========
+ */
+
+#define test76_FcnArrParm_arr__V test76_FcnArrParm.arr
+#include <std.h>
+
+/*
+ * ======== protocol member test76.Test.pollenPrintProxy delegates test54_PrintImpl ========
+ */
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef test76_ArrNoDim__M
+#define test76_ArrNoDim__M
+#include "../../test76/ArrNoDim/ArrNoDim.h"
+#endif
+
+#ifndef test76_FcnArrParm__M
+#define test76_FcnArrParm__M
+#include "../../test76/FcnArrParm/FcnArrParm.h"
+#endif
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+#ifndef test76_Test__M
+#define test76_Test__M
+#include "../../test76/Test/Test.h"
+#endif
+
+/*
+ * ======== host data definitions (unit ArrNoDim) ========
+ */
+
+test76_ArrNoDim_arrh__TYPE test76_ArrNoDim_arrh__A[] = {
+    (uint8)0x7,  /* [0] */
+    (uint8)0x7,  /* [1] */
+    (uint8)0x7,  /* [2] */
+};
+
+/*
+ * ======== target data definitions (unit ArrNoDim) ========
+ */
+
+struct test76_ArrNoDim_ test76_ArrNoDim = { /* module data */
+    null,                    /* arr */
+};
+
+/*
+ * ======== host data definitions (unit FcnArrParm) ========
+ */
+
+test76_FcnArrParm_arrh__TYPE test76_FcnArrParm_arrh__A[] = {
+    (uint8)0x7,  /* [0] */
+    (uint8)0x7,  /* [1] */
+    (uint8)0x7,  /* [2] */
+};
+
+/*
+ * ======== target data definitions (unit FcnArrParm) ========
+ */
+
+struct test76_FcnArrParm_ test76_FcnArrParm = { /* module data */
+    null,                    /* arr */
+};
+
+/*
+ * ======== target data definitions (unit PrintImpl) ========
+ */
+
+struct test54_PrintImpl_ test54_PrintImpl = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit Test) ========
+ */
+
+struct test76_Test_ test76_Test = { /* module data */
+    &test54_PrintImpl,    /* pollenPrintProxy */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test76_Test_pollen__printBool(bool b) {
+    test54_PrintImpl_printBool__E(b);
+}
+void test76_Test_pollen__printInt(int32 i) {
+    test54_PrintImpl_printInt__E(i);
+}
+void test76_Test_pollen__printReal(float f) {
+    test54_PrintImpl_printReal__E(f);
+}
+void test76_Test_pollen__printUint(uint32 u) {
+    test54_PrintImpl_printUint__E(u);
+}
+void test76_Test_pollen__printStr(string s) {
+    test54_PrintImpl_printStr__E(s);
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../test76/ArrNoDim/ArrNoDim.c"
+#include "../../test76/FcnArrParm/FcnArrParm.c"
+#include "../../test54/PrintImpl/PrintImpl.c"
+#include "../../test76/Test/Test.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test76_Test_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test76_Test_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.shutdown(uint8) ========
+ */
+
+void test76_Test_pollen__shutdown__E(uint8 i) {
+    volatile int dummy = 0xCAFE;
+    while (dummy) ;
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test76_Test_pollen__reset__E();
+    test76_ArrNoDim_targetInit__I();
+    test76_FcnArrParm_targetInit__I();
+    test54_PrintImpl_targetInit__I();
+    test76_Test_targetInit__I();
+    test76_Test_pollen__ready__E();
+    test76_Test_pollen__run__E();
+    test76_Test_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test76_Test__s__fileName[] = "Test.p";
+static const char test76_Test__s__0[] = "Test";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdlib.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test76_Test_pollen__run__E() {
+    test76_ArrNoDim_foo__E();
+    test76_FcnArrParm_foo__E();
+     exit(0) ;
+
+}
+
+void test76_Test_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef test76_ArrNoDim__M
+#define test76_ArrNoDim__M
+#include "../../test76/ArrNoDim/ArrNoDim.h"
+#endif
+
+#ifndef test76_FcnArrParm__M
+#define test76_FcnArrParm__M
+#include "../../test76/FcnArrParm/FcnArrParm.h"
+#endif
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test76_Test_pollen__reset__E();
+void test76_Test_pollen__ready__E();
+void test76_Test_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test76_Test_ test76_Test;
+
+/*
+ * ======== struct module definition (unit Test) ========
+ */
+
+struct test54_PrintImpl_;
+struct test76_Test_ {
+    struct test54_PrintImpl_ *pollenPrintProxy;
+};
+typedef struct test76_Test_ test76_Test_;
+
+/*
+ * ======== function members (unit Test) ========
+ */
+
+extern void test76_Test_pollen__run__E();
+extern void test76_Test_targetInit__I();
+
+/*
+ * ======== data members (unit Test) ========
+ */
+
+#define test76_Test_pollenPrintProxy__V test76_Test.pollenPrintProxy
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test54.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test54.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test54_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test54_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test54_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test54_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test54_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test54_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test54.PrintImpl'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test76.ArrNoDim ========
+ */
+
+var $$c = function() {
+    const ArrNoDim = {};
+    ArrNoDim.ArrNoDim = ArrNoDim
+    ArrNoDim.$name = 'test76.ArrNoDim';
+    ArrNoDim.pollen$used = 0;
+    ArrNoDim.foo = new $$Ref('test76_ArrNoDim_foo__E');
+    ArrNoDim.targetInit = new $$Ref('test76_ArrNoDim_targetInit__I');
+    ArrNoDim.$$hostInit = function() {
+        var $$text = '';
+        ArrNoDim.arrh = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test76_ArrNoDim_arrh__A', false); ArrNoDim.arrh.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ 7, 7, 7 ]));
+        ArrNoDim.arr = new $$Array(-1, function($$cn,$$idx){ return 0;}, 'test76_ArrNoDim_arr__A', false);
+        return $$text;
+    }
+    ArrNoDim.pollen__uses__ = function() {
+    }
+    ArrNoDim.$$privateInit = function() {
+        ArrNoDim.arr = new $$Array(-1, function($$cn,$$idx){ return 0;}, 'test76_ArrNoDim_arr__A', false);
+    }
+    return ArrNoDim;
+}
+var $$u = $$c();
+$units['test76.ArrNoDim'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test76.FcnArrParm ========
+ */
+
+var $$c = function() {
+    const FcnArrParm = {};
+    FcnArrParm.FcnArrParm = FcnArrParm
+    FcnArrParm.$name = 'test76.FcnArrParm';
+    FcnArrParm.pollen$used = 0;
+    FcnArrParm.foo = new $$Ref('test76_FcnArrParm_foo__E');
+    FcnArrParm.bar_targ = new $$Ref('test76_FcnArrParm_bar_targ__E');
+    FcnArrParm.bar_host = new $$Ref('test76_FcnArrParm_bar_host__E');
+    FcnArrParm.targetInit = new $$Ref('test76_FcnArrParm_targetInit__I');
+    FcnArrParm.$$hostInit = function() {
+        var $$text = '';
+        FcnArrParm.arrh = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test76_FcnArrParm_arrh__A', false); FcnArrParm.arrh.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ 7, 7, 7 ]));
+        FcnArrParm.arr = new $$Array(-1, function($$cn,$$idx){ return 0;}, 'test76_FcnArrParm_arr__A', false);
+        return $$text;
+    }
+    FcnArrParm.pollen__uses__ = function() {
+    }
+    FcnArrParm.$$privateInit = function() {
+        FcnArrParm.arr = new $$Array(-1, function($$cn,$$idx){ return 0;}, 'test76_FcnArrParm_arr__A', false);
+    }
+    return FcnArrParm;
+}
+var $$u = $$c();
+$units['test76.FcnArrParm'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test76.ArrNoDim ========
+ */
+
+var $$c = function() {
+    const ArrNoDim = {};
+    ArrNoDim.ArrNoDim = ArrNoDim
+    ArrNoDim.$name = 'test76.ArrNoDim';
+    ArrNoDim.pollen$used = 0;
+    ArrNoDim.foo = new $$Ref('test76_ArrNoDim_foo__E');
+    ArrNoDim.targetInit = new $$Ref('test76_ArrNoDim_targetInit__I');
+    ArrNoDim.$$hostInit = function() {
+        var $$text = '';
+        ArrNoDim.arrh = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test76_ArrNoDim_arrh__A', false); ArrNoDim.arrh.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ 7, 7, 7 ]));
+        ArrNoDim.arr = new $$Array(-1, function($$cn,$$idx){ return 0;}, 'test76_ArrNoDim_arr__A', false);
+        return $$text;
+    }
+    ArrNoDim.pollen__uses__ = function() {
+    }
+    ArrNoDim.$$privateInit = function() {
+        ArrNoDim.arr = new $$Array(-1, function($$cn,$$idx){ return 0;}, 'test76_ArrNoDim_arr__A', false);
+    }
+    return ArrNoDim;
+}
+var $$u = $$c();
+$units['test76.ArrNoDim'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test76.FcnArrParm ========
+ */
+
+var $$c = function() {
+    const FcnArrParm = {};
+    FcnArrParm.FcnArrParm = FcnArrParm
+    FcnArrParm.$name = 'test76.FcnArrParm';
+    FcnArrParm.pollen$used = 0;
+    FcnArrParm.foo = new $$Ref('test76_FcnArrParm_foo__E');
+    FcnArrParm.bar_targ = new $$Ref('test76_FcnArrParm_bar_targ__E');
+    FcnArrParm.bar_host = new $$Ref('test76_FcnArrParm_bar_host__E');
+    FcnArrParm.targetInit = new $$Ref('test76_FcnArrParm_targetInit__I');
+    FcnArrParm.$$hostInit = function() {
+        var $$text = '';
+        FcnArrParm.arrh = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test76_FcnArrParm_arrh__A', false); FcnArrParm.arrh.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ 7, 7, 7 ]));
+        FcnArrParm.arr = new $$Array(-1, function($$cn,$$idx){ return 0;}, 'test76_FcnArrParm_arr__A', false);
+        return $$text;
+    }
+    FcnArrParm.pollen__uses__ = function() {
+    }
+    FcnArrParm.$$privateInit = function() {
+        FcnArrParm.arr = new $$Array(-1, function($$cn,$$idx){ return 0;}, 'test76_FcnArrParm_arr__A', false);
+    }
+    return FcnArrParm;
+}
+var $$u = $$c();
+$units['test76.FcnArrParm'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test54.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test54.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test54_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test54_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test54_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test54_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test54_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test54_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test54.PrintImpl'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test76.Test ========
+ */
+
+var $$c = function() {
+    const Test = {};
+    Test.Test = Test
+    Test.$name = 'test76.Test';
+    Test.pollen$used = 0;
+    Test.ArrNoDim = $units['test76.ArrNoDim'];
+    Test.FcnArrParm = $units['test76.FcnArrParm'];
+    Test.PrintImpl = $units['test54.PrintImpl'];
+    Test.pollen__run = new $$Ref('test76_Test_pollen__run__E');
+    Test.targetInit = new $$Ref('test76_Test_targetInit__I');
+    Test.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Test.pollen__uses__ = function() {
+        $$bind($units['test76.ArrNoDim'], 'pollen$used', true);
+        $$bind($units['test76.FcnArrParm'], 'pollen$used', true);
+        $$bind($units['test54.PrintImpl'], 'pollen$used', true);
+    }
+    Test.$$privateInit = function() {
+var $$v = 'test54_PrintImpl';
+        var $$s = $$bind($units['test76.Test'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test54.PrintImpl'].pollen$used = true;}
+
+    }
+    return Test;
+}
+var $$u = $$c();
+$units['test76.Test'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test76.Test'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test76.Test ========
+ */
+
+var $$c = function() {
+    const Test = {};
+    Test.Test = Test
+    Test.$name = 'test76.Test';
+    Test.pollen$used = 0;
+    Test.ArrNoDim = $units['test76.ArrNoDim'];
+    Test.FcnArrParm = $units['test76.FcnArrParm'];
+    Test.PrintImpl = $units['test54.PrintImpl'];
+    Test.pollen__run = new $$Ref('test76_Test_pollen__run__E');
+    Test.targetInit = new $$Ref('test76_Test_targetInit__I');
+    Test.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Test.pollen__uses__ = function() {
+        $$bind($units['test76.ArrNoDim'], 'pollen$used', true);
+        $$bind($units['test76.FcnArrParm'], 'pollen$used', true);
+        $$bind($units['test54.PrintImpl'], 'pollen$used', true);
+    }
+    Test.$$privateInit = function() {
+var $$v = 'test54_PrintImpl';
+        var $$s = $$bind($units['test76.Test'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test54.PrintImpl'].pollen$used = true;}
+
+    }
+    return Test;
+}
+var $$u = $$c();
+$units['test76.Test'] = $$u;
+$units.push($$u);
+

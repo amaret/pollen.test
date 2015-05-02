@@ -1,0 +1,53 @@
+---- ./GlobalInterrupts.p
+module GlobalInterrupts {
+
+    +{ #include <avr/io.h>
+       #include <avr/interrupt.h> }+
+
+	public uint16 disable() {
+    	uint16 key = +{SREG}+ & (1 << 7)
+	    return key
+	}
+
+	public enable() {
+    	    +{sei()}+
+	}
+    
+	public restore(uint16 key) {
+    	    if (key != 0) { +{sei()}+ }
+	    else { +{cli()}+ }
+	}    
+}
+
+---- ./Mcu.p
+import GlobalInterrupts
+composition Mcu {
+	export GlobalInterrupts
+}
+
+---- ./Duemilanove.p
+import Mcu
+from Mcu import GlobalInterrupts
+composition Duemilanove {
+        export Mcu	
+        #export GlobalInterrupts
+}
+
+
+---- ./Environment.p
+import Duemilanove as Board
+from Board import Mcu
+from Mcu import GlobalInterrupts
+composition Environment {	
+	export GlobalInterrupts
+}
+
+---- ./TestImporExport.p
+import Environment as Env
+
+from Env import GlobalInterrupts
+module TestImporExport {
+	pollen.run() {
+	    GlobalInterrupts.enable()		
+	}
+}

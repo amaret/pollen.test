@@ -1,0 +1,3 @@
+protocol ZZ {
+  bool on()
+}

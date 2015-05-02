@@ -1,0 +1,26 @@
+module M {
+  foo() {}
+  bar() {}
+}
+import M as N   
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+import C1 as N   
+composition C7 {
+  export N
+}
+import C7   
+from C7 import N as Q
+composition C8 extends C7 { 
+  export Q.bar
+}
+import C8
+module Test7  {
+  test() {
+    N.foo() 
+    Q.bar()
+  }
+  pollen.run() { }
+}

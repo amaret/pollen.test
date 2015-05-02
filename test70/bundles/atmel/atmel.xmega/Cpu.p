@@ -1,0 +1,53 @@
+package atmel.xmega
+
+from pollen.hardware import CpuP
+
+module Cpu implements CpuP {
+  
+  +{ #include <avr/io.h> }+
+
+
+  host Cpu() {
+    ticksPerUs = (sysFreq / 1000000)   # must be megahertz, we probably want to do some rounding here
+  }
+
+  public reset() {
+    # disable the watchdog timer (?), set system frequency
+  }
+
+  public shutdown() {
+  }
+
+  public wait(uint16 us) {
+    # subtraction of cycles is for setup and operation of the for loop. Probably needs to be timed.
+    uint32 i = (ticksPerUs * us) - 10
+
+    for (; i > 0; --i) {
+      +{ __asm__ __volatile__ ("nop") }+   
+    }
+  }
+
+  public cycle() {
+    +{ __asm__ __volatile__ ("nop") }+
+  }
+
+  public uint32 getFrequency() {
+    return sysFreq
+  }
+
+  public host uint32 getFrequencyOnHost() {
+    return sysFreq
+  }
+
+  public setFrequency(uint32 hz) {
+  }
+
+  public host setFrequencyOnHost(uint32 hz) {
+  }
+
+  !-------------------------------------------------------------------------
+    Private data members
+  --------------------------------------------------------------------------!
+  host uint32 sysFreq = 2000000
+  host uint32 ticksPerUs
+}

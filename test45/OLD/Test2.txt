@@ -1,0 +1,38 @@
+module M {
+  foo() {}
+  bar() {}
+}
+import M as N        (*)
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+C2: importSymbols()
+  for  'from C1 import N' 
+     for imports in C1.unit {
+        if needed I get the import referencing the module defn (see *)
+           make a copy and update with exportInfo
+        enter it in the local symbol table.
+        If it replaces an import
+           put the isExport and exportFcns of replaced import on current import.
+     }
+   }
+
+
+from C1 import N  # exportFcns { bar }
+composition C2 {
+  export N.bar
+}
+from C2 import N # exportFcns { bar }
+# TEST export filters while using 
+# TEST 2 levels of 'from compos c import m'
+# TEST N.foo() should get message not exported
+
+module Test2 {
+  test() {
+    N.foo()
+    N.bar()
+  }
+  pollen.run() {}
+}
+  

@@ -1,0 +1,1709 @@
+pollen version 0.2.137
+pollen version 0.2.137
+Now run executeable
+abs() of -1 is 1
+abs() of 3 is 3
+abs() of -9999 is 9999
+floor() of 1.300000, is 1.000000
+floor() of 0.000000, is 0.000000
+floor() of 1230000.000000, is 1230000.000000
+floor() of -7.500000, is -8.000000
+ceil() of 1.300000, is 2.000000
+ceil() of 0.000000, is 0.000000
+ceil() of 1230000.000000, is 1230000.000000
+ceil() of -7.500000, is -7.000000
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_math_Absolute__s__fileName[] = "Absolute.p";
+static const char pollen_math_Absolute__s__0[] = "Absolute";
+
+/*
+ * ======== function definitions ========
+ */
+
+int16 pollen_math_Absolute_abs16__E( int16 i ) {
+    if ((i) < 0) {
+        (i) = -(i);
+    }
+    return(  (i)  );
+}
+
+int32 pollen_math_Absolute_abs32__E( int32 i ) {
+    if ((i) < 0) {
+        (i) = -(i);
+    }
+    return(  (i)  );
+}
+
+int8 pollen_math_Absolute_abs8__E( int8 i ) {
+    if ((i) < 0) {
+        (i) = -(i);
+    }
+    return(  (i)  );
+}
+
+void pollen_math_Absolute_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test94_Mod1_pollen__reset__E();
+void test94_Mod1_pollen__ready__E();
+void test94_Mod1_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct pollen_math_Absolute_ pollen_math_Absolute;
+
+/*
+ * ======== struct module definition (unit Absolute) ========
+ */
+
+struct pollen_math_Absolute_ {
+};
+typedef struct pollen_math_Absolute_ pollen_math_Absolute_;
+
+/*
+ * ======== function members (unit Absolute) ========
+ */
+
+extern int16 pollen_math_Absolute_abs16__E( int16 i );
+extern int32 pollen_math_Absolute_abs32__E( int32 i );
+extern int8 pollen_math_Absolute_abs8__E( int8 i );
+extern void pollen_math_Absolute_targetInit__I();
+
+/*
+ * ======== data members (unit Absolute) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_math_FloorCeil__s__fileName[] = "FloorCeil.p";
+static const char pollen_math_FloorCeil__s__0[] = "FloorCeil";
+
+/*
+ * ======== code injections ========
+ */
+
+    typedef union // A union to convert between a float and a 32 bit int. 
+    {
+        float value;
+        uint32 word;
+    } ieee_float_shape_type;
+    
+    #define FLT_UWORD_IS_FINITE(x) ((x)<0x7f800000L)
+    #define FLT_UWORD_IS_ZERO(x) ((x)==0)
+    
+    static const float huge = 1.0e30;
+
+/*
+ * ======== function definitions ========
+ */
+
+uint8 pollen_math_FloorCeil_ceildivU8__E( uint8 x, uint8 y ) {
+    return(  ((x) + (y) - 1) / (y)  );
+}
+
+uint16 pollen_math_FloorCeil_ceildivU16__E( uint8 x, uint8 y ) {
+    return(  ((x) + (y) - 1) / (y)  );
+}
+
+float pollen_math_FloorCeil_ceil__E( float x ) {
+    int32 i0;
+    int32 j0;
+    uint32 i;
+    uint32 ix;
+    
+    
+    
+
+          ieee_float_shape_type flt_u;
+          flt_u.value = x;
+          i0 = flt_u.word;
+
+          ix = (i0&0x7fffffff);
+          j0 = (ix>>23)-0x7f;
+          if(j0<23) {
+              if(j0<0) {                  /* raise inexact if x != 0 */
+                  if(huge+x>(float)0.0) { /* return 0*sign(x) if |x|<1 */
+                      if(i0<0) {
+                          i0=0x80000000;
+                      }
+                      else if(!FLT_UWORD_IS_ZERO(ix)) {
+                          i0=0x3f800000;
+                      }
+                  }
+              } else {
+                  i = (0x007fffff)>>j0;
+                  if((i0&i)==0) return x; /* x is integral */
+                  if(huge+x>(float)0.0) { /* raise inexact flag */
+                      if(i0>0) i0 += (0x00800000)>>j0;
+                      i0 &= (~i);
+                  }
+              }
+          } else {
+              if(!FLT_UWORD_IS_FINITE(ix)) return x+x; /* inf or NaN */
+              else return x;  /* x is integral */
+          }
+
+          flt_u.word = i0;
+          x = flt_u.value;
+
+      ;
+
+    return(  (x)  );
+}
+
+float pollen_math_FloorCeil_floor__E( float x ) {
+    int32 i0;
+    int32 j0;
+    uint32 i;
+    uint32 ix;
+    
+    
+    
+
+      ieee_float_shape_type flt_u;
+      flt_u.value = x;
+      i0 = flt_u.word;
+
+      ix = (i0&0x7fffffff);
+      j0 = (ix>>23)-0x7f;
+
+      if(j0<23) {
+          if(j0<0) {            /* raise inexact if x != 0 */
+              if(huge+x>(float)0.0) {/* return 0*sign(x) if |x|<1 */
+                  if(i0>=0) {
+                      i0=0;
+                  }
+                  else if(!FLT_UWORD_IS_ZERO(ix))
+                  {
+                      i0=0xbf800000;
+                  }
+              }
+          } else {
+
+              i = (0x007fffff)>>j0;
+
+              if((i0&i)==0)
+                  return x; /* x is integral */
+
+              if(huge+x>(float)0.0) { /* raise inexact flag */
+                  if(i0<0)
+                      i0 += (0x00800000)>>j0;
+                  i0 &= (~i);
+              }
+          }
+      } else {
+          if(!FLT_UWORD_IS_FINITE(ix))
+              return x+x; /* inf or NaN */
+          else
+              return x;   /* x is integral */
+      }
+      flt_u.word = i0;
+      x = flt_u.value;
+      ;
+
+    return(  (x)  );
+}
+
+void pollen_math_FloorCeil_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test94_Mod1_pollen__reset__E();
+void test94_Mod1_pollen__ready__E();
+void test94_Mod1_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct pollen_math_FloorCeil_ pollen_math_FloorCeil;
+
+/*
+ * ======== struct module definition (unit FloorCeil) ========
+ */
+
+struct pollen_math_FloorCeil_ {
+};
+typedef struct pollen_math_FloorCeil_ pollen_math_FloorCeil_;
+
+/*
+ * ======== function members (unit FloorCeil) ========
+ */
+
+extern uint8 pollen_math_FloorCeil_ceildivU8__E( uint8 x, uint8 y );
+extern uint16 pollen_math_FloorCeil_ceildivU16__E( uint8 x, uint8 y );
+extern float pollen_math_FloorCeil_ceil__E( float x );
+extern float pollen_math_FloorCeil_floor__E( float x );
+extern void pollen_math_FloorCeil_targetInit__I();
+
+/*
+ * ======== data members (unit FloorCeil) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_math_Random16__s__fileName[] = "Random16.p";
+static const char pollen_math_Random16__s__0[] = "Random16";
+
+/*
+ * ======== function definitions ========
+ */
+
+uint16 pollen_math_Random16_srand16__E( uint16 s ) {
+    (pollen_math_Random16_seed__V) = (s);
+    return(  pollen_math_Random16_rand16__E()  );
+}
+
+uint16 pollen_math_Random16_rand16f__E() {
+    uint16 bit;
+    
+    (bit) = (((pollen_math_Random16_lfsr__V) >> 0) ^ ((pollen_math_Random16_lfsr__V) >> 2) ^ ((pollen_math_Random16_lfsr__V) >> 3) ^ ((pollen_math_Random16_lfsr__V) >> 5)) & 1;
+    (pollen_math_Random16_lfsr__V) = ((pollen_math_Random16_lfsr__V) >> 1) | ((bit) << 15);
+    ++(pollen_math_Random16_period__V);
+    return(  (pollen_math_Random16_lfsr__V)  );
+}
+
+uint16 pollen_math_Random16_rand16__E() {
+    uint16 lsb;
+    lsb = 0;
+    (lsb) = (pollen_math_Random16_lfsr__V) & 1;
+    (pollen_math_Random16_lfsr__V) >>= 1;
+    if ((lsb) == 1) {
+        (pollen_math_Random16_lfsr__V) ^= 0xB400;
+    }
+    ++(pollen_math_Random16_period__V);
+    return(  (pollen_math_Random16_lfsr__V)  );
+}
+
+void pollen_math_Random16_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test94_Mod1_pollen__reset__E();
+void test94_Mod1_pollen__ready__E();
+void test94_Mod1_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct pollen_math_Random16_ pollen_math_Random16;
+
+/*
+ * ======== struct module definition (unit Random16) ========
+ */
+
+struct pollen_math_Random16_ {
+    uint16 seed;
+    uint16 lfsr;
+    uint16 period;
+};
+typedef struct pollen_math_Random16_ pollen_math_Random16_;
+
+/*
+ * ======== function members (unit Random16) ========
+ */
+
+extern uint16 pollen_math_Random16_srand16__E( uint16 s );
+extern uint16 pollen_math_Random16_rand16f__E();
+extern uint16 pollen_math_Random16_rand16__E();
+extern void pollen_math_Random16_targetInit__I();
+
+/*
+ * ======== data members (unit Random16) ========
+ */
+
+#define pollen_math_Random16_seed__V pollen_math_Random16.seed
+#define pollen_math_Random16_lfsr__V pollen_math_Random16.lfsr
+#define pollen_math_Random16_period__V pollen_math_Random16.period
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_math_Random8__s__fileName[] = "Random8.p";
+static const char pollen_math_Random8__s__0[] = "Random8";
+
+/*
+ * ======== function definitions ========
+ */
+
+uint8 pollen_math_Random8_srand8__E( uint8 s ) {
+    (pollen_math_Random8_seed__V) = (s);
+    return(  pollen_math_Random8_rand8__E()  );
+}
+
+uint8 pollen_math_Random8_rand8f__E() {
+    uint8 bit;
+    
+    do {
+        (bit) = (((pollen_math_Random8_lfsr__V) >> 0) ^ ((pollen_math_Random8_lfsr__V) >> 2) ^ ((pollen_math_Random8_lfsr__V) >> 3) ^ ((pollen_math_Random8_lfsr__V) >> 5)) & 1;
+        (pollen_math_Random8_lfsr__V) = ((pollen_math_Random8_lfsr__V) >> 1) | ((bit) << 7);
+        ++(pollen_math_Random8_period__V);
+    } while ((pollen_math_Random8_lfsr__V) != (pollen_math_Random8_seed__V));
+
+    return(  (pollen_math_Random8_lfsr__V)  );
+}
+
+uint8 pollen_math_Random8_rand8__E() {
+    uint8 lsb;
+    lsb = 0;
+    (lsb) = (pollen_math_Random8_lfsr__V) & 1;
+    (pollen_math_Random8_lfsr__V) >>= 1;
+    if ((lsb) == 1) {
+        (pollen_math_Random8_lfsr__V) ^= 0xB0;
+    }
+    ++(pollen_math_Random8_period__V);
+    return(  (pollen_math_Random8_lfsr__V)  );
+}
+
+void pollen_math_Random8_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test94_Mod1_pollen__reset__E();
+void test94_Mod1_pollen__ready__E();
+void test94_Mod1_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct pollen_math_Random8_ pollen_math_Random8;
+
+/*
+ * ======== struct module definition (unit Random8) ========
+ */
+
+struct pollen_math_Random8_ {
+    uint8 seed;
+    uint8 lfsr;
+    uint8 period;
+};
+typedef struct pollen_math_Random8_ pollen_math_Random8_;
+
+/*
+ * ======== function members (unit Random8) ========
+ */
+
+extern uint8 pollen_math_Random8_srand8__E( uint8 s );
+extern uint8 pollen_math_Random8_rand8f__E();
+extern uint8 pollen_math_Random8_rand8__E();
+extern void pollen_math_Random8_targetInit__I();
+
+/*
+ * ======== data members (unit Random8) ========
+ */
+
+#define pollen_math_Random8_seed__V pollen_math_Random8.seed
+#define pollen_math_Random8_lfsr__V pollen_math_Random8.lfsr
+#define pollen_math_Random8_period__V pollen_math_Random8.period
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test54_PrintImpl__s__fileName[] = "PrintImpl.p";
+static const char test54_PrintImpl__s__0[] = "PrintImpl";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test54_PrintImpl_printUint__E( uint32 u ) {
+     printf("%u", (unsigned int)u) ;
+
+}
+
+void test54_PrintImpl_printInt__E( int32 i ) {
+     printf("%i", (int)i) ;
+
+}
+
+void test54_PrintImpl_printReal__E( float f ) {
+     printf("%f", (float)f) ;
+
+}
+
+void test54_PrintImpl_printBool__E( bool b ) {
+    if ((b)) {
+         printf("%s", "true") ;
+
+    }
+    else {
+         printf("%s", "false") ;
+
+    }
+}
+
+void test54_PrintImpl_targetInit__I() {
+}
+
+void test54_PrintImpl_printStr__E( string s ) {
+     printf("%s", s) ;
+
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test94_Mod1_pollen__reset__E();
+void test94_Mod1_pollen__ready__E();
+void test94_Mod1_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test54_PrintImpl_ test54_PrintImpl;
+
+/*
+ * ======== struct module definition (unit PrintImpl) ========
+ */
+
+struct test54_PrintImpl_ {
+};
+typedef struct test54_PrintImpl_ test54_PrintImpl_;
+
+/*
+ * ======== function members (unit PrintImpl) ========
+ */
+
+extern void test54_PrintImpl_printUint__E( uint32 u );
+extern void test54_PrintImpl_printInt__E( int32 i );
+extern void test54_PrintImpl_printReal__E( float f );
+extern void test54_PrintImpl_printBool__E( bool b );
+extern void test54_PrintImpl_targetInit__I();
+extern void test54_PrintImpl_printStr__E( string s );
+
+/*
+ * ======== data members (unit PrintImpl) ========
+ */
+
+#include <std.h>
+
+/*
+ * ======== protocol member test94.Mod1.pollenPrintProxy delegates test54_PrintImpl ========
+ */
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef pollen_math_Absolute__M
+#define pollen_math_Absolute__M
+#include "../../pollen.math/Absolute/Absolute.h"
+#endif
+
+#ifndef pollen_math_FloorCeil__M
+#define pollen_math_FloorCeil__M
+#include "../../pollen.math/FloorCeil/FloorCeil.h"
+#endif
+
+#ifndef pollen_math_Random8__M
+#define pollen_math_Random8__M
+#include "../../pollen.math/Random8/Random8.h"
+#endif
+
+#ifndef pollen_math_Random16__M
+#define pollen_math_Random16__M
+#include "../../pollen.math/Random16/Random16.h"
+#endif
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+#ifndef test94_Mod1__M
+#define test94_Mod1__M
+#include "../../test94/Mod1/Mod1.h"
+#endif
+
+/*
+ * ======== target data definitions (unit Absolute) ========
+ */
+
+struct pollen_math_Absolute_ pollen_math_Absolute = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit FloorCeil) ========
+ */
+
+struct pollen_math_FloorCeil_ pollen_math_FloorCeil = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit Random8) ========
+ */
+
+struct pollen_math_Random8_ pollen_math_Random8 = { /* module data */
+    (uint8)0xac,             /* seed */
+    (uint8)0xac,             /* lfsr */
+    (uint8)0x0,              /* period */
+};
+
+/*
+ * ======== target data definitions (unit Random16) ========
+ */
+
+struct pollen_math_Random16_ pollen_math_Random16 = { /* module data */
+    (uint16)0xace1,          /* seed */
+    (uint16)0xace1,          /* lfsr */
+    (uint16)0x0,             /* period */
+};
+
+/*
+ * ======== target data definitions (unit PrintImpl) ========
+ */
+
+struct test54_PrintImpl_ test54_PrintImpl = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit Mod1) ========
+ */
+
+struct test94_Mod1_ test94_Mod1 = { /* module data */
+    (int8)(-0x0 - 1),    /* i8 */
+    (int16)0x3,              /* i16 */
+    (int32)(-0x270e - 1),    /* i32 */
+    (float)1.3,              /* f1 */
+    (float)0x0,              /* f2 */
+    (float)0x12c4b0,         /* f3 */
+    (float)-7.5,             /* f4 */
+    &test54_PrintImpl,    /* pollenPrintProxy */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test94_Mod1_pollen__printBool(bool b) {
+    test54_PrintImpl_printBool__E(b);
+}
+void test94_Mod1_pollen__printInt(int32 i) {
+    test54_PrintImpl_printInt__E(i);
+}
+void test94_Mod1_pollen__printReal(float f) {
+    test54_PrintImpl_printReal__E(f);
+}
+void test94_Mod1_pollen__printUint(uint32 u) {
+    test54_PrintImpl_printUint__E(u);
+}
+void test94_Mod1_pollen__printStr(string s) {
+    test54_PrintImpl_printStr__E(s);
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../pollen.math/Absolute/Absolute.c"
+#include "../../pollen.math/FloorCeil/FloorCeil.c"
+#include "../../pollen.math/Random8/Random8.c"
+#include "../../pollen.math/Random16/Random16.c"
+#include "../../test54/PrintImpl/PrintImpl.c"
+#include "../../test94/Mod1/Mod1.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test94_Mod1_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test94_Mod1_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.shutdown(uint8) ========
+ */
+
+void test94_Mod1_pollen__shutdown__E(uint8 i) {
+    volatile int dummy = 0xCAFE;
+    while (dummy) ;
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test94_Mod1_pollen__reset__E();
+    pollen_math_Absolute_targetInit__I();
+    pollen_math_FloorCeil_targetInit__I();
+    pollen_math_Random8_targetInit__I();
+    pollen_math_Random16_targetInit__I();
+    test54_PrintImpl_targetInit__I();
+    test94_Mod1_targetInit__I();
+    test94_Mod1_pollen__ready__E();
+    test94_Mod1_pollen__run__E();
+    test94_Mod1_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test94_Mod1__s__fileName[] = "Mod1.p";
+static const char test94_Mod1__s__1[] = " is ";
+static const char test94_Mod1__s__6[] = "Mod1";
+static const char test94_Mod1__s__3[] = "floor() of ";
+static const char test94_Mod1__s__5[] = "ceil() of ";
+static const char test94_Mod1__s__0[] = "abs() of ";
+static const char test94_Mod1__s__2[] = "\n";
+static const char test94_Mod1__s__4[] = ", is ";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdlib.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test94_Mod1_pollen__run__E() {
+    int8 r8;
+    int16 r16;
+    int32 r32;
+    r8 = pollen_math_Absolute_abs8__E((test94_Mod1_i8__V));
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__0);
+	test94_Mod1_pollen__printInt((int32)(test94_Mod1_i8__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__1);
+	test94_Mod1_pollen__printInt((int32)(r8));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    r16 = pollen_math_Absolute_abs16__E((test94_Mod1_i16__V));
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__0);
+	test94_Mod1_pollen__printInt((int32)(test94_Mod1_i16__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__1);
+	test94_Mod1_pollen__printInt((int32)(r16));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    r32 = pollen_math_Absolute_abs32__E((test94_Mod1_i32__V));
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__0);
+	test94_Mod1_pollen__printInt((int32)(test94_Mod1_i32__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__1);
+	test94_Mod1_pollen__printInt((int32)(r32));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__3);
+	test94_Mod1_pollen__printReal((float)(test94_Mod1_f1__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__4);
+	test94_Mod1_pollen__printReal((float)pollen_math_FloorCeil_floor__E((test94_Mod1_f1__V)));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__3);
+	test94_Mod1_pollen__printReal((float)(test94_Mod1_f2__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__4);
+	test94_Mod1_pollen__printReal((float)pollen_math_FloorCeil_floor__E((test94_Mod1_f2__V)));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__3);
+	test94_Mod1_pollen__printReal((float)(test94_Mod1_f3__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__4);
+	test94_Mod1_pollen__printReal((float)pollen_math_FloorCeil_floor__E((test94_Mod1_f3__V)));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__3);
+	test94_Mod1_pollen__printReal((float)(test94_Mod1_f4__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__4);
+	test94_Mod1_pollen__printReal((float)pollen_math_FloorCeil_floor__E((test94_Mod1_f4__V)));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__5);
+	test94_Mod1_pollen__printReal((float)(test94_Mod1_f1__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__4);
+	test94_Mod1_pollen__printReal((float)pollen_math_FloorCeil_ceil__E((test94_Mod1_f1__V)));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__5);
+	test94_Mod1_pollen__printReal((float)(test94_Mod1_f2__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__4);
+	test94_Mod1_pollen__printReal((float)pollen_math_FloorCeil_ceil__E((test94_Mod1_f2__V)));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__5);
+	test94_Mod1_pollen__printReal((float)(test94_Mod1_f3__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__4);
+	test94_Mod1_pollen__printReal((float)pollen_math_FloorCeil_ceil__E((test94_Mod1_f3__V)));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+    test94_Mod1_pollen__printStr((string)test94_Mod1__s__5);
+	test94_Mod1_pollen__printReal((float)(test94_Mod1_f4__V));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__4);
+	test94_Mod1_pollen__printReal((float)pollen_math_FloorCeil_ceil__E((test94_Mod1_f4__V)));
+	test94_Mod1_pollen__printStr((string)test94_Mod1__s__2);
+     exit(0) ;
+
+}
+
+void test94_Mod1_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef pollen_math_Absolute__M
+#define pollen_math_Absolute__M
+#include "../../pollen.math/Absolute/Absolute.h"
+#endif
+
+#ifndef pollen_math_FloorCeil__M
+#define pollen_math_FloorCeil__M
+#include "../../pollen.math/FloorCeil/FloorCeil.h"
+#endif
+
+#ifndef pollen_math_Random8__M
+#define pollen_math_Random8__M
+#include "../../pollen.math/Random8/Random8.h"
+#endif
+
+#ifndef pollen_math_Random16__M
+#define pollen_math_Random16__M
+#include "../../pollen.math/Random16/Random16.h"
+#endif
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test94_Mod1_pollen__reset__E();
+void test94_Mod1_pollen__ready__E();
+void test94_Mod1_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test94_Mod1_ test94_Mod1;
+
+/*
+ * ======== struct module definition (unit Mod1) ========
+ */
+
+struct test54_PrintImpl_;
+struct test94_Mod1_ {
+    int8 i8;
+    int16 i16;
+    int32 i32;
+    float f1;
+    float f2;
+    float f3;
+    float f4;
+    struct test54_PrintImpl_ *pollenPrintProxy;
+};
+typedef struct test94_Mod1_ test94_Mod1_;
+
+/*
+ * ======== function members (unit Mod1) ========
+ */
+
+extern void test94_Mod1_pollen__run__E();
+extern void test94_Mod1_targetInit__I();
+
+/*
+ * ======== data members (unit Mod1) ========
+ */
+
+#define test94_Mod1_i8__V test94_Mod1.i8
+#define test94_Mod1_i16__V test94_Mod1.i16
+#define test94_Mod1_i32__V test94_Mod1.i32
+#define test94_Mod1_f1__V test94_Mod1.f1
+#define test94_Mod1_f2__V test94_Mod1.f2
+#define test94_Mod1_f3__V test94_Mod1.f3
+#define test94_Mod1_f4__V test94_Mod1.f4
+#define test94_Mod1_pollenPrintProxy__V test94_Mod1.pollenPrintProxy
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE pollen.math.Absolute ========
+ */
+
+var $$c = function() {
+    const Absolute = {};
+    Absolute.Absolute = Absolute
+    Absolute.$name = 'pollen.math.Absolute';
+    Absolute.pollen$used = 0;
+    Absolute.abs8 = new $$Ref('pollen_math_Absolute_abs8__E');
+    Absolute.abs16 = new $$Ref('pollen_math_Absolute_abs16__E');
+    Absolute.abs32 = new $$Ref('pollen_math_Absolute_abs32__E');
+    Absolute.targetInit = new $$Ref('pollen_math_Absolute_targetInit__I');
+    Absolute.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Absolute.pollen__uses__ = function() {
+    }
+    Absolute.$$privateInit = function() {
+    }
+    return Absolute;
+}
+var $$u = $$c();
+$units['pollen.math.Absolute'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE pollen.math.FloorCeil ========
+ */
+
+var $$c = function() {
+    const FloorCeil = {};
+    FloorCeil.FloorCeil = FloorCeil
+    FloorCeil.$name = 'pollen.math.FloorCeil';
+    FloorCeil.pollen$used = 0;
+    FloorCeil.ceildivU8 = new $$Ref('pollen_math_FloorCeil_ceildivU8__E');
+    FloorCeil.ceildivU16 = new $$Ref('pollen_math_FloorCeil_ceildivU16__E');
+    FloorCeil.floor = new $$Ref('pollen_math_FloorCeil_floor__E');
+    FloorCeil.ceil = new $$Ref('pollen_math_FloorCeil_ceil__E');
+    FloorCeil.targetInit = new $$Ref('pollen_math_FloorCeil_targetInit__I');
+    FloorCeil.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    FloorCeil.pollen__uses__ = function() {
+    }
+    FloorCeil.$$privateInit = function() {
+    }
+    return FloorCeil;
+}
+var $$u = $$c();
+$units['pollen.math.FloorCeil'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== COMPOSITION pollen.math.Math ========
+ */
+
+var $$c = function() {
+    const Math = {};
+    Math.Math = Math
+    Math.$name = 'pollen.math.Math';
+    Math.pollen$used = 0;
+    Math.Absolute = $units['pollen.math.Absolute'];
+    Math.FloorCeil = $units['pollen.math.FloorCeil'];
+    Math.MinMax = $units['pollen.math.MinMax'];
+    Math.Random8 = $units['pollen.math.Random8'];
+    Math.Random16 = $units['pollen.math.Random16'];
+    Math.Range = $units['pollen.math.Range'];
+    return Math;
+}
+var $$u = $$c();
+$units['pollen.math.Math'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE pollen.math.Random16 ========
+ */
+
+var $$c = function() {
+    const Random16 = {};
+    Random16.Random16 = Random16
+    Random16.$name = 'pollen.math.Random16';
+    Random16.pollen$used = 0;
+    Random16.srand16 = new $$Ref('pollen_math_Random16_srand16__E');
+    Random16.rand16 = new $$Ref('pollen_math_Random16_rand16__E');
+    Random16.rand16f = new $$Ref('pollen_math_Random16_rand16f__E');
+    Random16.targetInit = new $$Ref('pollen_math_Random16_targetInit__I');
+    Random16.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Random16.pollen__uses__ = function() {
+    }
+    Random16.$$privateInit = function() {
+        Random16.seed = 0xACE1;
+        Random16.lfsr = (Random16.seed);
+        Random16.period = 0;
+    }
+    return Random16;
+}
+var $$u = $$c();
+$units['pollen.math.Random16'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE pollen.math.Random8 ========
+ */
+
+var $$c = function() {
+    const Random8 = {};
+    Random8.Random8 = Random8
+    Random8.$name = 'pollen.math.Random8';
+    Random8.pollen$used = 0;
+    Random8.srand8 = new $$Ref('pollen_math_Random8_srand8__E');
+    Random8.rand8 = new $$Ref('pollen_math_Random8_rand8__E');
+    Random8.rand8f = new $$Ref('pollen_math_Random8_rand8f__E');
+    Random8.targetInit = new $$Ref('pollen_math_Random8_targetInit__I');
+    Random8.$$hostInit = function() {
+        var $$text = '';
+        (Random8.seed) = 0xAC;
+        (Random8.lfsr) = (Random8.seed);
+        (Random8.period) = 0;
+        return $$text;
+    }
+    Random8.pollen__uses__ = function() {
+    }
+    Random8.$$privateInit = function() {
+        Random8.seed = 0xAC;
+        Random8.lfsr = (Random8.seed);
+        Random8.period = 0;
+    }
+    return Random8;
+}
+var $$u = $$c();
+$units['pollen.math.Random8'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test54.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test54.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test54_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test54_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test54_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test54_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test54_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test54_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test54.PrintImpl'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE pollen.math.Absolute ========
+ */
+
+var $$c = function() {
+    const Absolute = {};
+    Absolute.Absolute = Absolute
+    Absolute.$name = 'pollen.math.Absolute';
+    Absolute.pollen$used = 0;
+    Absolute.abs8 = new $$Ref('pollen_math_Absolute_abs8__E');
+    Absolute.abs16 = new $$Ref('pollen_math_Absolute_abs16__E');
+    Absolute.abs32 = new $$Ref('pollen_math_Absolute_abs32__E');
+    Absolute.targetInit = new $$Ref('pollen_math_Absolute_targetInit__I');
+    Absolute.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Absolute.pollen__uses__ = function() {
+    }
+    Absolute.$$privateInit = function() {
+    }
+    return Absolute;
+}
+var $$u = $$c();
+$units['pollen.math.Absolute'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE pollen.math.FloorCeil ========
+ */
+
+var $$c = function() {
+    const FloorCeil = {};
+    FloorCeil.FloorCeil = FloorCeil
+    FloorCeil.$name = 'pollen.math.FloorCeil';
+    FloorCeil.pollen$used = 0;
+    FloorCeil.ceildivU8 = new $$Ref('pollen_math_FloorCeil_ceildivU8__E');
+    FloorCeil.ceildivU16 = new $$Ref('pollen_math_FloorCeil_ceildivU16__E');
+    FloorCeil.floor = new $$Ref('pollen_math_FloorCeil_floor__E');
+    FloorCeil.ceil = new $$Ref('pollen_math_FloorCeil_ceil__E');
+    FloorCeil.targetInit = new $$Ref('pollen_math_FloorCeil_targetInit__I');
+    FloorCeil.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    FloorCeil.pollen__uses__ = function() {
+    }
+    FloorCeil.$$privateInit = function() {
+    }
+    return FloorCeil;
+}
+var $$u = $$c();
+$units['pollen.math.FloorCeil'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE pollen.math.Random8 ========
+ */
+
+var $$c = function() {
+    const Random8 = {};
+    Random8.Random8 = Random8
+    Random8.$name = 'pollen.math.Random8';
+    Random8.pollen$used = 0;
+    Random8.srand8 = new $$Ref('pollen_math_Random8_srand8__E');
+    Random8.rand8 = new $$Ref('pollen_math_Random8_rand8__E');
+    Random8.rand8f = new $$Ref('pollen_math_Random8_rand8f__E');
+    Random8.targetInit = new $$Ref('pollen_math_Random8_targetInit__I');
+    Random8.$$hostInit = function() {
+        var $$text = '';
+        (Random8.seed) = 0xAC;
+        (Random8.lfsr) = (Random8.seed);
+        (Random8.period) = 0;
+        return $$text;
+    }
+    Random8.pollen__uses__ = function() {
+    }
+    Random8.$$privateInit = function() {
+        Random8.seed = 0xAC;
+        Random8.lfsr = (Random8.seed);
+        Random8.period = 0;
+    }
+    return Random8;
+}
+var $$u = $$c();
+$units['pollen.math.Random8'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE pollen.math.Random16 ========
+ */
+
+var $$c = function() {
+    const Random16 = {};
+    Random16.Random16 = Random16
+    Random16.$name = 'pollen.math.Random16';
+    Random16.pollen$used = 0;
+    Random16.srand16 = new $$Ref('pollen_math_Random16_srand16__E');
+    Random16.rand16 = new $$Ref('pollen_math_Random16_rand16__E');
+    Random16.rand16f = new $$Ref('pollen_math_Random16_rand16f__E');
+    Random16.targetInit = new $$Ref('pollen_math_Random16_targetInit__I');
+    Random16.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Random16.pollen__uses__ = function() {
+    }
+    Random16.$$privateInit = function() {
+        Random16.seed = 0xACE1;
+        Random16.lfsr = (Random16.seed);
+        Random16.period = 0;
+    }
+    return Random16;
+}
+var $$u = $$c();
+$units['pollen.math.Random16'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== COMPOSITION pollen.math.Math ========
+ */
+
+var $$c = function() {
+    const Math = {};
+    Math.Math = Math
+    Math.$name = 'pollen.math.Math';
+    Math.pollen$used = 0;
+    Math.Absolute = $units['pollen.math.Absolute'];
+    Math.FloorCeil = $units['pollen.math.FloorCeil'];
+    Math.MinMax = $units['pollen.math.MinMax'];
+    Math.Random8 = $units['pollen.math.Random8'];
+    Math.Random16 = $units['pollen.math.Random16'];
+    Math.Range = $units['pollen.math.Range'];
+    return Math;
+}
+var $$u = $$c();
+$units['pollen.math.Math'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test54.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test54.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test54_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test54_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test54_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test54_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test54_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test54_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test54.PrintImpl'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test94.Mod1 ========
+ */
+
+var $$c = function() {
+    const Mod1 = {};
+    Mod1.Mod1 = Mod1
+    Mod1.$name = 'test94.Mod1';
+    Mod1.pollen$used = 0;
+    Mod1.PrintImpl = $units['test54.PrintImpl'];
+    Mod1.pollen__run = new $$Ref('test94_Mod1_pollen__run__E');
+    Mod1.targetInit = new $$Ref('test94_Mod1_targetInit__I');
+    Mod1.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Mod1.pollen__uses__ = function() {
+        $$bind($units['pollen.math.Absolute'], 'pollen$used', true);
+        $$bind($units['pollen.math.FloorCeil'], 'pollen$used', true);
+        $$bind($units['pollen.math.Random8'], 'pollen$used', true);
+        $$bind($units['pollen.math.Random16'], 'pollen$used', true);
+        $$bind($units['test54.PrintImpl'], 'pollen$used', true);
+    }
+    Mod1.$$privateInit = function() {
+        Mod1.i8 = -1;
+        Mod1.i16 = 3;
+        Mod1.i32 = -9999;
+        Mod1.f1 = 1.3;
+        Mod1.f2 = 0.0;
+        Mod1.f3 = 123e4;
+        Mod1.f4 = -7.5;
+var $$v = 'test54_PrintImpl';
+        var $$s = $$bind($units['test94.Mod1'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test54.PrintImpl'].pollen$used = true;}
+
+    }
+    return Mod1;
+}
+var $$u = $$c();
+$units['test94.Mod1'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test94.Mod1'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test94.Mod1 ========
+ */
+
+var $$c = function() {
+    const Mod1 = {};
+    Mod1.Mod1 = Mod1
+    Mod1.$name = 'test94.Mod1';
+    Mod1.pollen$used = 0;
+    Mod1.PrintImpl = $units['test54.PrintImpl'];
+    Mod1.pollen__run = new $$Ref('test94_Mod1_pollen__run__E');
+    Mod1.targetInit = new $$Ref('test94_Mod1_targetInit__I');
+    Mod1.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Mod1.pollen__uses__ = function() {
+        $$bind($units['pollen.math.Absolute'], 'pollen$used', true);
+        $$bind($units['pollen.math.FloorCeil'], 'pollen$used', true);
+        $$bind($units['pollen.math.Random8'], 'pollen$used', true);
+        $$bind($units['pollen.math.Random16'], 'pollen$used', true);
+        $$bind($units['test54.PrintImpl'], 'pollen$used', true);
+    }
+    Mod1.$$privateInit = function() {
+        Mod1.i8 = -1;
+        Mod1.i16 = 3;
+        Mod1.i32 = -9999;
+        Mod1.f1 = 1.3;
+        Mod1.f2 = 0.0;
+        Mod1.f3 = 123e4;
+        Mod1.f4 = -7.5;
+var $$v = 'test54_PrintImpl';
+        var $$s = $$bind($units['test94.Mod1'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test54.PrintImpl'].pollen$used = true;}
+
+    }
+    return Mod1;
+}
+var $$u = $$c();
+$units['test94.Mod1'] = $$u;
+$units.push($$u);
+

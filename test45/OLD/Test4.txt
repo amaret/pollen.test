@@ -1,0 +1,27 @@
+module M1 {
+  foo() {}
+  bar() {}
+}
+module N {
+  bar() {}
+}
+import M1 
+import N   
+composition C4 {
+  export M1.foo
+  export N.bar
+}
+import C4 #with this import, none of the fcns are found
+#from C4 import M1
+#from C4 import N
+# TEST exports when whole composition is imported,
+# TEST not a module from composition.
+# TEST Should get message that M1.bar() not exported
+module Test4 {
+  test() {
+    M1.foo()
+    M1.bar() // should fail to find M1.bar
+    C4.N.bar()
+  }
+  pollen.run() { }
+}

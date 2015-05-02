@@ -1,0 +1,34 @@
+----
+
+Event Dispatcher
+
+----
+import Event {uint8} as Ev // Evv
+//import Queue {Evv, uint8} as EvQueue
+import Queue {Ev, uint8} as EvQueue
+
+module Dispatcher {
+
+    host new EvQueue myEventQueue(10)
+    host public Dispatcher() {
+    }
+
+    public post(Evv e) {
+        myEventQueue.add(e)
+    }
+
+    pollen.run() {}
+
+    public run() {
+
+        while(true) {
+
+            Evv e = myEventQueue.remove()
+
+            if (e != null) {
+                e.handle(e.getData())   # handle event
+                break;
+            }
+        }
+    }
+}

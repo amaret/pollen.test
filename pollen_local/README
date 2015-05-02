@@ -1,0 +1,4 @@
+This is the pollen.core with pollen.lang and the new pollen.hardware, pollen.data
+which is used in the 'local' examples under pollen-bundles.
+They are moved here because they collide with the old files in a way 
+that breaks some tests.

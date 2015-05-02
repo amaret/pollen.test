@@ -1,0 +1,6 @@
+
+protocol EventProtocol {
+  
+    handler()
+
+}

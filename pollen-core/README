@@ -1,0 +1,2 @@
+pollen.event/Newsroom.p
+  has a break in run loop so that test will terminate.

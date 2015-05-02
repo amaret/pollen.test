@@ -1,0 +1,711 @@
+pollen version 0.2.137
+pollen version 0.2.137
+unknown: No such file or directory
+
+avrdude done.  Thank you.
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test40_M__s__fileName[] = "M.p";
+static const char test40_M__s__0[] = "M";
+
+/*
+ * ======== function definitions ========
+ */
+
+uint8 test40_M_get__E() {
+    return(  (test40_M_t__V)  );
+}
+
+void test40_M_targetInit__I() {
+    (test40_M_t__V) = 10;
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test40_Test0_pollen__reset__E();
+void test40_Test0_pollen__ready__E();
+void test40_Test0_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test40_M_ test40_M;
+
+/*
+ * ======== struct module definition (unit M) ========
+ */
+
+struct test40_M_ {
+    uint8 t;
+};
+typedef struct test40_M_ test40_M_;
+
+/*
+ * ======== function members (unit M) ========
+ */
+
+extern uint8 test40_M_get__E();
+extern void test40_M_targetInit__I();
+
+/*
+ * ======== data members (unit M) ========
+ */
+
+#define test40_M_t__V test40_M.t
+#include <std.h>
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef test40_M__M
+#define test40_M__M
+#include "../../test40/M/M.h"
+#endif
+
+#ifndef test40_Test0__M
+#define test40_Test0__M
+#include "../../test40/Test0/Test0.h"
+#endif
+
+/*
+ * ======== target data definitions (unit M) ========
+ */
+
+struct test40_M_ test40_M = { /* module data */
+    (uint8)0x0,              /* t */
+};
+
+/*
+ * ======== target data definitions (unit Test0) ========
+ */
+
+struct test40_Test0_ test40_Test0 = { /* module data */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test40_Test0_pollen__printBool(bool b) {
+}
+void test40_Test0_pollen__printInt(int32 i) {
+}
+void test40_Test0_pollen__printReal(float f) {
+}
+void test40_Test0_pollen__printUint(uint32 u) {
+}
+void test40_Test0_pollen__printStr(string s) {
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../test40/M/M.c"
+#include "../../test40/Test0/Test0.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test40_Test0_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test40_Test0_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test40_Test0_pollen__reset__E();
+    test40_M_targetInit__I();
+    test40_Test0_targetInit__I();
+    test40_Test0_pollen__ready__E();
+    test40_Test0_pollen__run__E();
+    test40_Test0_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test40_Test0__s__fileName[] = "Test0.p";
+static const char test40_Test0__s__0[] = "Test0";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test40_Test0_pollen__run__E() {
+    uint8 x;
+    x = test40_M_get__E();
+     printf("get = %d", x) ;
+
+}
+
+void test40_Test0_pollen__shutdown__E( uint8 id ) {
+}
+
+void test40_Test0_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef test40_M__M
+#define test40_M__M
+#include "../../test40/M/M.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test40_Test0_pollen__reset__E();
+void test40_Test0_pollen__ready__E();
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test40_Test0_ test40_Test0;
+
+/*
+ * ======== struct module definition (unit Test0) ========
+ */
+
+struct test40_Test0_ {
+};
+typedef struct test40_Test0_ test40_Test0_;
+
+/*
+ * ======== function members (unit Test0) ========
+ */
+
+extern void test40_Test0_pollen__run__E();
+extern void test40_Test0_pollen__shutdown__E( uint8 id );
+extern void test40_Test0_targetInit__I();
+
+/*
+ * ======== data members (unit Test0) ========
+ */
+
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test40.M ========
+ */
+
+var $$c = function() {
+    const M = {};
+    M.M = M
+    M.$name = 'test40.M';
+    M.pollen$used = 0;
+    M.targetInit = new $$Ref('test40_M_targetInit__I');
+    M.get = new $$Ref('test40_M_get__E');
+    M.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    M.pollen__uses__ = function() {
+    }
+    M.$$privateInit = function() {
+        M.t = 0;
+    }
+    return M;
+}
+var $$u = $$c();
+$units['test40.M'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test40.M ========
+ */
+
+var $$c = function() {
+    const M = {};
+    M.M = M
+    M.$name = 'test40.M';
+    M.pollen$used = 0;
+    M.targetInit = new $$Ref('test40_M_targetInit__I');
+    M.get = new $$Ref('test40_M_get__E');
+    M.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    M.pollen__uses__ = function() {
+    }
+    M.$$privateInit = function() {
+        M.t = 0;
+    }
+    return M;
+}
+var $$u = $$c();
+$units['test40.M'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test40.Test0 ========
+ */
+
+var $$c = function() {
+    const Test0 = {};
+    Test0.Test0 = Test0
+    Test0.$name = 'test40.Test0';
+    Test0.pollen$used = 0;
+    Test0.M = $units['test40.M'];
+    Test0.pollen__run = new $$Ref('test40_Test0_pollen__run__E');
+    Test0.pollen__shutdown = new $$Ref('test40_Test0_pollen__shutdown__E');
+    Test0.targetInit = new $$Ref('test40_Test0_targetInit__I');
+    Test0.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Test0.pollen__uses__ = function() {
+        $$bind($units['test40.M'], 'pollen$used', true);
+    }
+    Test0.$$privateInit = function() {
+    }
+    return Test0;
+}
+var $$u = $$c();
+$units['test40.Test0'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test40.Test0'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test40.Test0 ========
+ */
+
+var $$c = function() {
+    const Test0 = {};
+    Test0.Test0 = Test0
+    Test0.$name = 'test40.Test0';
+    Test0.pollen$used = 0;
+    Test0.M = $units['test40.M'];
+    Test0.pollen__run = new $$Ref('test40_Test0_pollen__run__E');
+    Test0.pollen__shutdown = new $$Ref('test40_Test0_pollen__shutdown__E');
+    Test0.targetInit = new $$Ref('test40_Test0_targetInit__I');
+    Test0.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Test0.pollen__uses__ = function() {
+        $$bind($units['test40.M'], 'pollen$used', true);
+    }
+    Test0.$$privateInit = function() {
+    }
+    return Test0;
+}
+var $$u = $$c();
+$units['test40.Test0'] = $$u;
+$units.push($$u);
+

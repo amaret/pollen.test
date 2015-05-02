@@ -1,0 +1,114 @@
+
+from pollen.interfaces import Timer as TimerI
+from pollen.interfaces import TimerDriver
+from pollen.interfaces import GlobalInterrupts
+from pollen.events import Events
+#from Events import Dispatcher.postFromInterrupt
+from Events import Dispatcher
+from pollen.events import Event{uint8} as Event
+
+module TimerManager {
+
+  class Timer implements TimerI {
+
+    public host init() { 
+      id = numTimers
+      numTimers++
+      repeat = false
+      print "\nTIMER INIT"
+    }
+    
+    public bool repeats() { return repeat }
+
+    public bool running() { return timers[id] != null }
+
+    public uint16 ticksPerSecond() { return 1000 }
+
+    public start(Event e, uint16 d, bool r = true) {
+      bool state = gint.disable()
+      if (!running()) {
+          expired = e
+          duration = d
+          elapsed = 0
+          repeat = r
+          timers[id] = @
+        }
+         gint.restore(state)
+    
+        if (!hw_timer.running()) {
+          hw_timer.start()
+        }
+      }
+      
+    public stop() {
+      bool state = gint.disable()
+      timers[id] = null
+      gint.restore(state)
+    }
+    public setElapsed(uint32 i) {
+      elapsed = i
+    }
+    public uint32 getElapsed() {
+      return elapsed 
+    }
+
+    #======================
+    # Private members
+    #======================
+    host uint8 id
+    Event expired
+    uint32 duration
+    uint32 elapsed
+    bool repeat  
+  }
+  
+  public host bindGlobalInterrupts(GlobalInterrupts gi) { 
+    //gint := gi 
+    gint := GlobalInterrupts
+  }
+  
+  public host bindTimerDriver(TimerDriver t) { 
+    //hw_timer := t 
+    hw_timer := TimerDriver
+  }
+
+  #======================
+  # Private members
+  #======================  
+  //host GlobalInterrupts gint
+  GlobalInterrupts gint
+  //host TimerDriver hw_timer
+  TimerDriver hw_timer
+  host uint8 numTimers = 0
+  Timer timers[numTimers]
+
+  timerISR() {    
+    bool off = true
+
+    for (uint8 i = 0; i < numTimers; i++) {
+      if (timers[i] != null) {
+        timers[i].elapsed++
+
+        if (timers[i].elapsed == timers[i].duration) {
+          if (timers[i].expired != null) {
+            //Events.postFromInterrupt(timers[i].expired)
+            Dispatcher.postFromInterrupt(timers[i].expired)
+            if (timers[i].repeat) {
+              timers[i].elapsed = 0
+            } else {
+              timers[i].stop()
+            }          
+          } else {
+            timers[i].stop()
+          }          
+        }
+        off = false
+      }
+    }
+    
+    # all timers are off, turn hardware timer off
+    if (off) {
+      hw_timer.stop()
+    }
+  }
+}
