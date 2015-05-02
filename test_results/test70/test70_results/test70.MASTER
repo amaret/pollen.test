@@ -1,0 +1,1433 @@
+pollen version 0.2.137
+pollen version 0.2.137
+test70.QueueBug_01.p, line 29:9, '=': class function references are not implemented: <pollen.hardware.HandlerProtocol, HandlerProtocol.handler()>
+In file included from ../test70_out/test70/QueueBug_01/QueueBug_01-prog.c:117:
+../test70_out/test70/QueueBug_01/../../pollen.data/HandlerQueue/HandlerQueue.c:40:16: warning: redefinition of typedef 'pollen_data_HandlerQueue_E_handler' is a C11 feature [-Wtypedef-redefinition]
+typedef void (*pollen_data_HandlerQueue_E_handler)();
+               ^
+../test70_out/test70/QueueBug_01/../../pollen.data/HandlerQueue/HandlerQueue.h:19:16: note: previous definition is here
+typedef void (*pollen_data_HandlerQueue_E_handler)();
+               ^
+In file included from ../test70_out/test70/QueueBug_01/QueueBug_01-prog.c:117:
+../test70_out/test70/QueueBug_01/../../pollen.data/HandlerQueue/HandlerQueue.c:59:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+In file included from ../test70_out/test70/QueueBug_01/QueueBug_01-prog.c:118:
+../test70_out/test70/QueueBug_01/../../virtual.mcu/ConsolePrint/ConsolePrint.c:26:20: warning: format specifies type 'unsigned long' but the argument has type 'uint32' (aka 'unsigned int') [-Wformat]
+     printf("%lu", u) ;
+             ~~~   ^
+             %u
+../test70_out/test70/QueueBug_01/../../virtual.mcu/ConsolePrint/ConsolePrint.c:36:20: warning: format specifies type 'long' but the argument has type 'int32' (aka 'int') [-Wformat]
+     printf("%li", i) ;
+             ~~~   ^
+             %i
+4 warnings generated.
+Now run executeable
+TICK5
+TICK4
+TICK3
+TICK2
+TICK1
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_data_HandlerQueue__s__fileName[] = "HandlerQueue.p";
+static const char pollen_data_HandlerQueue__s__0[] = "HandlerQueue";
+
+/*
+ * ======== function definitions ========
+ */
+
+bool pollen_data_HandlerQueue_HandlerQueue_add__E( pollen_data_HandlerQueue_ this, pollen_data_HandlerQueue_E_handler e ) {
+    if (this->length < this->capacity) {
+        this->elements[(this->tail)] = (e);
+        ++(this->tail);
+        ++(this->length);
+        if ((this->tail) == (this->capacity)) {
+            (this->tail) = 0;
+        }
+        return(  true  );
+    }
+    else {
+        return(  false  );
+    }
+}
+
+bool pollen_data_HandlerQueue_HandlerQueue_isEmpty__E( pollen_data_HandlerQueue_ this ) {
+    return(  (this->length) == 0  );
+}
+
+uint8 pollen_data_HandlerQueue_HandlerQueue_getLength__E( pollen_data_HandlerQueue_ this ) {
+    return(  this->length  );
+}
+
+pollen_data_HandlerQueue_ pollen_data_HandlerQueue_HandlerQueue_new___I( pollen_data_HandlerQueue_ this ) {
+    return this;
+}
+
+typedef void (*pollen_data_HandlerQueue_E_handler)();
+pollen_data_HandlerQueue_E_handler pollen_data_HandlerQueue_HandlerQueue_remove__E( pollen_data_HandlerQueue_ this ) {
+    pollen_data_HandlerQueue_E_handler e;
+    
+    if (!pollen_data_HandlerQueue_HandlerQueue_isEmpty__E(this)) {
+        (e) = this->elements[(this->head)];
+        ++(this->head);
+        --(this->length);
+        if ((this->head) == (this->capacity)) {
+            (this->head) = 0;
+        }
+    }
+    return(  (e)  );
+}
+
+pollen_data_HandlerQueue_E_handler pollen_data_HandlerQueue_HandlerQueue_peek__E( pollen_data_HandlerQueue_ this ) {
+    if (!pollen_data_HandlerQueue_HandlerQueue_isEmpty__E(this)) {
+        return(  this->elements[(this->head)]  );
+    }
+}
+
+uint8 pollen_data_HandlerQueue_HandlerQueue_getCapacity__E( pollen_data_HandlerQueue_ this ) {
+    return(  this->capacity  );
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test70_QueueBug_01_pollen__reset__E();
+void test70_QueueBug_01_pollen__ready__E();
+void test70_QueueBug_01_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== class definition (unit HandlerQueue) ========
+ */
+
+typedef void (*pollen_data_HandlerQueue_E_handler)();
+struct pollen_data_HandlerQueue {
+    const uint8 capacity;
+    pollen_data_HandlerQueue_E_handler elements[10] /* capacity */;
+    uint8 length;
+    uint8 head;
+    uint8 tail;
+    uint8 maxLength;
+};
+typedef struct pollen_data_HandlerQueue pollen_data_HandlerQueue;
+typedef struct pollen_data_HandlerQueue* pollen_data_HandlerQueue_;
+
+/*
+ * ======== host variables (unit HandlerQueue) ========
+ */
+
+typedef pollen_data_HandlerQueue_E_handler pollen_data_HandlerQueue_elements__TYPE;
+extern pollen_data_HandlerQueue_elements__TYPE pollen_data_HandlerQueue_elements__A[];
+
+/*
+ * ======== function members (unit HandlerQueue) ========
+ */
+
+extern bool pollen_data_HandlerQueue_HandlerQueue_add__E( pollen_data_HandlerQueue_ this, pollen_data_HandlerQueue_E_handler e );
+extern bool pollen_data_HandlerQueue_HandlerQueue_isEmpty__E( pollen_data_HandlerQueue_ this );
+extern uint8 pollen_data_HandlerQueue_HandlerQueue_getLength__E( pollen_data_HandlerQueue_ this );
+extern pollen_data_HandlerQueue_ pollen_data_HandlerQueue_HandlerQueue_new___I( pollen_data_HandlerQueue_ this );
+extern pollen_data_HandlerQueue_E_handler pollen_data_HandlerQueue_HandlerQueue_remove__E( pollen_data_HandlerQueue_ this );
+extern pollen_data_HandlerQueue_E_handler pollen_data_HandlerQueue_HandlerQueue_peek__E( pollen_data_HandlerQueue_ this );
+extern uint8 pollen_data_HandlerQueue_HandlerQueue_getCapacity__E( pollen_data_HandlerQueue_ this );
+
+/*
+ * ======== const definitions ========
+ */
+
+#define pollen_data_HandlerQueue_capacity (10)
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test54_PrintImpl__s__fileName[] = "PrintImpl.p";
+static const char test54_PrintImpl__s__0[] = "PrintImpl";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test54_PrintImpl_printUint__E( uint32 u ) {
+     printf("%u", (unsigned int)u) ;
+
+}
+
+void test54_PrintImpl_printInt__E( int32 i ) {
+     printf("%i", (int)i) ;
+
+}
+
+void test54_PrintImpl_printReal__E( float f ) {
+     printf("%f", (float)f) ;
+
+}
+
+void test54_PrintImpl_printBool__E( bool b ) {
+    if ((b)) {
+         printf("%s", "true") ;
+
+    }
+    else {
+         printf("%s", "false") ;
+
+    }
+}
+
+void test54_PrintImpl_targetInit__I() {
+}
+
+void test54_PrintImpl_printStr__E( string s ) {
+     printf("%s", s) ;
+
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test70_QueueBug_01_pollen__reset__E();
+void test70_QueueBug_01_pollen__ready__E();
+void test70_QueueBug_01_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test54_PrintImpl_ test54_PrintImpl;
+
+/*
+ * ======== struct module definition (unit PrintImpl) ========
+ */
+
+struct test54_PrintImpl_ {
+};
+typedef struct test54_PrintImpl_ test54_PrintImpl_;
+
+/*
+ * ======== function members (unit PrintImpl) ========
+ */
+
+extern void test54_PrintImpl_printUint__E( uint32 u );
+extern void test54_PrintImpl_printInt__E( int32 i );
+extern void test54_PrintImpl_printReal__E( float f );
+extern void test54_PrintImpl_printBool__E( bool b );
+extern void test54_PrintImpl_targetInit__I();
+extern void test54_PrintImpl_printStr__E( string s );
+
+/*
+ * ======== data members (unit PrintImpl) ========
+ */
+
+#include <std.h>
+
+/*
+ * ======== protocol member test70.QueueBug_01.pollenPrintProxy delegates test54_PrintImpl ========
+ */
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef pollen_data_HandlerQueue__M
+#define pollen_data_HandlerQueue__M
+#include "../../pollen.data/HandlerQueue/HandlerQueue.h"
+#endif
+
+#ifndef virtual_mcu_ConsolePrint__M
+#define virtual_mcu_ConsolePrint__M
+#include "../../virtual.mcu/ConsolePrint/ConsolePrint.h"
+#endif
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+#ifndef test70_QueueBug_01__M
+#define test70_QueueBug_01__M
+#include "../../test70/QueueBug_01/QueueBug_01.h"
+#endif
+
+/*
+ * ======== target data definitions (unit ConsolePrint) ========
+ */
+
+struct virtual_mcu_ConsolePrint_ virtual_mcu_ConsolePrint = { /* module data */
+    "[95m",                 /* HEADER */
+    "[94m",                 /* OKBLUE */
+    "[92m",                 /* OKGREEN */
+    "[93m",                 /* WARNING */
+    "[91m",                 /* FAIL */
+    "[0m",                  /* ENDC */
+};
+
+/*
+ * ======== target data definitions (unit PrintImpl) ========
+ */
+
+struct test54_PrintImpl_ test54_PrintImpl = { /* module data */
+};
+
+/*
+ * ======== host data definitions (unit QueueBug_01) ========
+ */
+
+test70_QueueBug_01_eventHandlers__TYPE test70_QueueBug_01_eventHandlers__V = /* pollen.data.HandlerQueue object init */
+{
+    (const uint8)0xa,    /* capacity */
+    {
+        null,  /* [0] */
+        null,  /* [1] */
+        null,  /* [2] */
+        null,  /* [3] */
+        null,  /* [4] */
+        null,  /* [5] */
+        null,  /* [6] */
+        null,  /* [7] */
+        null,  /* [8] */
+        null,  /* [9] */
+    },    /* elements */
+    (uint8)0x0,              /* length */
+    (uint8)0x0,              /* head */
+    (uint8)0x0,              /* tail */
+    (uint8)0x5,              /* maxLength */
+};
+
+/*
+ * ======== target data definitions (unit QueueBug_01) ========
+ */
+
+struct test70_QueueBug_01_ test70_QueueBug_01 = { /* module data */
+    null,                    /* h */
+    &test54_PrintImpl,    /* pollenPrintProxy */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test70_QueueBug_01_pollen__printBool(bool b) {
+    test54_PrintImpl_printBool__E(b);
+}
+void test70_QueueBug_01_pollen__printInt(int32 i) {
+    test54_PrintImpl_printInt__E(i);
+}
+void test70_QueueBug_01_pollen__printReal(float f) {
+    test54_PrintImpl_printReal__E(f);
+}
+void test70_QueueBug_01_pollen__printUint(uint32 u) {
+    test54_PrintImpl_printUint__E(u);
+}
+void test70_QueueBug_01_pollen__printStr(string s) {
+    test54_PrintImpl_printStr__E(s);
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../pollen.data/HandlerQueue/HandlerQueue.c"
+#include "../../virtual.mcu/ConsolePrint/ConsolePrint.c"
+#include "../../test54/PrintImpl/PrintImpl.c"
+#include "../../test70/QueueBug_01/QueueBug_01.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test70_QueueBug_01_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test70_QueueBug_01_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test70_QueueBug_01_pollen__reset__E();
+    virtual_mcu_ConsolePrint_targetInit__I();
+    test54_PrintImpl_targetInit__I();
+    test70_QueueBug_01_targetInit__I();
+    test70_QueueBug_01_pollen__ready__E();
+    test70_QueueBug_01_pollen__run__E();
+    test70_QueueBug_01_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test70_QueueBug_01__s__fileName[] = "QueueBug_01.p";
+static const char test70_QueueBug_01__s__3[] = "TICK3\n";
+static const char test70_QueueBug_01__s__1[] = "TICK1\n";
+static const char test70_QueueBug_01__s__2[] = "TICK2\n";
+static const char test70_QueueBug_01__s__4[] = "TICK4\n";
+static const char test70_QueueBug_01__s__5[] = "TICK5\n";
+static const char test70_QueueBug_01__s__6[] = "QueueBug_01";
+static const char test70_QueueBug_01__s__0[] = "H IS NULL!\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test70_QueueBug_01_tick4__I() {
+    virtual_mcu_ConsolePrint_printStr__E(test70_QueueBug_01__s__4);
+}
+
+void test70_QueueBug_01_pollen__run__E() {
+    pollen_data_HandlerQueue_HandlerQueue_add__E(&(test70_QueueBug_01_eventHandlers__V), (test70_QueueBug_01_tick5__I));
+    pollen_data_HandlerQueue_HandlerQueue_add__E(&(test70_QueueBug_01_eventHandlers__V), (test70_QueueBug_01_tick4__I));
+    pollen_data_HandlerQueue_HandlerQueue_add__E(&(test70_QueueBug_01_eventHandlers__V), (test70_QueueBug_01_tick3__I));
+    pollen_data_HandlerQueue_HandlerQueue_add__E(&(test70_QueueBug_01_eventHandlers__V), (test70_QueueBug_01_tick2__I));
+    pollen_data_HandlerQueue_HandlerQueue_add__E(&(test70_QueueBug_01_eventHandlers__V), (test70_QueueBug_01_tick1__I));
+    while (!pollen_data_HandlerQueue_HandlerQueue_isEmpty__E(&(test70_QueueBug_01_eventHandlers__V))) {
+        (test70_QueueBug_01_h__V) = pollen_data_HandlerQueue_HandlerQueue_remove__E(&(test70_QueueBug_01_eventHandlers__V));
+        if ((test70_QueueBug_01_h__V) != null) {
+            test70_QueueBug_01_h__V();
+        }
+        else {
+            virtual_mcu_ConsolePrint_printStr__E(test70_QueueBug_01__s__0);
+        }
+    }
+}
+
+void test70_QueueBug_01_tick3__I() {
+    virtual_mcu_ConsolePrint_printStr__E(test70_QueueBug_01__s__3);
+}
+
+void test70_QueueBug_01_tick2__I() {
+    virtual_mcu_ConsolePrint_printStr__E(test70_QueueBug_01__s__2);
+}
+
+void test70_QueueBug_01_tick1__I() {
+    virtual_mcu_ConsolePrint_printStr__E(test70_QueueBug_01__s__1);
+}
+
+void test70_QueueBug_01_tick5__I() {
+    virtual_mcu_ConsolePrint_printStr__E(test70_QueueBug_01__s__5);
+}
+
+void test70_QueueBug_01_pollen__shutdown__E( uint8 id ) {
+}
+
+void test70_QueueBug_01_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef pollen_data_HandlerQueue__M
+#define pollen_data_HandlerQueue__M
+#include "../../pollen.data/HandlerQueue/HandlerQueue.h"
+#endif
+
+#ifndef virtual_mcu_ConsolePrint__M
+#define virtual_mcu_ConsolePrint__M
+#include "../../virtual.mcu/ConsolePrint/ConsolePrint.h"
+#endif
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test70_QueueBug_01_pollen__reset__E();
+void test70_QueueBug_01_pollen__ready__E();
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test70_QueueBug_01_ test70_QueueBug_01;
+
+/*
+ * ======== struct module definition (unit QueueBug_01) ========
+ */
+
+typedef void (*test70_QueueBug_01_HP_handler)();
+struct pollen_data_HandlerQueue;
+struct test54_PrintImpl_;
+struct test70_QueueBug_01_ {
+    test70_QueueBug_01_HP_handler h;
+    struct test54_PrintImpl_ *pollenPrintProxy;
+};
+typedef struct test70_QueueBug_01_ test70_QueueBug_01_;
+
+/*
+ * ======== host variables (unit QueueBug_01) ========
+ */
+
+typedef struct pollen_data_HandlerQueue test70_QueueBug_01_eventHandlers__TYPE;
+extern test70_QueueBug_01_eventHandlers__TYPE test70_QueueBug_01_eventHandlers__V;
+
+/*
+ * ======== function members (unit QueueBug_01) ========
+ */
+
+extern void test70_QueueBug_01_tick4__I();
+extern void test70_QueueBug_01_pollen__run__E();
+extern void test70_QueueBug_01_tick3__I();
+extern void test70_QueueBug_01_tick2__I();
+extern void test70_QueueBug_01_tick1__I();
+extern void test70_QueueBug_01_tick5__I();
+extern void test70_QueueBug_01_pollen__shutdown__E( uint8 id );
+extern void test70_QueueBug_01_targetInit__I();
+
+/*
+ * ======== data members (unit QueueBug_01) ========
+ */
+
+#define test70_QueueBug_01_eventHandlers__V test70_QueueBug_01_eventHandlers
+#define test70_QueueBug_01_h__V test70_QueueBug_01.h
+#define test70_QueueBug_01_pollenPrintProxy__V test70_QueueBug_01.pollenPrintProxy
+
+/*
+ * ======== string literals ========
+ */
+
+static const char virtual_mcu_ConsolePrint__s__fileName[] = "ConsolePrint.p";
+static const char virtual_mcu_ConsolePrint__s__2[] = "\033[92m";
+static const char virtual_mcu_ConsolePrint__s__4[] = "\033[91m";
+static const char virtual_mcu_ConsolePrint__s__0[] = "\033[95m";
+static const char virtual_mcu_ConsolePrint__s__1[] = "\033[94m";
+static const char virtual_mcu_ConsolePrint__s__3[] = "\033[93m";
+static const char virtual_mcu_ConsolePrint__s__5[] = "\033[0m";
+static const char virtual_mcu_ConsolePrint__s__6[] = "ConsolePrint";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void virtual_mcu_ConsolePrint_printUint__E( uint32 u ) {
+     printf("%lu", u) ;
+
+}
+
+void virtual_mcu_ConsolePrint_printReal__E( float f ) {
+     printf("%f", (float)f) ;
+
+}
+
+void virtual_mcu_ConsolePrint_printInt__E( int32 i ) {
+     printf("%li", i) ;
+
+}
+
+void virtual_mcu_ConsolePrint_printBool__E( bool b ) {
+    if ((b)) {
+         printf("true") ;
+
+    }
+    else {
+         printf("false") ;
+
+    }
+}
+
+void virtual_mcu_ConsolePrint_targetInit__I() {
+}
+
+void virtual_mcu_ConsolePrint_printStr__E( string s ) {
+     printf("%s", s) ;
+
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test70_QueueBug_01_pollen__reset__E();
+void test70_QueueBug_01_pollen__ready__E();
+void test70_QueueBug_01_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct virtual_mcu_ConsolePrint_ virtual_mcu_ConsolePrint;
+
+/*
+ * ======== struct module definition (unit ConsolePrint) ========
+ */
+
+struct virtual_mcu_ConsolePrint_ {
+    const string HEADER;
+    const string OKBLUE;
+    const string OKGREEN;
+    const string WARNING;
+    const string FAIL;
+    const string ENDC;
+};
+typedef struct virtual_mcu_ConsolePrint_ virtual_mcu_ConsolePrint_;
+
+/*
+ * ======== function members (unit ConsolePrint) ========
+ */
+
+extern void virtual_mcu_ConsolePrint_printUint__E( uint32 u );
+extern void virtual_mcu_ConsolePrint_printReal__E( float f );
+extern void virtual_mcu_ConsolePrint_printInt__E( int32 i );
+extern void virtual_mcu_ConsolePrint_printBool__E( bool b );
+extern void virtual_mcu_ConsolePrint_targetInit__I();
+extern void virtual_mcu_ConsolePrint_printStr__E( string s );
+
+/*
+ * ======== const definitions ========
+ */
+
+#define virtual_mcu_ConsolePrint_HEADER (virtual_mcu_ConsolePrint__s__0)
+#define virtual_mcu_ConsolePrint_OKBLUE (virtual_mcu_ConsolePrint__s__1)
+#define virtual_mcu_ConsolePrint_OKGREEN (virtual_mcu_ConsolePrint__s__2)
+#define virtual_mcu_ConsolePrint_WARNING (virtual_mcu_ConsolePrint__s__3)
+#define virtual_mcu_ConsolePrint_FAIL (virtual_mcu_ConsolePrint__s__4)
+#define virtual_mcu_ConsolePrint_ENDC (virtual_mcu_ConsolePrint__s__5)
+
+/*
+ * ======== data members (unit ConsolePrint) ========
+ */
+
+#define virtual_mcu_ConsolePrint_HEADER__V virtual_mcu_ConsolePrint.HEADER
+#define virtual_mcu_ConsolePrint_OKBLUE__V virtual_mcu_ConsolePrint.OKBLUE
+#define virtual_mcu_ConsolePrint_OKGREEN__V virtual_mcu_ConsolePrint.OKGREEN
+#define virtual_mcu_ConsolePrint_WARNING__V virtual_mcu_ConsolePrint.WARNING
+#define virtual_mcu_ConsolePrint_FAIL__V virtual_mcu_ConsolePrint.FAIL
+#define virtual_mcu_ConsolePrint_ENDC__V virtual_mcu_ConsolePrint.ENDC
+
+/*
+ * ======== CLASS pollen.data.HandlerQueue ========
+ */
+
+var $$c = function() {
+    const HandlerQueue = {};
+    HandlerQueue.HandlerQueue = HandlerQueue
+    HandlerQueue.$name = 'pollen.data.HandlerQueue';
+    HandlerQueue.pollen$used = 0;
+    HandlerQueue.HandlerQueue$$id = 1;
+    HandlerQueue.HandlerQueue = function(cn) {
+        this.$$id = HandlerQueue.HandlerQueue$$id++;
+        this.$$cname = cn ? cn : 'pollen_data_HandlerQueue_HandlerQueue__'+this.$$id+'__S';
+        this.$$tname = 'pollen_data_HandlerQueue_HandlerQueue';
+        this.$$uname = 'pollen.data.HandlerQueue';
+        this.capacity = 10;
+        this.length = 0;
+        this.head = 0;
+        this.tail = 0;
+        this.maxLength = 0;
+    }
+    HandlerQueue.HandlerQueue.prototype = new $$Struct('pollen.data.HandlerQueue.HandlerQueue');
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld = {};
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.capacity = false;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.elements = true;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.length = false;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.head = false;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.tail = false;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.maxLength = false;
+    HandlerQueue.HandlerQueue.prototype.new_host = function( max ) {
+        var $$text = '';
+        this.$$privateInit();
+        this.elements = new $$Array((this.capacity), function($$cn,$$idx){ return 0;}, 'pollen_data_HandlerQueue_elements__A', false);
+        if (arguments.length == 1) {
+                this.length = 0;
+                this.head = 0;
+                this.tail = 0;
+                this.maxLength = (max);
+                if ((max) > this.capacity) {
+            this.capacity = (max);
+        }
+        }
+        this.$$hostInitLastPass();
+        return this;
+    }
+    HandlerQueue.HandlerQueue.prototype.setCapacity = function( capacity ) {
+        var $$text = '';
+        this.capacity = (capacity);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    HandlerQueue.pollen__uses__ = function() {
+    }
+    HandlerQueue.HandlerQueue.prototype.$$privateInit = function() {
+        this.capacity = 10;
+        this.length = 0;
+        this.head = 0;
+        this.tail = 0;
+        this.maxLength = 0;
+    }
+    HandlerQueue.HandlerQueue.prototype.$$hostInitLastPass = function() {
+    }
+    return HandlerQueue;
+}
+var $$u = $$c();
+$units['pollen.data.HandlerQueue'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware.HandlerProtocol ========
+ */
+
+var $$c = function() {
+    const HandlerProtocol = {};
+    HandlerProtocol.HandlerProtocol = HandlerProtocol
+    HandlerProtocol.$name = 'pollen.hardware.HandlerProtocol';
+    HandlerProtocol.pollen$used = 0;
+    HandlerProtocol.pollen__uses__ = function() {
+    }
+    HandlerProtocol.$$privateInit = function() {
+    }
+    return HandlerProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.HandlerProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test54.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test54.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test54_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test54_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test54_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test54_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test54_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test54_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test54.PrintImpl'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.hardware.HandlerProtocol ========
+ */
+
+var $$c = function() {
+    const HandlerProtocol = {};
+    HandlerProtocol.HandlerProtocol = HandlerProtocol
+    HandlerProtocol.$name = 'pollen.hardware.HandlerProtocol';
+    HandlerProtocol.pollen$used = 0;
+    HandlerProtocol.pollen__uses__ = function() {
+    }
+    HandlerProtocol.$$privateInit = function() {
+    }
+    return HandlerProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.HandlerProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== CLASS pollen.data.HandlerQueue ========
+ */
+
+var $$c = function() {
+    const HandlerQueue = {};
+    HandlerQueue.HandlerQueue = HandlerQueue
+    HandlerQueue.$name = 'pollen.data.HandlerQueue';
+    HandlerQueue.pollen$used = 0;
+    HandlerQueue.HandlerQueue$$id = 1;
+    HandlerQueue.HandlerQueue = function(cn) {
+        this.$$id = HandlerQueue.HandlerQueue$$id++;
+        this.$$cname = cn ? cn : 'pollen_data_HandlerQueue_HandlerQueue__'+this.$$id+'__S';
+        this.$$tname = 'pollen_data_HandlerQueue_HandlerQueue';
+        this.$$uname = 'pollen.data.HandlerQueue';
+        this.capacity = 10;
+        this.length = 0;
+        this.head = 0;
+        this.tail = 0;
+        this.maxLength = 0;
+    }
+    HandlerQueue.HandlerQueue.prototype = new $$Struct('pollen.data.HandlerQueue.HandlerQueue');
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld = {};
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.capacity = false;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.elements = true;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.length = false;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.head = false;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.tail = false;
+    HandlerQueue.HandlerQueue.prototype.$$isAggFld.maxLength = false;
+    HandlerQueue.HandlerQueue.prototype.new_host = function( max ) {
+        var $$text = '';
+        this.$$privateInit();
+        this.elements = new $$Array((this.capacity), function($$cn,$$idx){ return 0;}, 'pollen_data_HandlerQueue_elements__A', false);
+        if (arguments.length == 1) {
+                this.length = 0;
+                this.head = 0;
+                this.tail = 0;
+                this.maxLength = (max);
+                if ((max) > this.capacity) {
+            this.capacity = (max);
+        }
+        }
+        this.$$hostInitLastPass();
+        return this;
+    }
+    HandlerQueue.HandlerQueue.prototype.setCapacity = function( capacity ) {
+        var $$text = '';
+        this.capacity = (capacity);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    HandlerQueue.pollen__uses__ = function() {
+    }
+    HandlerQueue.HandlerQueue.prototype.$$privateInit = function() {
+        this.capacity = 10;
+        this.length = 0;
+        this.head = 0;
+        this.tail = 0;
+        this.maxLength = 0;
+    }
+    HandlerQueue.HandlerQueue.prototype.$$hostInitLastPass = function() {
+    }
+    return HandlerQueue;
+}
+var $$u = $$c();
+$units['pollen.data.HandlerQueue'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE virtual.mcu.ConsolePrint ========
+ */
+
+var $$c = function() {
+    const ConsolePrint = {};
+    ConsolePrint.ConsolePrint = ConsolePrint
+    ConsolePrint.$name = 'virtual.mcu.ConsolePrint';
+    ConsolePrint.pollen$used = 0;
+    ConsolePrint.printBool = new $$Ref('virtual_mcu_ConsolePrint_printBool__E');
+    ConsolePrint.printReal = new $$Ref('virtual_mcu_ConsolePrint_printReal__E');
+    ConsolePrint.printInt = new $$Ref('virtual_mcu_ConsolePrint_printInt__E');
+    ConsolePrint.printUint = new $$Ref('virtual_mcu_ConsolePrint_printUint__E');
+    ConsolePrint.printStr = new $$Ref('virtual_mcu_ConsolePrint_printStr__E');
+    ConsolePrint.targetInit = new $$Ref('virtual_mcu_ConsolePrint_targetInit__I');
+    ConsolePrint.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    ConsolePrint.pollen__uses__ = function() {
+    }
+    ConsolePrint.$$privateInit = function() {
+        ConsolePrint.HEADER = "\033[95m";
+        ConsolePrint.OKBLUE = "\033[94m";
+        ConsolePrint.OKGREEN = "\033[92m";
+        ConsolePrint.WARNING = "\033[93m";
+        ConsolePrint.FAIL = "\033[91m";
+        ConsolePrint.ENDC = "\033[0m";
+    }
+    return ConsolePrint;
+}
+var $$u = $$c();
+$units['virtual.mcu.ConsolePrint'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test54.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test54.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test54_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test54_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test54_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test54_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test54_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test54_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test54.PrintImpl'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test70.QueueBug_01 ========
+ */
+
+var $$c = function() {
+    const QueueBug_01 = {};
+    QueueBug_01.QueueBug_01 = QueueBug_01
+    QueueBug_01.$name = 'test70.QueueBug_01';
+    QueueBug_01.pollen$used = 0;
+    QueueBug_01.HandlerQueue = $units['pollen.data.HandlerQueue'];
+    QueueBug_01.Console = $units['virtual.mcu.ConsolePrint'];
+    QueueBug_01.PrintImpl = $units['test54.PrintImpl'];
+    QueueBug_01.pollen__run = new $$Ref('test70_QueueBug_01_pollen__run__E');
+    QueueBug_01.tick1 = new $$Ref('test70_QueueBug_01_tick1__I');
+    QueueBug_01.tick2 = new $$Ref('test70_QueueBug_01_tick2__I');
+    QueueBug_01.tick3 = new $$Ref('test70_QueueBug_01_tick3__I');
+    QueueBug_01.tick4 = new $$Ref('test70_QueueBug_01_tick4__I');
+    QueueBug_01.tick5 = new $$Ref('test70_QueueBug_01_tick5__I');
+    QueueBug_01.pollen__shutdown = new $$Ref('test70_QueueBug_01_pollen__shutdown__E');
+    QueueBug_01.targetInit = new $$Ref('test70_QueueBug_01_targetInit__I');
+    QueueBug_01.$$hostInit = function() {
+        var $$text = '';
+        QueueBug_01.eventHandlers = new $units['pollen.data.HandlerQueue'].HandlerQueue('test70_QueueBug_01_eventHandlers__V'); QueueBug_01.eventHandlers.new_host(5);
+        return $$text;
+    }
+    QueueBug_01.pollen__uses__ = function() {
+        $$bind($units['pollen.data.HandlerQueue'], 'pollen$used', true);
+        $$bind($units['virtual.mcu.ConsolePrint'], 'pollen$used', true);
+        $$bind($units['test54.PrintImpl'], 'pollen$used', true);
+    }
+    QueueBug_01.$$privateInit = function() {
+var $$v = 'test54_PrintImpl';
+        var $$s = $$bind($units['test70.QueueBug_01'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test54.PrintImpl'].pollen$used = true;}
+
+    }
+    return QueueBug_01;
+}
+var $$u = $$c();
+$units['test70.QueueBug_01'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test70.QueueBug_01'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test70.QueueBug_01 ========
+ */
+
+var $$c = function() {
+    const QueueBug_01 = {};
+    QueueBug_01.QueueBug_01 = QueueBug_01
+    QueueBug_01.$name = 'test70.QueueBug_01';
+    QueueBug_01.pollen$used = 0;
+    QueueBug_01.HandlerQueue = $units['pollen.data.HandlerQueue'];
+    QueueBug_01.Console = $units['virtual.mcu.ConsolePrint'];
+    QueueBug_01.PrintImpl = $units['test54.PrintImpl'];
+    QueueBug_01.pollen__run = new $$Ref('test70_QueueBug_01_pollen__run__E');
+    QueueBug_01.tick1 = new $$Ref('test70_QueueBug_01_tick1__I');
+    QueueBug_01.tick2 = new $$Ref('test70_QueueBug_01_tick2__I');
+    QueueBug_01.tick3 = new $$Ref('test70_QueueBug_01_tick3__I');
+    QueueBug_01.tick4 = new $$Ref('test70_QueueBug_01_tick4__I');
+    QueueBug_01.tick5 = new $$Ref('test70_QueueBug_01_tick5__I');
+    QueueBug_01.pollen__shutdown = new $$Ref('test70_QueueBug_01_pollen__shutdown__E');
+    QueueBug_01.targetInit = new $$Ref('test70_QueueBug_01_targetInit__I');
+    QueueBug_01.$$hostInit = function() {
+        var $$text = '';
+        QueueBug_01.eventHandlers = new $units['pollen.data.HandlerQueue'].HandlerQueue('test70_QueueBug_01_eventHandlers__V'); QueueBug_01.eventHandlers.new_host(5);
+        return $$text;
+    }
+    QueueBug_01.pollen__uses__ = function() {
+        $$bind($units['pollen.data.HandlerQueue'], 'pollen$used', true);
+        $$bind($units['virtual.mcu.ConsolePrint'], 'pollen$used', true);
+        $$bind($units['test54.PrintImpl'], 'pollen$used', true);
+    }
+    QueueBug_01.$$privateInit = function() {
+var $$v = 'test54_PrintImpl';
+        var $$s = $$bind($units['test70.QueueBug_01'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test54.PrintImpl'].pollen$used = true;}
+
+    }
+    return QueueBug_01;
+}
+var $$u = $$c();
+$units['test70.QueueBug_01'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE virtual.mcu.ConsolePrint ========
+ */
+
+var $$c = function() {
+    const ConsolePrint = {};
+    ConsolePrint.ConsolePrint = ConsolePrint
+    ConsolePrint.$name = 'virtual.mcu.ConsolePrint';
+    ConsolePrint.pollen$used = 0;
+    ConsolePrint.printBool = new $$Ref('virtual_mcu_ConsolePrint_printBool__E');
+    ConsolePrint.printReal = new $$Ref('virtual_mcu_ConsolePrint_printReal__E');
+    ConsolePrint.printInt = new $$Ref('virtual_mcu_ConsolePrint_printInt__E');
+    ConsolePrint.printUint = new $$Ref('virtual_mcu_ConsolePrint_printUint__E');
+    ConsolePrint.printStr = new $$Ref('virtual_mcu_ConsolePrint_printStr__E');
+    ConsolePrint.targetInit = new $$Ref('virtual_mcu_ConsolePrint_targetInit__I');
+    ConsolePrint.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    ConsolePrint.pollen__uses__ = function() {
+    }
+    ConsolePrint.$$privateInit = function() {
+        ConsolePrint.HEADER = "\033[95m";
+        ConsolePrint.OKBLUE = "\033[94m";
+        ConsolePrint.OKGREEN = "\033[92m";
+        ConsolePrint.WARNING = "\033[93m";
+        ConsolePrint.FAIL = "\033[91m";
+        ConsolePrint.ENDC = "\033[0m";
+    }
+    return ConsolePrint;
+}
+var $$u = $$c();
+$units['virtual.mcu.ConsolePrint'] = $$u;
+$units.push($$u);
+

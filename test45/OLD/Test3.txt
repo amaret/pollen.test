@@ -1,0 +1,28 @@
+module M1 {
+  foo() {}
+  bar() {}
+}
+module M {
+  foo() {}
+  bar() {}
+}
+import M as N   
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+from C1 import N as P
+composition C3 {
+  export P.bar
+}
+from C3 import P
+# TEST export filters while using 
+# 2 levels of 'from compos c import m as N'
+# TEST N.foo() should get message not exported
+module Test3 {
+  test() {
+    P.foo()
+    P.bar()
+  }
+  pollen.run() {}
+}

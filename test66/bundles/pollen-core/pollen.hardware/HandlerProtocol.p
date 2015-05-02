@@ -1,0 +1,5 @@
+
+protocol HandlerProtocol {
+  
+  handler()
+}

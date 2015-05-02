@@ -1,0 +1,1038 @@
+pollen version 0.2.137
+pollen version 0.2.137
+pollen.hardware_old.Mcu.p, line 21:0, 'frequency': identifier already defined in the current scope
+atmel.atmega328.Mcu.p, line 60:0, 'frequency': identifier already defined in the current scope
+atmel.atmega328.MetaPin.p, line 33:1, 'PORTD': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+atmel.atmega328.MetaPin.p, line 33:1, 'DDR0': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+atmel.atmega328.MetaPin.p, line 33:1, all functions in protocol 'Pin' must be implemented ('output' not found)
+test24.Blink5.p, line 9:38, 'PORTD': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test24.Blink5.p, line 9:47, 'DDR0': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+In file included from ../test24_out/test24/Blink5/Blink5-prog.c:20:0:
+../test24_out/test24/Blink5/../../atmel.atmega328/Mcu/Mcu.h:40:13: error: conflicting types for 'atmel_atmega328_Mcu_frequency__E'
+../test24_out/test24/Blink5/../../atmel.atmega328/Mcu/Mcu.h:39:15: note: previous declaration of 'atmel_atmega328_Mcu_frequency__E' was here
+In file included from ../test24_out/test24/Blink5/Blink5-prog.c:76:0:
+../test24_out/test24/Blink5/../../atmel.atmega328/Mcu/Mcu.c:56:6: error: conflicting types for 'atmel_atmega328_Mcu_frequency__E'
+../test24_out/test24/Blink5/../../atmel.atmega328/Mcu/Mcu.c:52:8: note: previous definition of 'atmel_atmega328_Mcu_frequency__E' was here
+In file included from ../test24_out/test24/Blink5/Blink5-prog.c:77:0:
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c: In function 'atmel_atmega328_PD0_makeOutput__E':
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c:26:5: error: 'DDR0' undeclared (first use in this function)
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c:26:5: note: each undeclared identifier is reported only once for each function it appears in
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c: In function 'atmel_atmega328_PD0_isInput__E':
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c:30:15: error: 'DDR0' undeclared (first use in this function)
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c: In function 'atmel_atmega328_PD0_isOutput__E':
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c:34:15: error: 'DDR0' undeclared (first use in this function)
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c: In function 'atmel_atmega328_PD0_makeInput__E':
+../test24_out/test24/Blink5/../../atmel.atmega328/PD0/PD0.c:50:5: error: 'DDR0' undeclared (first use in this function)
+
+/*
+ * ======== string literals ========
+ */
+
+static const char atmel_atmega328_Mcu__s__fileName[] = "Mcu.p";
+static const char atmel_atmega328_Mcu__s__0[] = "Mcu";
+
+/*
+ * ======== function definitions ========
+ */
+
+void atmel_atmega328_Mcu_wait__E( uint32 us ) {
+    for (; (us) > 0; --(us)) {
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+         asm ("nop") ;
+
+    }
+}
+
+void atmel_atmega328_Mcu_reset__E() {
+}
+
+void atmel_atmega328_Mcu_cycle__E() {
+     asm ("nop") ;
+
+}
+
+void atmel_atmega328_Mcu_targetInit__I() {
+}
+
+void atmel_atmega328_Mcu_shutdown__E() {
+}
+
+uint32 atmel_atmega328_Mcu_frequency__E() {
+    return(  (atmel_atmega328_Mcu_sysFreq__V)  );
+}
+
+void atmel_atmega328_Mcu_frequency__E( uint32 hz ) {
+    (atmel_atmega328_Mcu_sysFreq__V) = (hz);
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test24_Blink5_pollen__reset__E();
+void test24_Blink5_pollen__ready__E();
+void test24_Blink5_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct atmel_atmega328_Mcu_ atmel_atmega328_Mcu;
+
+/*
+ * ======== struct module definition (unit Mcu) ========
+ */
+
+struct atmel_atmega328_Mcu_ {
+    uint32 sysFreq;
+};
+typedef struct atmel_atmega328_Mcu_ atmel_atmega328_Mcu_;
+
+/*
+ * ======== function members (unit Mcu) ========
+ */
+
+extern void atmel_atmega328_Mcu_wait__E( uint32 us );
+extern void atmel_atmega328_Mcu_reset__E();
+extern void atmel_atmega328_Mcu_cycle__E();
+extern void atmel_atmega328_Mcu_targetInit__I();
+extern void atmel_atmega328_Mcu_shutdown__E();
+extern uint32 atmel_atmega328_Mcu_frequency__E();
+extern void atmel_atmega328_Mcu_frequency__E( uint32 hz );
+
+/*
+ * ======== data members (unit Mcu) ========
+ */
+
+#define atmel_atmega328_Mcu_sysFreq__V atmel_atmega328_Mcu.sysFreq
+
+/*
+ * ======== string literals ========
+ */
+
+static const char atmel_atmega328_PD0__s__fileName[] = "PD0.p";
+static const char atmel_atmega328_PD0__s__2[] = "DDR0";
+static const char atmel_atmega328_PD0__s__1[] = "PORTD";
+static const char atmel_atmega328_PD0__s__0[] = "PD0";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <avr/io.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void atmel_atmega328_PD0_set__E() {
+    PORTD |= (1 << (atmel_atmega328_PD0_bit));
+}
+
+void atmel_atmega328_PD0_makeOutput__E() {
+    DDR0 &= ~(1 << (atmel_atmega328_PD0_bit));
+}
+
+bool atmel_atmega328_PD0_isInput__E() {
+    return(  (DDR0 & (1 << (atmel_atmega328_PD0_bit))) ? false : true  );
+}
+
+bool atmel_atmega328_PD0_isOutput__E() {
+    return(  (DDR0 & (1 << (atmel_atmega328_PD0_bit))) ? true : false  );
+}
+
+bool atmel_atmega328_PD0_get__E() {
+    return(  (PORTD & (1 << (atmel_atmega328_PD0_bit))) ? true : false  );
+}
+
+void atmel_atmega328_PD0_clear__E() {
+    PORTD &= (1 << (atmel_atmega328_PD0_bit));
+}
+
+void atmel_atmega328_PD0_toggle__E() {
+    PORTD ^= (1 << (atmel_atmega328_PD0_bit));
+}
+
+void atmel_atmega328_PD0_makeInput__E() {
+    DDR0 &= ~(1 << (atmel_atmega328_PD0_bit));
+}
+
+void atmel_atmega328_PD0_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test24_Blink5_pollen__reset__E();
+void test24_Blink5_pollen__ready__E();
+void test24_Blink5_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct atmel_atmega328_PD0_ atmel_atmega328_PD0;
+
+/*
+ * ======== struct module definition (unit PD0) ========
+ */
+
+struct atmel_atmega328_PD0_ {
+};
+typedef struct atmel_atmega328_PD0_ atmel_atmega328_PD0_;
+
+/*
+ * ======== function members (unit PD0) ========
+ */
+
+extern void atmel_atmega328_PD0_set__E();
+extern void atmel_atmega328_PD0_makeOutput__E();
+extern bool atmel_atmega328_PD0_isInput__E();
+extern bool atmel_atmega328_PD0_isOutput__E();
+extern bool atmel_atmega328_PD0_get__E();
+extern void atmel_atmega328_PD0_clear__E();
+extern void atmel_atmega328_PD0_toggle__E();
+extern void atmel_atmega328_PD0_makeInput__E();
+extern void atmel_atmega328_PD0_targetInit__I();
+
+/*
+ * ======== const definitions ========
+ */
+
+#define atmel_atmega328_PD0_portRegister (atmel_atmega328_PD0__s__1)
+#define atmel_atmega328_PD0_directionRegister (atmel_atmega328_PD0__s__2)
+#define atmel_atmega328_PD0_bit (0)
+
+/*
+ * ======== data members (unit PD0) ========
+ */
+
+#include <std.h>
+
+/*
+ * ======== protocol member test24.Blink5.pin delegates atmel_atmega328_PD0 ========
+ */
+
+#ifndef atmel_atmega328_PD0__M
+#define atmel_atmega328_PD0__M
+#include "../../atmel.atmega328/PD0/PD0.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef atmel_atmega328_Mcu__M
+#define atmel_atmega328_Mcu__M
+#include "../../atmel.atmega328/Mcu/Mcu.h"
+#endif
+
+#ifndef atmel_atmega328_PD0__M
+#define atmel_atmega328_PD0__M
+#include "../../atmel.atmega328/PD0/PD0.h"
+#endif
+
+#ifndef test24_Blink5__M
+#define test24_Blink5__M
+#include "../../test24/Blink5/Blink5.h"
+#endif
+
+/*
+ * ======== target data definitions (unit Mcu) ========
+ */
+
+struct atmel_atmega328_Mcu_ atmel_atmega328_Mcu = { /* module data */
+    (uint32)0x0,             /* sysFreq */
+};
+
+/*
+ * ======== target data definitions (unit PD0) ========
+ */
+
+struct atmel_atmega328_PD0_ atmel_atmega328_PD0 = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit Blink5) ========
+ */
+
+struct test24_Blink5_ test24_Blink5 = { /* module data */
+    &atmel_atmega328_PD0,    /* pin */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test24_Blink5_pollen__printBool(bool b) {
+}
+void test24_Blink5_pollen__printInt(int32 i) {
+}
+void test24_Blink5_pollen__printReal(float f) {
+}
+void test24_Blink5_pollen__printUint(uint32 u) {
+}
+void test24_Blink5_pollen__printStr(string s) {
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../atmel.atmega328/Mcu/Mcu.c"
+#include "../../atmel.atmega328/PD0/PD0.c"
+#include "../../test24/Blink5/Blink5.c"
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test24_Blink5_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.shutdown(uint8) ========
+ */
+
+void test24_Blink5_pollen__shutdown__E(uint8 i) {
+    volatile int dummy = 0xCAFE;
+    while (dummy) ;
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test24_Blink5_pollen__reset__E();
+    atmel_atmega328_Mcu_targetInit__I();
+    atmel_atmega328_PD0_targetInit__I();
+    test24_Blink5_targetInit__I();
+    test24_Blink5_pollen__ready__E();
+    test24_Blink5_pollen__run__E();
+    test24_Blink5_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test24_Blink5__s__fileName[] = "Blink5.p";
+static const char test24_Blink5__s__1[] = "DDR0";
+static const char test24_Blink5__s__0[] = "PORTD";
+static const char test24_Blink5__s__2[] = "Blink5";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test24_Blink5_pollen__reset__E() {
+    atmel_atmega328_PD0_clear__E();
+    atmel_atmega328_PD0_makeOutput__E();
+}
+
+void test24_Blink5_pollen__run__E() {
+    while (true) {
+        atmel_atmega328_PD0_toggle__E();
+        test24_Blink5_delaySome__I();
+    }
+}
+
+void test24_Blink5_targetInit__I() {
+}
+
+void test24_Blink5_delaySome__I() {
+    uint32 i;
+    for ((i) = 0; (i) < 10000; (i)++) {
+        atmel_atmega328_Mcu_cycle__E();
+    }
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef atmel_atmega328_Mcu__M
+#define atmel_atmega328_Mcu__M
+#include "../../atmel.atmega328/Mcu/Mcu.h"
+#endif
+
+#ifndef atmel_atmega328_PD0__M
+#define atmel_atmega328_PD0__M
+#include "../../atmel.atmega328/PD0/PD0.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test24_Blink5_pollen__ready__E();
+void test24_Blink5_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test24_Blink5_ test24_Blink5;
+
+/*
+ * ======== struct module definition (unit Blink5) ========
+ */
+
+struct atmel_atmega328_PD0_;
+struct test24_Blink5_ {
+    struct atmel_atmega328_PD0_ *pin;
+};
+typedef struct test24_Blink5_ test24_Blink5_;
+
+/*
+ * ======== function members (unit Blink5) ========
+ */
+
+extern void test24_Blink5_pollen__reset__E();
+extern void test24_Blink5_pollen__run__E();
+extern void test24_Blink5_targetInit__I();
+extern void test24_Blink5_delaySome__I();
+
+/*
+ * ======== data members (unit Blink5) ========
+ */
+
+#define test24_Blink5_pin__V test24_Blink5.pin
+
+/*
+ * ======== MODULE atmel.atmega328.Mcu ========
+ */
+
+var $$c = function() {
+    const Mcu = {};
+    Mcu.Mcu = Mcu
+    Mcu.$name = 'atmel.atmega328.Mcu';
+    Mcu.pollen$used = 0;
+    Mcu.reset = new $$Ref('atmel_atmega328_Mcu_reset__E');
+    Mcu.shutdown = new $$Ref('atmel_atmega328_Mcu_shutdown__E');
+    Mcu.wait = new $$Ref('atmel_atmega328_Mcu_wait__E');
+    Mcu.cycle = new $$Ref('atmel_atmega328_Mcu_cycle__E');
+    Mcu.frequency = new $$Ref('atmel_atmega328_Mcu_frequency__E');
+    Mcu.frequency = new $$Ref('frequency');
+    Mcu.targetInit = new $$Ref('atmel_atmega328_Mcu_targetInit__I');
+    Mcu.frequency = function() {
+        var $$text = '';
+        return(  (Mcu.sysFreq)  );
+        return $$text;
+    }
+    Mcu.frequency = function( hz ) {
+        var $$text = '';
+        (Mcu.sysFreq) = (hz);
+        return $$text;
+    }
+    Mcu.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Mcu.pollen__uses__ = function() {
+    }
+    Mcu.$$privateInit = function() {
+        Mcu.sysFreq = 0;
+    }
+    return Mcu;
+}
+var $$u = $$c();
+$units['atmel.atmega328.Mcu'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE atmel.atmega328.PD0 ========
+ */
+
+var $$c = function() {
+    const PD0 = {};
+    PD0.PD0 = PD0
+    PD0.$name = 'atmel.atmega328.PD0';
+    PD0.pollen$used = 0;
+    PD0.set = new $$Ref('atmel_atmega328_PD0_set__E');
+    PD0.clear = new $$Ref('atmel_atmega328_PD0_clear__E');
+    PD0.toggle = new $$Ref('atmel_atmega328_PD0_toggle__E');
+    PD0.get = new $$Ref('atmel_atmega328_PD0_get__E');
+    PD0.makeInput = new $$Ref('atmel_atmega328_PD0_makeInput__E');
+    PD0.isInput = new $$Ref('atmel_atmega328_PD0_isInput__E');
+    PD0.makeOutput = new $$Ref('atmel_atmega328_PD0_makeOutput__E');
+    PD0.isOutput = new $$Ref('atmel_atmega328_PD0_isOutput__E');
+    PD0.targetInit = new $$Ref('atmel_atmega328_PD0_targetInit__I');
+    PD0.portRegister = "PORTD";
+    PD0.directionRegister = "DDR0";
+    PD0.bit = 0;
+    PD0.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PD0.pollen__uses__ = function() {
+    }
+    PD0.$$privateInit = function() {
+    }
+    return PD0;
+}
+var $$u = $$c();
+$units['atmel.atmega328.PD0'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE atmel.atmega328.Mcu ========
+ */
+
+var $$c = function() {
+    const Mcu = {};
+    Mcu.Mcu = Mcu
+    Mcu.$name = 'atmel.atmega328.Mcu';
+    Mcu.pollen$used = 0;
+    Mcu.reset = new $$Ref('atmel_atmega328_Mcu_reset__E');
+    Mcu.shutdown = new $$Ref('atmel_atmega328_Mcu_shutdown__E');
+    Mcu.wait = new $$Ref('atmel_atmega328_Mcu_wait__E');
+    Mcu.cycle = new $$Ref('atmel_atmega328_Mcu_cycle__E');
+    Mcu.frequency = new $$Ref('atmel_atmega328_Mcu_frequency__E');
+    Mcu.frequency = new $$Ref('frequency');
+    Mcu.targetInit = new $$Ref('atmel_atmega328_Mcu_targetInit__I');
+    Mcu.frequency = function() {
+        var $$text = '';
+        return(  (Mcu.sysFreq)  );
+        return $$text;
+    }
+    Mcu.frequency = function( hz ) {
+        var $$text = '';
+        (Mcu.sysFreq) = (hz);
+        return $$text;
+    }
+    Mcu.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Mcu.pollen__uses__ = function() {
+    }
+    Mcu.$$privateInit = function() {
+        Mcu.sysFreq = 0;
+    }
+    return Mcu;
+}
+var $$u = $$c();
+$units['atmel.atmega328.Mcu'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE atmel.atmega328.PD0 ========
+ */
+
+var $$c = function() {
+    const PD0 = {};
+    PD0.PD0 = PD0
+    PD0.$name = 'atmel.atmega328.PD0';
+    PD0.pollen$used = 0;
+    PD0.set = new $$Ref('atmel_atmega328_PD0_set__E');
+    PD0.clear = new $$Ref('atmel_atmega328_PD0_clear__E');
+    PD0.toggle = new $$Ref('atmel_atmega328_PD0_toggle__E');
+    PD0.get = new $$Ref('atmel_atmega328_PD0_get__E');
+    PD0.makeInput = new $$Ref('atmel_atmega328_PD0_makeInput__E');
+    PD0.isInput = new $$Ref('atmel_atmega328_PD0_isInput__E');
+    PD0.makeOutput = new $$Ref('atmel_atmega328_PD0_makeOutput__E');
+    PD0.isOutput = new $$Ref('atmel_atmega328_PD0_isOutput__E');
+    PD0.targetInit = new $$Ref('atmel_atmega328_PD0_targetInit__I');
+    PD0.portRegister = "PORTD";
+    PD0.directionRegister = "DDR0";
+    PD0.bit = 0;
+    PD0.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PD0.pollen__uses__ = function() {
+    }
+    PD0.$$privateInit = function() {
+    }
+    return PD0;
+}
+var $$u = $$c();
+$units['atmel.atmega328.PD0'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test24.Blink5 ========
+ */
+
+var $$c = function() {
+    const Blink5 = {};
+    Blink5.Blink5 = Blink5
+    Blink5.$name = 'test24.Blink5';
+    Blink5.pollen$used = 0;
+    Blink5.Mcu = $units['atmel.atmega328.Mcu'];
+    Blink5.PD0 = $units['atmel.atmega328.PD0'];
+    Blink5.pollen__reset = new $$Ref('test24_Blink5_pollen__reset__E');
+    Blink5.pollen__run = new $$Ref('test24_Blink5_pollen__run__E');
+    Blink5.delaySome = new $$Ref('test24_Blink5_delaySome__I');
+    Blink5.targetInit = new $$Ref('test24_Blink5_targetInit__I');
+    Blink5.$$hostInit = function() {
+        var $$text = '';
+        var $$v = 'atmel_atmega328_PD0';
+        var $$s = $$bind($units['test24.Blink5'], 'pin', $$v);{ $$v.pollen$used = true;
+        $units['atmel.atmega328.PD0'].pollen$used = true;}
+
+        return $$text;
+    }
+    Blink5.pollen__uses__ = function() {
+        $$bind($units['atmel.atmega328.Mcu'], 'pollen$used', true);
+        $$bind($units['atmel.atmega328.PD0'], 'pollen$used', true);
+    }
+    Blink5.$$privateInit = function() {
+        Blink5.pin = 0;
+    }
+    return Blink5;
+}
+var $$u = $$c();
+$units['test24.Blink5'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test24.Blink5'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test24.Blink5 ========
+ */
+
+var $$c = function() {
+    const Blink5 = {};
+    Blink5.Blink5 = Blink5
+    Blink5.$name = 'test24.Blink5';
+    Blink5.pollen$used = 0;
+    Blink5.Mcu = $units['atmel.atmega328.Mcu'];
+    Blink5.PD0 = $units['atmel.atmega328.PD0'];
+    Blink5.pollen__reset = new $$Ref('test24_Blink5_pollen__reset__E');
+    Blink5.pollen__run = new $$Ref('test24_Blink5_pollen__run__E');
+    Blink5.delaySome = new $$Ref('test24_Blink5_delaySome__I');
+    Blink5.targetInit = new $$Ref('test24_Blink5_targetInit__I');
+    Blink5.$$hostInit = function() {
+        var $$text = '';
+        var $$v = 'atmel_atmega328_PD0';
+        var $$s = $$bind($units['test24.Blink5'], 'pin', $$v);{ $$v.pollen$used = true;
+        $units['atmel.atmega328.PD0'].pollen$used = true;}
+
+        return $$text;
+    }
+    Blink5.pollen__uses__ = function() {
+        $$bind($units['atmel.atmega328.Mcu'], 'pollen$used', true);
+        $$bind($units['atmel.atmega328.PD0'], 'pollen$used', true);
+    }
+    Blink5.$$privateInit = function() {
+        Blink5.pin = 0;
+    }
+    return Blink5;
+}
+var $$u = $$c();
+$units['test24.Blink5'] = $$u;
+$units.push($$u);
+

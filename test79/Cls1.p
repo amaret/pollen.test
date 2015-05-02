@@ -1,0 +1,2 @@
+class Cls1 {
+}

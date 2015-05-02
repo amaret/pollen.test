@@ -1,0 +1,1258 @@
+pollen version 0.2.137
+pollen version 0.2.137
+Now run executeable
+Mcu.reset
+Pin.clear
+Pin.clear
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Pin.toggle
+Mcu.shutdown
+
+/*
+ * ======== string literals ========
+ */
+
+static const char amaret_local_A1__s__fileName[] = "A1.p";
+static const char amaret_local_A1__s__0[] = "A1";
+static const char amaret_local_A1__s__1[] = "A";
+
+/*
+ * ======== function definitions ========
+ */
+
+void amaret_local_A1_set__E() {
+     printf("Pin:set\n") ;
+
+}
+
+void amaret_local_A1_makeOutput__E() {
+     printf("Pin.makeOutput\n") ;
+
+}
+
+bool amaret_local_A1_isInput__E() {
+     printf("Pin.isInput\n") ;
+
+    return(  true  );
+}
+
+bool amaret_local_A1_isOutput__E() {
+     printf("Pin.isOutput\n") ;
+
+    return(  true  );
+}
+
+bool amaret_local_A1_get__E() {
+     printf("Pin.get\n") ;
+
+    return(  true  );
+}
+
+void amaret_local_A1_clear__E() {
+     printf("Pin.clear\n") ;
+
+}
+
+void amaret_local_A1_toggle__E() {
+     printf("Pin.toggle\n") ;
+
+}
+
+void amaret_local_A1_makeInput__E() {
+     printf("Pin.makeInput\n") ;
+
+}
+
+void amaret_local_A1_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test32_Blink2_pollen__reset__E();
+void test32_Blink2_pollen__ready__E();
+void test32_Blink2_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct amaret_local_A1_ amaret_local_A1;
+
+/*
+ * ======== struct module definition (unit A1) ========
+ */
+
+struct amaret_local_A1_ {
+};
+typedef struct amaret_local_A1_ amaret_local_A1_;
+
+/*
+ * ======== function members (unit A1) ========
+ */
+
+extern void amaret_local_A1_set__E();
+extern void amaret_local_A1_makeOutput__E();
+extern bool amaret_local_A1_isInput__E();
+extern bool amaret_local_A1_isOutput__E();
+extern bool amaret_local_A1_get__E();
+extern void amaret_local_A1_clear__E();
+extern void amaret_local_A1_toggle__E();
+extern void amaret_local_A1_makeInput__E();
+extern void amaret_local_A1_targetInit__I();
+
+/*
+ * ======== const definitions ========
+ */
+
+#define amaret_local_A1_name (amaret_local_A1__s__1)
+#define amaret_local_A1_num (1)
+
+/*
+ * ======== data members (unit A1) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char amaret_local_Mcu__s__fileName[] = "Mcu.p";
+static const char amaret_local_Mcu__s__0[] = "Mcu";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+ #include <unistd.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void amaret_local_Mcu_wait__E( uint32 us ) {
+     usleep(us) ;
+
+}
+
+uint32 amaret_local_Mcu_getFrequency__E() {
+    return(  (amaret_local_Mcu_sysFreq__V)  );
+}
+
+void amaret_local_Mcu_reset__E() {
+     printf("Mcu.reset\n") ;
+
+}
+
+void amaret_local_Mcu_cycle__E() {
+     usleep(1) ;
+
+}
+
+void amaret_local_Mcu_targetInit__I() {
+}
+
+void amaret_local_Mcu_shutdown__E() {
+     printf("Mcu.shutdown\n") ;
+
+}
+
+void amaret_local_Mcu_setFrequency__E( uint32 hz ) {
+    (amaret_local_Mcu_sysFreq__V) = (hz);
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test32_Blink2_pollen__reset__E();
+void test32_Blink2_pollen__ready__E();
+void test32_Blink2_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct amaret_local_Mcu_ amaret_local_Mcu;
+
+/*
+ * ======== struct module definition (unit Mcu) ========
+ */
+
+struct amaret_local_Mcu_ {
+    uint32 sysFreq;
+};
+typedef struct amaret_local_Mcu_ amaret_local_Mcu_;
+
+/*
+ * ======== function members (unit Mcu) ========
+ */
+
+extern void amaret_local_Mcu_wait__E( uint32 us );
+extern uint32 amaret_local_Mcu_getFrequency__E();
+extern void amaret_local_Mcu_reset__E();
+extern void amaret_local_Mcu_cycle__E();
+extern void amaret_local_Mcu_targetInit__I();
+extern void amaret_local_Mcu_shutdown__E();
+extern void amaret_local_Mcu_setFrequency__E( uint32 hz );
+
+/*
+ * ======== data members (unit Mcu) ========
+ */
+
+#define amaret_local_Mcu_sysFreq__V amaret_local_Mcu.sysFreq
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_hardware_Led__s__fileName[] = "Led.p";
+static const char pollen_hardware_Led__s__0[] = "Led";
+
+/*
+ * ======== function definitions ========
+ */
+
+bool pollen_hardware_Led_isOn__E() {
+    {
+        return(  amaret_local_A1_get__E()  );
+    }
+}
+
+void pollen_hardware_Led_toggle__E() {
+    amaret_local_A1_toggle__E();
+}
+
+void pollen_hardware_Led_targetInit__I() {
+    pollen_hardware_Led_off__E();
+}
+
+void pollen_hardware_Led_off__E() {
+    {
+        amaret_local_A1_clear__E();
+    }
+}
+
+void pollen_hardware_Led_on__E() {
+    {
+        amaret_local_A1_set__E();
+    }
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test32_Blink2_pollen__reset__E();
+void test32_Blink2_pollen__ready__E();
+void test32_Blink2_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct pollen_hardware_Led_ pollen_hardware_Led;
+
+/*
+ * ======== struct module definition (unit Led) ========
+ */
+
+struct amaret_local_A1_;
+struct pollen_hardware_Led_ {
+    struct amaret_local_A1_ *pin;
+};
+typedef struct pollen_hardware_Led_ pollen_hardware_Led_;
+
+/*
+ * ======== function members (unit Led) ========
+ */
+
+extern bool pollen_hardware_Led_isOn__E();
+extern void pollen_hardware_Led_toggle__E();
+extern void pollen_hardware_Led_targetInit__I();
+extern void pollen_hardware_Led_off__E();
+extern void pollen_hardware_Led_on__E();
+
+/*
+ * ======== const definitions ========
+ */
+
+#define pollen_hardware_Led_activeLow (false)
+
+/*
+ * ======== data members (unit Led) ========
+ */
+
+#define pollen_hardware_Led_pin__V pollen_hardware_Led.pin
+#include <std.h>
+
+/*
+ * ======== protocol member pollen.hardware.Led.pin delegates amaret_local_A1 ========
+ */
+
+#ifndef amaret_local_A1__M
+#define amaret_local_A1__M
+#include "../../amaret.local/A1/A1.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef amaret_local_Mcu__M
+#define amaret_local_Mcu__M
+#include "../../amaret.local/Mcu/Mcu.h"
+#endif
+
+#ifndef amaret_local_A1__M
+#define amaret_local_A1__M
+#include "../../amaret.local/A1/A1.h"
+#endif
+
+#ifndef pollen_hardware_Led__M
+#define pollen_hardware_Led__M
+#include "../../pollen.hardware/Led/Led.h"
+#endif
+
+#ifndef test32_Blink2__M
+#define test32_Blink2__M
+#include "../../test32/Blink2/Blink2.h"
+#endif
+
+/*
+ * ======== target data definitions (unit Mcu) ========
+ */
+
+struct amaret_local_Mcu_ amaret_local_Mcu = { /* module data */
+    (uint32)0x0,             /* sysFreq */
+};
+
+/*
+ * ======== target data definitions (unit A1) ========
+ */
+
+struct amaret_local_A1_ amaret_local_A1 = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit Led) ========
+ */
+
+struct pollen_hardware_Led_ pollen_hardware_Led = { /* module data */
+    &amaret_local_A1,    /* pin */
+};
+
+/*
+ * ======== target data definitions (unit Blink2) ========
+ */
+
+struct test32_Blink2_ test32_Blink2 = { /* module data */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test32_Blink2_pollen__printBool(bool b) {
+}
+void test32_Blink2_pollen__printInt(int32 i) {
+}
+void test32_Blink2_pollen__printReal(float f) {
+}
+void test32_Blink2_pollen__printUint(uint32 u) {
+}
+void test32_Blink2_pollen__printStr(string s) {
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../amaret.local/Mcu/Mcu.c"
+#include "../../amaret.local/A1/A1.c"
+#include "../../pollen.hardware/Led/Led.c"
+#include "../../test32/Blink2/Blink2.c"
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test32_Blink2_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test32_Blink2_pollen__reset__E();
+    amaret_local_Mcu_targetInit__I();
+    amaret_local_A1_targetInit__I();
+    pollen_hardware_Led_targetInit__I();
+    test32_Blink2_targetInit__I();
+    test32_Blink2_pollen__ready__E();
+    test32_Blink2_pollen__run__E();
+    test32_Blink2_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test32_Blink2__s__fileName[] = "Blink2.p";
+static const char test32_Blink2__s__0[] = "Blink2";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test32_Blink2_pollen__reset__E() {
+    amaret_local_Mcu_reset__E();
+    pollen_hardware_Led_off__E();
+}
+
+void test32_Blink2_pollen__run__E() {
+    uint8 x;
+    uint16 i;
+    for (x = 0; (x) < 20; (x)++) {
+        pollen_hardware_Led_toggle__E();
+        for (i = 0; (i) < 1000; (i)++) {
+            amaret_local_Mcu_wait__E(1000);
+        }
+    }
+}
+
+void test32_Blink2_pollen__shutdown__E( uint8 id ) {
+    amaret_local_Mcu_shutdown__E();
+}
+
+void test32_Blink2_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef amaret_local_Mcu__M
+#define amaret_local_Mcu__M
+#include "../../amaret.local/Mcu/Mcu.h"
+#endif
+
+#ifndef amaret_local_A1__M
+#define amaret_local_A1__M
+#include "../../amaret.local/A1/A1.h"
+#endif
+
+#ifndef pollen_hardware_Led__M
+#define pollen_hardware_Led__M
+#include "../../pollen.hardware/Led/Led.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test32_Blink2_pollen__ready__E();
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test32_Blink2_ test32_Blink2;
+
+/*
+ * ======== struct module definition (unit Blink2) ========
+ */
+
+struct test32_Blink2_ {
+};
+typedef struct test32_Blink2_ test32_Blink2_;
+
+/*
+ * ======== function members (unit Blink2) ========
+ */
+
+extern void test32_Blink2_pollen__reset__E();
+extern void test32_Blink2_pollen__run__E();
+extern void test32_Blink2_pollen__shutdown__E( uint8 id );
+extern void test32_Blink2_targetInit__I();
+
+/*
+ * ======== data members (unit Blink2) ========
+ */
+
+
+/*
+ * ======== MODULE amaret.local.A1 ========
+ */
+
+var $$c = function() {
+    const A1 = {};
+    A1.A1 = A1
+    A1.$name = 'amaret.local.A1';
+    A1.pollen$used = 0;
+    A1.set = new $$Ref('amaret_local_A1_set__E');
+    A1.clear = new $$Ref('amaret_local_A1_clear__E');
+    A1.toggle = new $$Ref('amaret_local_A1_toggle__E');
+    A1.get = new $$Ref('amaret_local_A1_get__E');
+    A1.makeInput = new $$Ref('amaret_local_A1_makeInput__E');
+    A1.isInput = new $$Ref('amaret_local_A1_isInput__E');
+    A1.makeOutput = new $$Ref('amaret_local_A1_makeOutput__E');
+    A1.isOutput = new $$Ref('amaret_local_A1_isOutput__E');
+    A1.targetInit = new $$Ref('amaret_local_A1_targetInit__I');
+    A1.name = "A";
+    A1.num = 1;
+    A1.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    A1.pollen__uses__ = function() {
+    }
+    A1.$$privateInit = function() {
+    }
+    return A1;
+}
+var $$u = $$c();
+$units['amaret.local.A1'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== COMPOSITION amaret.local.LocalMcu ========
+ */
+
+var $$c = function() {
+    const LocalMcu = {};
+    LocalMcu.LocalMcu = LocalMcu
+    LocalMcu.$name = 'amaret.local.LocalMcu';
+    LocalMcu.pollen$used = 0;
+    LocalMcu.Mcu = $units['amaret.local.Mcu'];
+    LocalMcu.A1 = $units['amaret.local.A1'];
+    return LocalMcu;
+}
+var $$u = $$c();
+$units['amaret.local.LocalMcu'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE amaret.local.Mcu ========
+ */
+
+var $$c = function() {
+    const Mcu = {};
+    Mcu.Mcu = Mcu
+    Mcu.$name = 'amaret.local.Mcu';
+    Mcu.pollen$used = 0;
+    Mcu.reset = new $$Ref('amaret_local_Mcu_reset__E');
+    Mcu.shutdown = new $$Ref('amaret_local_Mcu_shutdown__E');
+    Mcu.wait = new $$Ref('amaret_local_Mcu_wait__E');
+    Mcu.cycle = new $$Ref('amaret_local_Mcu_cycle__E');
+    Mcu.getFrequency = new $$Ref('amaret_local_Mcu_getFrequency__E');
+    Mcu.setFrequency = new $$Ref('amaret_local_Mcu_setFrequency__E');
+    Mcu.targetInit = new $$Ref('amaret_local_Mcu_targetInit__I');
+    Mcu.getFrequencyOnHost = function() {
+        var $$text = '';
+        return(  (Mcu.sysFreq)  );
+        return $$text;
+    }
+    Mcu.setFrequencyOnHost = function( hz ) {
+        var $$text = '';
+        (Mcu.sysFreq) = (hz);
+        return $$text;
+    }
+    Mcu.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Mcu.pollen__uses__ = function() {
+    }
+    Mcu.$$privateInit = function() {
+        Mcu.sysFreq = 0;
+    }
+    return Mcu;
+}
+var $$u = $$c();
+$units['amaret.local.Mcu'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE pollen.hardware.Led ========
+ */
+
+var $$c = function() {
+    const Led = {};
+    Led.Led = Led
+    Led.$name = 'pollen.hardware.Led';
+    Led.pollen$used = 0;
+    Led.targetInit = new $$Ref('pollen_hardware_Led_targetInit__I');
+    Led.on = new $$Ref('pollen_hardware_Led_on__E');
+    Led.off = new $$Ref('pollen_hardware_Led_off__E');
+    Led.toggle = new $$Ref('pollen_hardware_Led_toggle__E');
+    Led.isOn = new $$Ref('pollen_hardware_Led_isOn__E');
+    Led.activeLow = false;
+    Led.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Led.pollen__uses__ = function() {
+    }
+    Led.$$privateInit = function() {
+        Led.pin = 0;
+    }
+    return Led;
+}
+var $$u = $$c();
+$units['pollen.hardware.Led'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware.Pin ========
+ */
+
+var $$c = function() {
+    const Pin = {};
+    Pin.Pin = Pin
+    Pin.$name = 'pollen.hardware.Pin';
+    Pin.pollen$used = 0;
+    Pin.pollen__uses__ = function() {
+    }
+    Pin.$$privateInit = function() {
+    }
+    return Pin;
+}
+var $$u = $$c();
+$units['pollen.hardware.Pin'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE amaret.local.Mcu ========
+ */
+
+var $$c = function() {
+    const Mcu = {};
+    Mcu.Mcu = Mcu
+    Mcu.$name = 'amaret.local.Mcu';
+    Mcu.pollen$used = 0;
+    Mcu.reset = new $$Ref('amaret_local_Mcu_reset__E');
+    Mcu.shutdown = new $$Ref('amaret_local_Mcu_shutdown__E');
+    Mcu.wait = new $$Ref('amaret_local_Mcu_wait__E');
+    Mcu.cycle = new $$Ref('amaret_local_Mcu_cycle__E');
+    Mcu.getFrequency = new $$Ref('amaret_local_Mcu_getFrequency__E');
+    Mcu.setFrequency = new $$Ref('amaret_local_Mcu_setFrequency__E');
+    Mcu.targetInit = new $$Ref('amaret_local_Mcu_targetInit__I');
+    Mcu.getFrequencyOnHost = function() {
+        var $$text = '';
+        return(  (Mcu.sysFreq)  );
+        return $$text;
+    }
+    Mcu.setFrequencyOnHost = function( hz ) {
+        var $$text = '';
+        (Mcu.sysFreq) = (hz);
+        return $$text;
+    }
+    Mcu.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Mcu.pollen__uses__ = function() {
+    }
+    Mcu.$$privateInit = function() {
+        Mcu.sysFreq = 0;
+    }
+    return Mcu;
+}
+var $$u = $$c();
+$units['amaret.local.Mcu'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.hardware.Pin ========
+ */
+
+var $$c = function() {
+    const Pin = {};
+    Pin.Pin = Pin
+    Pin.$name = 'pollen.hardware.Pin';
+    Pin.pollen$used = 0;
+    Pin.pollen__uses__ = function() {
+    }
+    Pin.$$privateInit = function() {
+    }
+    return Pin;
+}
+var $$u = $$c();
+$units['pollen.hardware.Pin'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE amaret.local.A1 ========
+ */
+
+var $$c = function() {
+    const A1 = {};
+    A1.A1 = A1
+    A1.$name = 'amaret.local.A1';
+    A1.pollen$used = 0;
+    A1.set = new $$Ref('amaret_local_A1_set__E');
+    A1.clear = new $$Ref('amaret_local_A1_clear__E');
+    A1.toggle = new $$Ref('amaret_local_A1_toggle__E');
+    A1.get = new $$Ref('amaret_local_A1_get__E');
+    A1.makeInput = new $$Ref('amaret_local_A1_makeInput__E');
+    A1.isInput = new $$Ref('amaret_local_A1_isInput__E');
+    A1.makeOutput = new $$Ref('amaret_local_A1_makeOutput__E');
+    A1.isOutput = new $$Ref('amaret_local_A1_isOutput__E');
+    A1.targetInit = new $$Ref('amaret_local_A1_targetInit__I');
+    A1.name = "A";
+    A1.num = 1;
+    A1.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    A1.pollen__uses__ = function() {
+    }
+    A1.$$privateInit = function() {
+    }
+    return A1;
+}
+var $$u = $$c();
+$units['amaret.local.A1'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== COMPOSITION amaret.local.LocalMcu ========
+ */
+
+var $$c = function() {
+    const LocalMcu = {};
+    LocalMcu.LocalMcu = LocalMcu
+    LocalMcu.$name = 'amaret.local.LocalMcu';
+    LocalMcu.pollen$used = 0;
+    LocalMcu.Mcu = $units['amaret.local.Mcu'];
+    LocalMcu.A1 = $units['amaret.local.A1'];
+    return LocalMcu;
+}
+var $$u = $$c();
+$units['amaret.local.LocalMcu'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE pollen.hardware.Led ========
+ */
+
+var $$c = function() {
+    const Led = {};
+    Led.Led = Led
+    Led.$name = 'pollen.hardware.Led';
+    Led.pollen$used = 0;
+    Led.targetInit = new $$Ref('pollen_hardware_Led_targetInit__I');
+    Led.on = new $$Ref('pollen_hardware_Led_on__E');
+    Led.off = new $$Ref('pollen_hardware_Led_off__E');
+    Led.toggle = new $$Ref('pollen_hardware_Led_toggle__E');
+    Led.isOn = new $$Ref('pollen_hardware_Led_isOn__E');
+    Led.activeLow = false;
+    Led.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Led.pollen__uses__ = function() {
+    }
+    Led.$$privateInit = function() {
+        Led.pin = 0;
+    }
+    return Led;
+}
+var $$u = $$c();
+$units['pollen.hardware.Led'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test32.Blink2 ========
+ */
+
+var $$c = function() {
+    const Blink2 = {};
+    Blink2.Blink2 = Blink2
+    Blink2.$name = 'test32.Blink2';
+    Blink2.pollen$used = 0;
+    Blink2.Led = $units['pollen.hardware.Led'];
+    Blink2.pollen__reset = new $$Ref('test32_Blink2_pollen__reset__E');
+    Blink2.pollen__shutdown = new $$Ref('test32_Blink2_pollen__shutdown__E');
+    Blink2.pollen__run = new $$Ref('test32_Blink2_pollen__run__E');
+    Blink2.targetInit = new $$Ref('test32_Blink2_targetInit__I');
+    Blink2.$$hostInit = function() {
+        var $$text = '';
+        var $$v = 'amaret_local_A1';
+        var $$s = $$bind($units['test32.Blink2'], 'Led.pin', $$v);{ $$v.pollen$used = true;
+        $units['amaret.local.A1'].pollen$used = true;}
+
+        return $$text;
+    }
+    Blink2.pollen__uses__ = function() {
+        $$bind($units['amaret.local.Mcu'], 'pollen$used', true);
+        $$bind($units['amaret.local.A1'], 'pollen$used', true);
+        $$bind($units['pollen.hardware.Led'], 'pollen$used', true);
+    }
+    Blink2.$$privateInit = function() {
+    }
+    return Blink2;
+}
+var $$u = $$c();
+$units['test32.Blink2'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test32.Blink2'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test32.Blink2 ========
+ */
+
+var $$c = function() {
+    const Blink2 = {};
+    Blink2.Blink2 = Blink2
+    Blink2.$name = 'test32.Blink2';
+    Blink2.pollen$used = 0;
+    Blink2.Led = $units['pollen.hardware.Led'];
+    Blink2.pollen__reset = new $$Ref('test32_Blink2_pollen__reset__E');
+    Blink2.pollen__shutdown = new $$Ref('test32_Blink2_pollen__shutdown__E');
+    Blink2.pollen__run = new $$Ref('test32_Blink2_pollen__run__E');
+    Blink2.targetInit = new $$Ref('test32_Blink2_targetInit__I');
+    Blink2.$$hostInit = function() {
+        var $$text = '';
+        var $$v = 'amaret_local_A1';
+        var $$s = $$bind($units['test32.Blink2'], 'Led.pin', $$v);{ $$v.pollen$used = true;
+        $units['amaret.local.A1'].pollen$used = true;}
+
+        return $$text;
+    }
+    Blink2.pollen__uses__ = function() {
+        $$bind($units['amaret.local.Mcu'], 'pollen$used', true);
+        $$bind($units['amaret.local.A1'], 'pollen$used', true);
+        $$bind($units['pollen.hardware.Led'], 'pollen$used', true);
+    }
+    Blink2.$$privateInit = function() {
+    }
+    return Blink2;
+}
+var $$u = $$c();
+$units['test32.Blink2'] = $$u;
+$units.push($$u);
+

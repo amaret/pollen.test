@@ -1,0 +1,29 @@
+from distro.arduino import Distro
+from Distro import Mcu
+from Distro import Uart
+
+module UartHello {
+
+
+	pollen.run() {
+		Mcu.reset()
+		
+		----
+		Uart.put(72)
+		Uart.put(73)
+		Uart.put(33)
+		Uart.put(13)
+		Uart.put(10)
+		----
+		
+		
+		Uart.put('H')
+		Uart.put('e')
+		Uart.put('l')
+		Uart.put('l')
+		Uart.put('o')
+		Uart.put('!')
+		Uart.put('\n')
+		
+	}
+}

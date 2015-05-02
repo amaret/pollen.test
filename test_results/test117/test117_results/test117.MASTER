@@ -1,0 +1,1051 @@
+pollen version 0.2.137
+pollen version 0.2.137
+test117.ArrayReturn.p, line 31:1, 'arrCls1Ref': function 'foofoo1()' returns a non-host array which is an error. Only returning host arrays is supported.
+go to
+Now run executeable
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test117_ArrayReturn__s__fileName[] = "ArrayReturn.p";
+static const char test117_ArrayReturn__s__3[] = "foofoo2() returns ";
+static const char test117_ArrayReturn__s__4[] = "ArrayReturn";
+static const char test117_ArrayReturn__s__1[] = "foofoo1() returns ";
+static const char test117_ArrayReturn__s__0[] = "Cls1";
+static const char test117_ArrayReturn__s__2[] = "\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+test117_ArrayReturn_Cls1_  test117_ArrayReturn_foofoo1__I() {
+    return*(  (test117_ArrayReturn_arrCls1Ref__A)  );
+}
+
+void test117_ArrayReturn_bar__E() {
+    uint8 i;
+    (test117_ArrayReturn_arrCls1Ref__A[0]) = &(test117_ArrayReturn_arrCls1Inst__A[0]);
+    i = 0;
+    (i) = test117_ArrayReturn_Cls1_getcVar__I(&(test117_ArrayReturn_foofoo1__I()[0]));
+    test117_TestProg_pollen__printStr((string)test117_ArrayReturn__s__1);
+	test117_TestProg_pollen__printUint((uint32)(i));
+	test117_TestProg_pollen__printStr((string)test117_ArrayReturn__s__2);
+    (i) = test117_ArrayReturn_Cls1_getcVar__I(&(test117_ArrayReturn_foofoo2__I()[0]));
+    test117_TestProg_pollen__printStr((string)test117_ArrayReturn__s__3);
+	test117_TestProg_pollen__printUint((uint32)(i));
+	test117_TestProg_pollen__printStr((string)test117_ArrayReturn__s__2);
+}
+
+test117_ArrayReturn_Cls1_  test117_ArrayReturn_foofoo2__I() {
+    return(  (test117_ArrayReturn_arrCls1Inst__A)  );
+}
+
+uint8 test117_ArrayReturn_Cls1_getcVar__I( test117_ArrayReturn_Cls1_ this ) {
+    return(  (this->cVar)  );
+}
+
+test117_ArrayReturn_Cls1_ test117_ArrayReturn_Cls1_new___E( test117_ArrayReturn_Cls1_ this ) {
+    return this;
+}
+
+void test117_ArrayReturn_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test117_TestProg_pollen__reset__E();
+void test117_TestProg_pollen__ready__E();
+void test117_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test117_ArrayReturn_ test117_ArrayReturn;
+
+/*
+ * ======== class definition (unit ArrayReturn.Cls1) ========
+ */
+
+struct test117_ArrayReturn_Cls1 {
+    uint8 cVar;
+};
+typedef struct test117_ArrayReturn_Cls1 test117_ArrayReturn_Cls1;
+typedef struct test117_ArrayReturn_Cls1* test117_ArrayReturn_Cls1_;
+
+/*
+ * ======== struct module definition (unit ArrayReturn) ========
+ */
+
+struct test117_ArrayReturn_ {
+    test117_ArrayReturn_Cls1_ arrCls1Ref[1];
+};
+typedef struct test117_ArrayReturn_ test117_ArrayReturn_;
+
+/*
+ * ======== host variables (unit ArrayReturn) ========
+ */
+
+typedef test117_ArrayReturn_Cls1 test117_ArrayReturn_arrCls1Inst__TYPE;
+extern test117_ArrayReturn_arrCls1Inst__TYPE test117_ArrayReturn_arrCls1Inst__A[];
+
+/*
+ * ======== function members (unit ArrayReturn) ========
+ */
+
+extern test117_ArrayReturn_Cls1_  test117_ArrayReturn_foofoo1__I();
+extern void test117_ArrayReturn_bar__E();
+extern test117_ArrayReturn_Cls1_  test117_ArrayReturn_foofoo2__I();
+extern uint8 test117_ArrayReturn_Cls1_getcVar__I( test117_ArrayReturn_Cls1_ this );
+extern test117_ArrayReturn_Cls1_ test117_ArrayReturn_Cls1_new___E( test117_ArrayReturn_Cls1_ this );
+extern void test117_ArrayReturn_targetInit__I();
+
+/*
+ * ======== data members (unit ArrayReturn) ========
+ */
+
+#define test117_ArrayReturn_arrCls1Ref__A test117_ArrayReturn.arrCls1Ref
+#define test117_ArrayReturn_arrCls1Ref_cVar__A test117_ArrayReturn.arrCls1Ref->cVar
+#define test117_ArrayReturn_arrCls1Ref_getcVar__A test117_ArrayReturn.arrCls1Ref->getcVar
+#define test117_ArrayReturn_arrCls1Ref_new_host__A test117_ArrayReturn.arrCls1Ref->new_host
+#define test117_ArrayReturn_arrCls1Ref_new___A test117_ArrayReturn.arrCls1Ref->new_
+#include <std.h>
+
+/*
+ * ======== protocol member test117.TestProg.pollenPrintProxy delegates test54_PrintImpl ========
+ */
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef test117_ArrayReturn__M
+#define test117_ArrayReturn__M
+#include "../../test117/ArrayReturn/ArrayReturn.h"
+#endif
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+#ifndef test117_TestProg__M
+#define test117_TestProg__M
+#include "../../test117/TestProg/TestProg.h"
+#endif
+
+/*
+ * ======== host data definitions (unit ArrayReturn) ========
+ */
+
+test117_ArrayReturn_arrCls1Inst__TYPE test117_ArrayReturn_arrCls1Inst__A[] = {
+    /* test117.ArrayReturn.Cls1 object init */
+    {
+        (uint8)0x63,             /* cVar */
+    },  /* [0] */
+};
+
+/*
+ * ======== target data definitions (unit ArrayReturn) ========
+ */
+
+struct test117_ArrayReturn_ test117_ArrayReturn = { /* module data */
+    {
+        null,  /* [0] */
+    },    /* arrCls1Ref */
+};
+
+/*
+ * ======== target data definitions (unit PrintImpl) ========
+ */
+
+struct test54_PrintImpl_ test54_PrintImpl = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit TestProg) ========
+ */
+
+struct test117_TestProg_ test117_TestProg = { /* module data */
+    &test54_PrintImpl,    /* pollenPrintProxy */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test117_TestProg_pollen__printBool(bool b) {
+    test54_PrintImpl_printBool__E(b);
+}
+void test117_TestProg_pollen__printInt(int32 i) {
+    test54_PrintImpl_printInt__E(i);
+}
+void test117_TestProg_pollen__printReal(float f) {
+    test54_PrintImpl_printReal__E(f);
+}
+void test117_TestProg_pollen__printUint(uint32 u) {
+    test54_PrintImpl_printUint__E(u);
+}
+void test117_TestProg_pollen__printStr(string s) {
+    test54_PrintImpl_printStr__E(s);
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../test117/ArrayReturn/ArrayReturn.c"
+#include "../../test54/PrintImpl/PrintImpl.c"
+#include "../../test117/TestProg/TestProg.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test117_TestProg_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test117_TestProg_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.shutdown(uint8) ========
+ */
+
+void test117_TestProg_pollen__shutdown__E(uint8 i) {
+    volatile int dummy = 0xCAFE;
+    while (dummy) ;
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test117_TestProg_pollen__reset__E();
+    test117_ArrayReturn_targetInit__I();
+    test54_PrintImpl_targetInit__I();
+    test117_TestProg_targetInit__I();
+    test117_TestProg_pollen__ready__E();
+    test117_TestProg_pollen__run__E();
+    test117_TestProg_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test117_TestProg__s__fileName[] = "TestProg.p";
+static const char test117_TestProg__s__0[] = "TestProg";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdlib.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test117_TestProg_pollen__run__E() {
+    test117_ArrayReturn_bar__E();
+     exit(0) ;
+
+}
+
+void test117_TestProg_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef test117_ArrayReturn__M
+#define test117_ArrayReturn__M
+#include "../../test117/ArrayReturn/ArrayReturn.h"
+#endif
+
+#ifndef test54_PrintImpl__M
+#define test54_PrintImpl__M
+#include "../../test54/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test117_TestProg_pollen__reset__E();
+void test117_TestProg_pollen__ready__E();
+void test117_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test117_TestProg_ test117_TestProg;
+
+/*
+ * ======== struct module definition (unit TestProg) ========
+ */
+
+struct test54_PrintImpl_;
+struct test117_TestProg_ {
+    struct test54_PrintImpl_ *pollenPrintProxy;
+};
+typedef struct test117_TestProg_ test117_TestProg_;
+
+/*
+ * ======== function members (unit TestProg) ========
+ */
+
+extern void test117_TestProg_pollen__run__E();
+extern void test117_TestProg_targetInit__I();
+
+/*
+ * ======== data members (unit TestProg) ========
+ */
+
+#define test117_TestProg_pollenPrintProxy__V test117_TestProg.pollenPrintProxy
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test54_PrintImpl__s__fileName[] = "PrintImpl.p";
+static const char test54_PrintImpl__s__0[] = "PrintImpl";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test54_PrintImpl_printUint__E( uint32 u ) {
+     printf("%u", (unsigned int)u) ;
+
+}
+
+void test54_PrintImpl_printInt__E( int32 i ) {
+     printf("%i", (int)i) ;
+
+}
+
+void test54_PrintImpl_printReal__E( float f ) {
+     printf("%f", (float)f) ;
+
+}
+
+void test54_PrintImpl_printBool__E( bool b ) {
+    if ((b)) {
+         printf("%s", "true") ;
+
+    }
+    else {
+         printf("%s", "false") ;
+
+    }
+}
+
+void test54_PrintImpl_targetInit__I() {
+}
+
+void test54_PrintImpl_printStr__E( string s ) {
+     printf("%s", s) ;
+
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test117_TestProg_pollen__reset__E();
+void test117_TestProg_pollen__ready__E();
+void test117_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test54_PrintImpl_ test54_PrintImpl;
+
+/*
+ * ======== struct module definition (unit PrintImpl) ========
+ */
+
+struct test54_PrintImpl_ {
+};
+typedef struct test54_PrintImpl_ test54_PrintImpl_;
+
+/*
+ * ======== function members (unit PrintImpl) ========
+ */
+
+extern void test54_PrintImpl_printUint__E( uint32 u );
+extern void test54_PrintImpl_printInt__E( int32 i );
+extern void test54_PrintImpl_printReal__E( float f );
+extern void test54_PrintImpl_printBool__E( bool b );
+extern void test54_PrintImpl_targetInit__I();
+extern void test54_PrintImpl_printStr__E( string s );
+
+/*
+ * ======== data members (unit PrintImpl) ========
+ */
+
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test117.ArrayReturn ========
+ */
+
+var $$c = function() {
+    const ArrayReturn = {};
+    ArrayReturn.ArrayReturn = ArrayReturn
+    ArrayReturn.$name = 'test117.ArrayReturn';
+    ArrayReturn.pollen$used = 0;
+    ArrayReturn.Cls1$$id = 1;
+    ArrayReturn.Cls1 = function(cn) {
+        this.$$id = ArrayReturn.Cls1$$id++;
+        this.$$cname = cn ? cn : 'test117_ArrayReturn_Cls1__'+this.$$id+'__S';
+        this.$$tname = 'test117_ArrayReturn_Cls1';
+        this.$$uname = 'test117.ArrayReturn';
+        this.cVar = 99;
+    }
+    ArrayReturn.Cls1.prototype = new $$Struct('test117.ArrayReturn.Cls1');
+    ArrayReturn.Cls1.prototype.$$isAggFld = {};
+    ArrayReturn.Cls1.prototype.$$isAggFld.cVar = false;
+    ArrayReturn.Cls1.prototype.new_host = function() {
+        var $$text = '';
+        this.$$privateInit();
+        this.$$hostInitLastPass();
+        return this;
+    }
+    ArrayReturn.Cls1.prototype.$$privateInit = function() {
+        this.cVar = 99;
+    }
+    ArrayReturn.Cls1.prototype.$$hostInitLastPass = function() {
+    }
+    ArrayReturn.foofoo1 = new $$Ref('test117_ArrayReturn_foofoo1__I');
+    ArrayReturn.foofoo2 = new $$Ref('test117_ArrayReturn_foofoo2__I');
+    ArrayReturn.bar = new $$Ref('test117_ArrayReturn_bar__E');
+    ArrayReturn.targetInit = new $$Ref('test117_ArrayReturn_targetInit__I');
+    ArrayReturn.$$hostInit = function() {
+        var $$text = '';
+        ArrayReturn.arrCls1Ref = new $$Array(1, function($$cn,$$idx){ return 0;}, 'test117_ArrayReturn_arrCls1Ref__A', false); ArrayReturn.arrCls1Ref.$$assign((new $$Array(1, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ null ]));
+        ArrayReturn.arrCls1Inst = new $$Array(1, function($$cn,$$idx){ return 0;}, 'test117_ArrayReturn_arrCls1Inst__A', false); ArrayReturn.arrCls1Inst.$$assign((new $$Array(1, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ new $units['test117.ArrayReturn'].Cls1().new_host() ]));
+        return $$text;
+    }
+    ArrayReturn.pollen__uses__ = function() {
+    }
+    ArrayReturn.$$privateInit = function() {
+        ArrayReturn.arrCls1Ref = new $$Array(1, function($$cn,$$idx){ return 0;}, 'test117_ArrayReturn_arrCls1Ref__A', false); ArrayReturn.arrCls1Ref.$$assign((new $$Array(1, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ null ]));
+    }
+    return ArrayReturn;
+}
+var $$u = $$c();
+$units['test117.ArrayReturn'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test117.ArrayReturn ========
+ */
+
+var $$c = function() {
+    const ArrayReturn = {};
+    ArrayReturn.ArrayReturn = ArrayReturn
+    ArrayReturn.$name = 'test117.ArrayReturn';
+    ArrayReturn.pollen$used = 0;
+    ArrayReturn.Cls1$$id = 1;
+    ArrayReturn.Cls1 = function(cn) {
+        this.$$id = ArrayReturn.Cls1$$id++;
+        this.$$cname = cn ? cn : 'test117_ArrayReturn_Cls1__'+this.$$id+'__S';
+        this.$$tname = 'test117_ArrayReturn_Cls1';
+        this.$$uname = 'test117.ArrayReturn';
+        this.cVar = 99;
+    }
+    ArrayReturn.Cls1.prototype = new $$Struct('test117.ArrayReturn.Cls1');
+    ArrayReturn.Cls1.prototype.$$isAggFld = {};
+    ArrayReturn.Cls1.prototype.$$isAggFld.cVar = false;
+    ArrayReturn.Cls1.prototype.new_host = function() {
+        var $$text = '';
+        this.$$privateInit();
+        this.$$hostInitLastPass();
+        return this;
+    }
+    ArrayReturn.Cls1.prototype.$$privateInit = function() {
+        this.cVar = 99;
+    }
+    ArrayReturn.Cls1.prototype.$$hostInitLastPass = function() {
+    }
+    ArrayReturn.foofoo1 = new $$Ref('test117_ArrayReturn_foofoo1__I');
+    ArrayReturn.foofoo2 = new $$Ref('test117_ArrayReturn_foofoo2__I');
+    ArrayReturn.bar = new $$Ref('test117_ArrayReturn_bar__E');
+    ArrayReturn.targetInit = new $$Ref('test117_ArrayReturn_targetInit__I');
+    ArrayReturn.$$hostInit = function() {
+        var $$text = '';
+        ArrayReturn.arrCls1Ref = new $$Array(1, function($$cn,$$idx){ return 0;}, 'test117_ArrayReturn_arrCls1Ref__A', false); ArrayReturn.arrCls1Ref.$$assign((new $$Array(1, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ null ]));
+        ArrayReturn.arrCls1Inst = new $$Array(1, function($$cn,$$idx){ return 0;}, 'test117_ArrayReturn_arrCls1Inst__A', false); ArrayReturn.arrCls1Inst.$$assign((new $$Array(1, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ new $units['test117.ArrayReturn'].Cls1().new_host() ]));
+        return $$text;
+    }
+    ArrayReturn.pollen__uses__ = function() {
+    }
+    ArrayReturn.$$privateInit = function() {
+        ArrayReturn.arrCls1Ref = new $$Array(1, function($$cn,$$idx){ return 0;}, 'test117_ArrayReturn_arrCls1Ref__A', false); ArrayReturn.arrCls1Ref.$$assign((new $$Array(1, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ null ]));
+    }
+    return ArrayReturn;
+}
+var $$u = $$c();
+$units['test117.ArrayReturn'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test54.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test54.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test54_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test54_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test54_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test54_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test54_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test54_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test54.PrintImpl'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test117.TestProg ========
+ */
+
+var $$c = function() {
+    const TestProg = {};
+    TestProg.TestProg = TestProg
+    TestProg.$name = 'test117.TestProg';
+    TestProg.pollen$used = 0;
+    TestProg.ArrayReturn = $units['test117.ArrayReturn'];
+    TestProg.PrintImpl = $units['test54.PrintImpl'];
+    TestProg.pollen__run = new $$Ref('test117_TestProg_pollen__run__E');
+    TestProg.targetInit = new $$Ref('test117_TestProg_targetInit__I');
+    TestProg.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    TestProg.pollen__uses__ = function() {
+        $$bind($units['test117.ArrayReturn'], 'pollen$used', true);
+        $$bind($units['test54.PrintImpl'], 'pollen$used', true);
+    }
+    TestProg.$$privateInit = function() {
+var $$v = 'test54_PrintImpl';
+        var $$s = $$bind($units['test117.TestProg'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test54.PrintImpl'].pollen$used = true;}
+
+    }
+    return TestProg;
+}
+var $$u = $$c();
+$units['test117.TestProg'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test117.TestProg'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test117.TestProg ========
+ */
+
+var $$c = function() {
+    const TestProg = {};
+    TestProg.TestProg = TestProg
+    TestProg.$name = 'test117.TestProg';
+    TestProg.pollen$used = 0;
+    TestProg.ArrayReturn = $units['test117.ArrayReturn'];
+    TestProg.PrintImpl = $units['test54.PrintImpl'];
+    TestProg.pollen__run = new $$Ref('test117_TestProg_pollen__run__E');
+    TestProg.targetInit = new $$Ref('test117_TestProg_targetInit__I');
+    TestProg.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    TestProg.pollen__uses__ = function() {
+        $$bind($units['test117.ArrayReturn'], 'pollen$used', true);
+        $$bind($units['test54.PrintImpl'], 'pollen$used', true);
+    }
+    TestProg.$$privateInit = function() {
+var $$v = 'test54_PrintImpl';
+        var $$s = $$bind($units['test117.TestProg'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test54.PrintImpl'].pollen$used = true;}
+
+    }
+    return TestProg;
+}
+var $$u = $$c();
+$units['test117.TestProg'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test54.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test54.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test54_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test54_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test54_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test54_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test54_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test54_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test54.PrintImpl'] = $$u;
+$units.push($$u);
+

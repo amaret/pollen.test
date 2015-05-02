@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cd ../test${1}_out/test${1}
+
+export path=`pwd`
+
+# if the number of output directories > 1, destination requires parm 2
+
+numdirs=(*/)
+numdirs=${#numdirs[@]}
+if [ $numdirs -gt 1 ]
+then 
+      echo go to $2
+      cd $2
+else
+      cd *
+fi
+
+echo Now run executeable
+
+if [ -e *prog.out ]; then *prog.out; fi
+

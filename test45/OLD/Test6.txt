@@ -1,0 +1,24 @@
+module M {
+  foo() {}
+  bar() {}
+}
+import M as N   
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+import C1                    // processing this replaces N from 'from C1 import N' below
+#from C1 import N             // Due to above I now don't allow both these import forms together
+composition C6 extends C1 { 
+  #export N.foo via extends
+  export N.bar
+}
+# TEST Both should resolve
+from C6 import N
+module Test6 {
+  test() {
+    N.foo() # resolves via extends
+    N.bar()
+  }
+  pollen.run() { }
+}

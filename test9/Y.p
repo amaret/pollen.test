@@ -1,0 +1,4 @@
+module Y {
+  public set() {
+  }
+}

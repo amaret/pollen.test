@@ -1,0 +1,1186 @@
+pollen version 0.2.137
+pollen version 0.2.137
+test57.ClsFuncRef.p, line 108:20, 'tt': Function references for class functions are not yet implemented
+test57.ClsFuncRef.p, line 117:1, 'setTheFuncRefOnHost1': class function references are not implemented: <HandlerP.handler, void()>
+test57.ClsFuncRef.p, line 117:1, 'setTheFuncRefOnHost2': class function references are not implemented: <HandlerP.handler, void()>
+test57.ClsFuncRef.p, line 117:1, 'setTheFuncRefOnHost3': class function references are not implemented: <HandlerP.handler, void()>
+test57.ClsFuncRef.p, line 117:1, 'setTheFuncRefOnHost4': class function references are not implemented: <HandlerP.handler, void()>
+test57.ClsFuncRef.p, line 117:1, 'setTheFuncRefOnTarg2': class function references are not implemented: <HandlerP.handler, void()>
+test57.ClsFuncRef.p, line 117:1, 'setTheFuncRefOnTarg4': class function references are not implemented: <HandlerP.handler, void()>
+go to SetFuncRefOnHost
+Now run executeable
+check myHandler1_Host
+check myHandler2_Host
+target Handler called
+check myHandler3_Host
+check myHandler4_Host
+target Handler called
+check myHandler1_Targ
+check myHandler2_Targ
+target Handler called
+check myHandler3_Targ
+check myHandler4_Targ
+target Handler called
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test57_ClsFuncRef__s__fileName[] = "ClsFuncRef.p";
+static const char test57_ClsFuncRef__s__0[] = "ClsFuncRef";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg1__I( test57_ClsFuncRef_ this, test57_ClsFuncRef_HandlerP_handler h ) {
+    (this->myHandler3_Host) = (h);
+}
+
+void test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg2__I( test57_ClsFuncRef_ this, test57_ClsFuncRef_HandlerP_handler h ) {
+    (this->myHandler4_Host) = (h);
+}
+
+void test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg3__I( test57_ClsFuncRef_ this, test57_ClsFuncRef_HandlerP_handler h ) {
+    (this->myHandler1_Targ) = (h);
+}
+
+void test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg4__I( test57_ClsFuncRef_ this, test57_ClsFuncRef_HandlerP_handler h ) {
+    (this->myHandler2_Targ) = (h);
+}
+
+void test57_ClsFuncRef_ClsFuncRef_targetTheHandler__I( test57_ClsFuncRef_ this ) {
+     printf("target Handler called\n") ;
+
+}
+
+void test57_ClsFuncRef_ClsFuncRef_foo__E( test57_ClsFuncRef_ this ) {
+    test57_ClsFuncRef_ClsFuncRef_setup__I(this);
+     printf("check myHandler1_Host\n") ;
+
+    if ((this->myHandler1_Host) != null) {
+        this->myHandler1_Host();
+    }
+     printf("check myHandler2_Host\n") ;
+
+    if ((this->myHandler2_Host) != null) {
+        this->myHandler2_Host();
+    }
+     printf("check myHandler3_Host\n") ;
+
+    if ((this->myHandler3_Host) != null) {
+        this->myHandler3_Host();
+    }
+     printf("check myHandler4_Host\n") ;
+
+    if ((this->myHandler4_Host) != null) {
+        this->myHandler4_Host();
+    }
+     printf("check myHandler1_Targ\n") ;
+
+    if ((this->myHandler1_Targ) != null) {
+        this->myHandler1_Targ();
+    }
+     printf("check myHandler2_Targ\n") ;
+
+    if ((this->myHandler2_Targ) != null) {
+        this->myHandler2_Targ();
+    }
+     printf("check myHandler3_Targ\n") ;
+
+    if ((this->myHandler3_Targ) != null) {
+        this->myHandler3_Targ();
+    }
+     printf("check myHandler4_Targ\n") ;
+
+    if ((this->myHandler4_Targ) != null) {
+        this->myHandler4_Targ();
+    }
+}
+
+test57_ClsFuncRef_ test57_ClsFuncRef_ClsFuncRef_new___E( test57_ClsFuncRef_ this ) {
+    return this;
+}
+
+void test57_ClsFuncRef_ClsFuncRef_setup__I( test57_ClsFuncRef_ this ) {
+    test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg2__I(this, (test57_ClsFuncRef_ClsFuncRef_targetTheHandler__I));
+    test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg4__I(this, (test57_ClsFuncRef_ClsFuncRef_targetTheHandler__I));
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test57_SetFuncRefOnHost_pollen__reset__E();
+void test57_SetFuncRefOnHost_pollen__ready__E();
+void test57_SetFuncRefOnHost_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== class definition (unit ClsFuncRef) ========
+ */
+
+typedef void (*test57_ClsFuncRef_HandlerP_handler)();
+typedef void (*test57_ClsFuncRef_ClsFuncRef_foo)();
+struct test57_ClsFuncRef {
+;
+    test57_ClsFuncRef_HandlerP_handler myHandler1_Host;
+    test57_ClsFuncRef_HandlerP_handler myHandler2_Host;
+    test57_ClsFuncRef_HandlerP_handler myHandler3_Host;
+    test57_ClsFuncRef_HandlerP_handler myHandler4_Host;
+    bool flag;
+    test57_ClsFuncRef_HandlerP_handler myHandler1_Targ;
+    test57_ClsFuncRef_HandlerP_handler myHandler2_Targ;
+    test57_ClsFuncRef_HandlerP_handler myHandler3_Targ;
+    test57_ClsFuncRef_HandlerP_handler myHandler4_Targ;
+    bool flag2;
+    test57_ClsFuncRef_ClsFuncRef_foo tt;
+};
+typedef struct test57_ClsFuncRef test57_ClsFuncRef;
+typedef struct test57_ClsFuncRef* test57_ClsFuncRef_;
+
+/*
+ * ======== function members (unit ClsFuncRef) ========
+ */
+
+extern void test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg1__I( test57_ClsFuncRef_ this, test57_ClsFuncRef_HandlerP_handler h );
+extern void test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg2__I( test57_ClsFuncRef_ this, test57_ClsFuncRef_HandlerP_handler h );
+extern void test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg3__I( test57_ClsFuncRef_ this, test57_ClsFuncRef_HandlerP_handler h );
+extern void test57_ClsFuncRef_ClsFuncRef_setTheFuncRefOnTarg4__I( test57_ClsFuncRef_ this, test57_ClsFuncRef_HandlerP_handler h );
+extern void test57_ClsFuncRef_ClsFuncRef_targetTheHandler__I( test57_ClsFuncRef_ this );
+extern void test57_ClsFuncRef_ClsFuncRef_foo__E( test57_ClsFuncRef_ this );
+extern test57_ClsFuncRef_ test57_ClsFuncRef_ClsFuncRef_new___E( test57_ClsFuncRef_ this );
+extern void test57_ClsFuncRef_ClsFuncRef_setup__I( test57_ClsFuncRef_ this );
+
+#include <std.h>
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef test57_ClsFuncRef__M
+#define test57_ClsFuncRef__M
+#include "../../test57/ClsFuncRef/ClsFuncRef.h"
+#endif
+
+#ifndef test57_SetFuncRefOnHost__M
+#define test57_SetFuncRefOnHost__M
+#include "../../test57/SetFuncRefOnHost/SetFuncRefOnHost.h"
+#endif
+
+/*
+ * ======== host data definitions (unit SetFuncRefOnHost) ========
+ */
+
+test57_SetFuncRefOnHost_clsFR__TYPE test57_SetFuncRefOnHost_clsFR__V = /* test57.ClsFuncRef object init */
+{
+    null,                    /* myHandler1_Host */
+    null,                    /* myHandler2_Host */
+    null,                    /* myHandler3_Host */
+    null,                    /* myHandler4_Host */
+    true,                    /* flag */
+    null,                    /* myHandler1_Targ */
+    null,                    /* myHandler2_Targ */
+    null,                    /* myHandler3_Targ */
+    null,                    /* myHandler4_Targ */
+    true,                    /* flag2 */
+    null,                    /* tt */
+};
+
+/*
+ * ======== target data definitions (unit SetFuncRefOnHost) ========
+ */
+
+struct test57_SetFuncRefOnHost_ test57_SetFuncRefOnHost = { /* module data */
+    null,                    /* myHandler1_Host */
+    test57_SetFuncRefOnHost_targetTheHandler__I,    /* myHandler2_Host */
+    null,                    /* myHandler3_Host */
+    null,                    /* myHandler4_Host */
+    true,                    /* flag */
+    null,                    /* myHandler1_Targ */
+    null,                    /* myHandler2_Targ */
+    null,                    /* myHandler3_Targ */
+    test57_SetFuncRefOnHost_targetTheHandler__I,    /* myHandler4_Targ */
+    true,                    /* flag2 */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test57_SetFuncRefOnHost_pollen__printBool(bool b) {
+}
+void test57_SetFuncRefOnHost_pollen__printInt(int32 i) {
+}
+void test57_SetFuncRefOnHost_pollen__printReal(float f) {
+}
+void test57_SetFuncRefOnHost_pollen__printUint(uint32 u) {
+}
+void test57_SetFuncRefOnHost_pollen__printStr(string s) {
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../test57/ClsFuncRef/ClsFuncRef.c"
+#include "../../test57/SetFuncRefOnHost/SetFuncRefOnHost.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test57_SetFuncRefOnHost_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test57_SetFuncRefOnHost_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test57_SetFuncRefOnHost_pollen__reset__E();
+    test57_SetFuncRefOnHost_targetInit__I();
+    test57_SetFuncRefOnHost_pollen__ready__E();
+    test57_SetFuncRefOnHost_pollen__run__E();
+    test57_SetFuncRefOnHost_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test57_SetFuncRefOnHost__s__fileName[] = "SetFuncRefOnHost.p";
+static const char test57_SetFuncRefOnHost__s__0[] = "SetFuncRefOnHost";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test57_SetFuncRefOnHost_setTheFuncRefOnTarg1__I( test57_SetFuncRefOnHost_HandlerP_handler h ) {
+    (test57_SetFuncRefOnHost_myHandler3_Host__V) = (h);
+}
+
+void test57_SetFuncRefOnHost_setTheFuncRefOnTarg2__I( test57_SetFuncRefOnHost_HandlerP_handler h ) {
+    (test57_SetFuncRefOnHost_myHandler4_Host__V) = (h);
+}
+
+void test57_SetFuncRefOnHost_setTheFuncRefOnTarg3__I( test57_SetFuncRefOnHost_HandlerP_handler h ) {
+    (test57_SetFuncRefOnHost_myHandler1_Targ__V) = (h);
+}
+
+void test57_SetFuncRefOnHost_setTheFuncRefOnTarg4__I( test57_SetFuncRefOnHost_HandlerP_handler h ) {
+    (test57_SetFuncRefOnHost_myHandler2_Targ__V) = (h);
+}
+
+void test57_SetFuncRefOnHost_targetTheHandler__I() {
+     printf("target Handler called\n") ;
+
+}
+
+void test57_SetFuncRefOnHost_pollen__shutdown__E( uint8 id ) {
+}
+
+void test57_SetFuncRefOnHost_pollen__run__E() {
+     printf("check myHandler1_Host\n") ;
+
+    if ((test57_SetFuncRefOnHost_myHandler1_Host__V) != null) {
+        test57_SetFuncRefOnHost_myHandler1_Host__V();
+    }
+     printf("check myHandler2_Host\n") ;
+
+    if ((test57_SetFuncRefOnHost_myHandler2_Host__V) != null) {
+        test57_SetFuncRefOnHost_myHandler2_Host__V();
+    }
+     printf("check myHandler3_Host\n") ;
+
+    if ((test57_SetFuncRefOnHost_myHandler3_Host__V) != null) {
+        test57_SetFuncRefOnHost_myHandler3_Host__V();
+    }
+     printf("check myHandler4_Host\n") ;
+
+    if ((test57_SetFuncRefOnHost_myHandler4_Host__V) != null) {
+        test57_SetFuncRefOnHost_myHandler4_Host__V();
+    }
+     printf("check myHandler1_Targ\n") ;
+
+    if ((test57_SetFuncRefOnHost_myHandler1_Targ__V) != null) {
+        test57_SetFuncRefOnHost_myHandler1_Targ__V();
+    }
+     printf("check myHandler2_Targ\n") ;
+
+    if ((test57_SetFuncRefOnHost_myHandler2_Targ__V) != null) {
+        test57_SetFuncRefOnHost_myHandler2_Targ__V();
+    }
+     printf("check myHandler3_Targ\n") ;
+
+    if ((test57_SetFuncRefOnHost_myHandler3_Targ__V) != null) {
+        test57_SetFuncRefOnHost_myHandler3_Targ__V();
+    }
+     printf("check myHandler4_Targ\n") ;
+
+    if ((test57_SetFuncRefOnHost_myHandler4_Targ__V) != null) {
+        test57_SetFuncRefOnHost_myHandler4_Targ__V();
+    }
+     exit(0) ;
+
+}
+
+void test57_SetFuncRefOnHost_targetInit__I() {
+    test57_SetFuncRefOnHost_setTheFuncRefOnTarg2__I((test57_SetFuncRefOnHost_targetTheHandler__I));
+    test57_SetFuncRefOnHost_setTheFuncRefOnTarg4__I((test57_SetFuncRefOnHost_targetTheHandler__I));
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef test57_ClsFuncRef__M
+#define test57_ClsFuncRef__M
+#include "../../test57/ClsFuncRef/ClsFuncRef.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test57_SetFuncRefOnHost_pollen__reset__E();
+void test57_SetFuncRefOnHost_pollen__ready__E();
+
+/*
+ * ======== header injections ========
+ */
+
+ #include <stdlib.h> 
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test57_SetFuncRefOnHost_ test57_SetFuncRefOnHost;
+
+/*
+ * ======== struct module definition (unit SetFuncRefOnHost) ========
+ */
+
+typedef void (*test57_SetFuncRefOnHost_HandlerP_handler)();
+struct test57_ClsFuncRef;
+struct test57_SetFuncRefOnHost_ {
+    test57_SetFuncRefOnHost_HandlerP_handler myHandler1_Host;
+    test57_SetFuncRefOnHost_HandlerP_handler myHandler2_Host;
+    test57_SetFuncRefOnHost_HandlerP_handler myHandler3_Host;
+    test57_SetFuncRefOnHost_HandlerP_handler myHandler4_Host;
+    bool flag;
+    test57_SetFuncRefOnHost_HandlerP_handler myHandler1_Targ;
+    test57_SetFuncRefOnHost_HandlerP_handler myHandler2_Targ;
+    test57_SetFuncRefOnHost_HandlerP_handler myHandler3_Targ;
+    test57_SetFuncRefOnHost_HandlerP_handler myHandler4_Targ;
+    bool flag2;
+};
+typedef struct test57_SetFuncRefOnHost_ test57_SetFuncRefOnHost_;
+
+/*
+ * ======== host variables (unit SetFuncRefOnHost) ========
+ */
+
+typedef struct test57_ClsFuncRef test57_SetFuncRefOnHost_clsFR__TYPE;
+extern test57_SetFuncRefOnHost_clsFR__TYPE test57_SetFuncRefOnHost_clsFR__V;
+
+/*
+ * ======== function members (unit SetFuncRefOnHost) ========
+ */
+
+extern void test57_SetFuncRefOnHost_setTheFuncRefOnTarg1__I( test57_SetFuncRefOnHost_HandlerP_handler h );
+extern void test57_SetFuncRefOnHost_setTheFuncRefOnTarg2__I( test57_SetFuncRefOnHost_HandlerP_handler h );
+extern void test57_SetFuncRefOnHost_setTheFuncRefOnTarg3__I( test57_SetFuncRefOnHost_HandlerP_handler h );
+extern void test57_SetFuncRefOnHost_setTheFuncRefOnTarg4__I( test57_SetFuncRefOnHost_HandlerP_handler h );
+extern void test57_SetFuncRefOnHost_targetTheHandler__I();
+extern void test57_SetFuncRefOnHost_pollen__shutdown__E( uint8 id );
+extern void test57_SetFuncRefOnHost_pollen__run__E();
+extern void test57_SetFuncRefOnHost_targetInit__I();
+
+/*
+ * ======== data members (unit SetFuncRefOnHost) ========
+ */
+
+#define test57_SetFuncRefOnHost_myHandler1_Host__V test57_SetFuncRefOnHost.myHandler1_Host
+#define test57_SetFuncRefOnHost_myHandler2_Host__V test57_SetFuncRefOnHost.myHandler2_Host
+#define test57_SetFuncRefOnHost_myHandler3_Host__V test57_SetFuncRefOnHost.myHandler3_Host
+#define test57_SetFuncRefOnHost_myHandler4_Host__V test57_SetFuncRefOnHost.myHandler4_Host
+#define test57_SetFuncRefOnHost_flag__V test57_SetFuncRefOnHost.flag
+#define test57_SetFuncRefOnHost_myHandler1_Targ__V test57_SetFuncRefOnHost.myHandler1_Targ
+#define test57_SetFuncRefOnHost_myHandler2_Targ__V test57_SetFuncRefOnHost.myHandler2_Targ
+#define test57_SetFuncRefOnHost_myHandler3_Targ__V test57_SetFuncRefOnHost.myHandler3_Targ
+#define test57_SetFuncRefOnHost_myHandler4_Targ__V test57_SetFuncRefOnHost.myHandler4_Targ
+#define test57_SetFuncRefOnHost_flag2__V test57_SetFuncRefOnHost.flag2
+#define test57_SetFuncRefOnHost_clsFR__V test57_SetFuncRefOnHost_clsFR
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware_old.HandlerP ========
+ */
+
+var $$c = function() {
+    const HandlerP = {};
+    HandlerP.HandlerP = HandlerP
+    HandlerP.$name = 'pollen.hardware_old.HandlerP';
+    HandlerP.pollen$used = 0;
+    HandlerP.pollen__uses__ = function() {
+    }
+    HandlerP.$$privateInit = function() {
+    }
+    return HandlerP;
+}
+var $$u = $$c();
+$units['pollen.hardware_old.HandlerP'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== CLASS test57.ClsFuncRef ========
+ */
+
+var $$c = function() {
+    const ClsFuncRef = {};
+    ClsFuncRef.ClsFuncRef = ClsFuncRef
+    ClsFuncRef.$name = 'test57.ClsFuncRef';
+    ClsFuncRef.pollen$used = 0;
+    ClsFuncRef.ClsFuncRef$$id = 1;
+    ClsFuncRef.ClsFuncRef = function(cn) {
+        this.$$id = ClsFuncRef.ClsFuncRef$$id++;
+        this.$$cname = cn ? cn : 'test57_ClsFuncRef_ClsFuncRef__'+this.$$id+'__S';
+        this.$$tname = 'test57_ClsFuncRef_ClsFuncRef';
+        this.$$uname = 'test57.ClsFuncRef';
+        this.myHandler1_Host = 0;
+        this.myHandler2_Host = 0;
+        this.myHandler3_Host = 0;
+        this.myHandler4_Host = 0;
+        this.flag = true;
+        this.myHandler1_Targ = 0;
+        this.myHandler2_Targ = 0;
+        this.myHandler3_Targ = 0;
+        this.myHandler4_Targ = 0;
+        this.flag2 = true;
+        this.tt = 0;
+    }
+    ClsFuncRef.ClsFuncRef.prototype = new $$Struct('test57.ClsFuncRef.ClsFuncRef');
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld = {};
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler1_Host = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler2_Host = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler3_Host = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler4_Host = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.flag = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler1_Targ = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler2_Targ = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler3_Targ = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler4_Targ = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.flag2 = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.tt = false;
+    ClsFuncRef.ClsFuncRef.prototype.new_host = function() {
+        var $$text = '';
+        this.$$privateInit();
+        this.setTheFuncRefOnHost1((ClsFuncRef.hostTheHandler));
+        this.setTheFuncRefOnHost2((ClsFuncRef.targetTheHandler));
+        this.setTheFuncRefOnHost3((ClsFuncRef.hostTheHandler));
+        this.setTheFuncRefOnHost4((ClsFuncRef.targetTheHandler));
+        this.$$hostInitLastPass();
+        return this;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.setTheFuncRefOnHost1 = function( h ) {
+        var $$text = '';
+        (this.myHandler1_Host) = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.setTheFuncRefOnHost2 = function( h ) {
+        var $$text = '';
+        (this.myHandler2_Host) = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.setTheFuncRefOnHost3 = function( h ) {
+        var $$text = '';
+        (this.myHandler3_Targ) = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.setTheFuncRefOnHost4 = function( h ) {
+        var $$text = '';
+        (this.myHandler4_Targ) = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.hostTheHandler = function() {
+        var $$text = '';
+         printf("host Handler called\n") ;
+
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.pollen__uses__ = function() {
+    }
+    ClsFuncRef.ClsFuncRef.prototype.$$privateInit = function() {
+        this.flag = true;
+        this.flag2 = true;
+        ClsFuncRef.tt = new $$Ref('test57_ClsFuncRef_ClsFuncRef_foo__E');
+    }
+    ClsFuncRef.ClsFuncRef.prototype.$$hostInitLastPass = function() {
+    }
+    return ClsFuncRef;
+}
+var $$u = $$c();
+$units['test57.ClsFuncRef'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.hardware_old.HandlerP ========
+ */
+
+var $$c = function() {
+    const HandlerP = {};
+    HandlerP.HandlerP = HandlerP
+    HandlerP.$name = 'pollen.hardware_old.HandlerP';
+    HandlerP.pollen$used = 0;
+    HandlerP.pollen__uses__ = function() {
+    }
+    HandlerP.$$privateInit = function() {
+    }
+    return HandlerP;
+}
+var $$u = $$c();
+$units['pollen.hardware_old.HandlerP'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== CLASS test57.ClsFuncRef ========
+ */
+
+var $$c = function() {
+    const ClsFuncRef = {};
+    ClsFuncRef.ClsFuncRef = ClsFuncRef
+    ClsFuncRef.$name = 'test57.ClsFuncRef';
+    ClsFuncRef.pollen$used = 0;
+    ClsFuncRef.ClsFuncRef$$id = 1;
+    ClsFuncRef.ClsFuncRef = function(cn) {
+        this.$$id = ClsFuncRef.ClsFuncRef$$id++;
+        this.$$cname = cn ? cn : 'test57_ClsFuncRef_ClsFuncRef__'+this.$$id+'__S';
+        this.$$tname = 'test57_ClsFuncRef_ClsFuncRef';
+        this.$$uname = 'test57.ClsFuncRef';
+        this.myHandler1_Host = 0;
+        this.myHandler2_Host = 0;
+        this.myHandler3_Host = 0;
+        this.myHandler4_Host = 0;
+        this.flag = true;
+        this.myHandler1_Targ = 0;
+        this.myHandler2_Targ = 0;
+        this.myHandler3_Targ = 0;
+        this.myHandler4_Targ = 0;
+        this.flag2 = true;
+        this.tt = 0;
+    }
+    ClsFuncRef.ClsFuncRef.prototype = new $$Struct('test57.ClsFuncRef.ClsFuncRef');
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld = {};
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler1_Host = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler2_Host = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler3_Host = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler4_Host = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.flag = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler1_Targ = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler2_Targ = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler3_Targ = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.myHandler4_Targ = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.flag2 = false;
+    ClsFuncRef.ClsFuncRef.prototype.$$isAggFld.tt = false;
+    ClsFuncRef.ClsFuncRef.prototype.new_host = function() {
+        var $$text = '';
+        this.$$privateInit();
+        this.setTheFuncRefOnHost1((ClsFuncRef.hostTheHandler));
+        this.setTheFuncRefOnHost2((ClsFuncRef.targetTheHandler));
+        this.setTheFuncRefOnHost3((ClsFuncRef.hostTheHandler));
+        this.setTheFuncRefOnHost4((ClsFuncRef.targetTheHandler));
+        this.$$hostInitLastPass();
+        return this;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.setTheFuncRefOnHost1 = function( h ) {
+        var $$text = '';
+        (this.myHandler1_Host) = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.setTheFuncRefOnHost2 = function( h ) {
+        var $$text = '';
+        (this.myHandler2_Host) = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.setTheFuncRefOnHost3 = function( h ) {
+        var $$text = '';
+        (this.myHandler3_Targ) = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.setTheFuncRefOnHost4 = function( h ) {
+        var $$text = '';
+        (this.myHandler4_Targ) = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.ClsFuncRef.prototype.hostTheHandler = function() {
+        var $$text = '';
+         printf("host Handler called\n") ;
+
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    ClsFuncRef.pollen__uses__ = function() {
+    }
+    ClsFuncRef.ClsFuncRef.prototype.$$privateInit = function() {
+        this.flag = true;
+        this.flag2 = true;
+        ClsFuncRef.tt = new $$Ref('test57_ClsFuncRef_ClsFuncRef_foo__E');
+    }
+    ClsFuncRef.ClsFuncRef.prototype.$$hostInitLastPass = function() {
+    }
+    return ClsFuncRef;
+}
+var $$u = $$c();
+$units['test57.ClsFuncRef'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test57.SetFuncRefOnHost ========
+ */
+
+var $$c = function() {
+    const SetFuncRefOnHost = {};
+    SetFuncRefOnHost.SetFuncRefOnHost = SetFuncRefOnHost
+    SetFuncRefOnHost.$name = 'test57.SetFuncRefOnHost';
+    SetFuncRefOnHost.pollen$used = 0;
+    SetFuncRefOnHost.ClsFuncRef = $units['test57.ClsFuncRef'];
+    SetFuncRefOnHost.targetInit = new $$Ref('test57_SetFuncRefOnHost_targetInit__I');
+    SetFuncRefOnHost.setTheFuncRefOnTarg1 = new $$Ref('test57_SetFuncRefOnHost_setTheFuncRefOnTarg1__I');
+    SetFuncRefOnHost.setTheFuncRefOnTarg2 = new $$Ref('test57_SetFuncRefOnHost_setTheFuncRefOnTarg2__I');
+    SetFuncRefOnHost.setTheFuncRefOnTarg3 = new $$Ref('test57_SetFuncRefOnHost_setTheFuncRefOnTarg3__I');
+    SetFuncRefOnHost.setTheFuncRefOnTarg4 = new $$Ref('test57_SetFuncRefOnHost_setTheFuncRefOnTarg4__I');
+    SetFuncRefOnHost.pollen__run = new $$Ref('test57_SetFuncRefOnHost_pollen__run__E');
+    SetFuncRefOnHost.targetTheHandler = new $$Ref('test57_SetFuncRefOnHost_targetTheHandler__I');
+    SetFuncRefOnHost.pollen__shutdown = new $$Ref('test57_SetFuncRefOnHost_pollen__shutdown__E');
+    SetFuncRefOnHost.$$hostInit = function() {
+        var $$text = '';
+        SetFuncRefOnHost.clsFR = new $units['test57.ClsFuncRef'].ClsFuncRef('test57_SetFuncRefOnHost_clsFR__V'); SetFuncRefOnHost.clsFR.new_host();
+        SetFuncRefOnHost.setTheFuncRefOnHost1((SetFuncRefOnHost.hostTheHandler));
+        SetFuncRefOnHost.setTheFuncRefOnHost2((SetFuncRefOnHost.targetTheHandler));
+        SetFuncRefOnHost.setTheFuncRefOnHost3((SetFuncRefOnHost.hostTheHandler));
+        SetFuncRefOnHost.setTheFuncRefOnHost4((SetFuncRefOnHost.targetTheHandler));
+        return $$text;
+    }
+    SetFuncRefOnHost.setTheFuncRefOnHost1 = function( h ) {
+        var $$text = '';
+        (SetFuncRefOnHost.myHandler1_Host) = (h);
+        return $$text;
+    }
+    SetFuncRefOnHost.setTheFuncRefOnHost2 = function( h ) {
+        var $$text = '';
+        (SetFuncRefOnHost.myHandler2_Host) = (h);
+        return $$text;
+    }
+    SetFuncRefOnHost.setTheFuncRefOnHost3 = function( h ) {
+        var $$text = '';
+        (SetFuncRefOnHost.myHandler3_Targ) = (h);
+        return $$text;
+    }
+    SetFuncRefOnHost.setTheFuncRefOnHost4 = function( h ) {
+        var $$text = '';
+        (SetFuncRefOnHost.myHandler4_Targ) = (h);
+        return $$text;
+    }
+    SetFuncRefOnHost.hostTheHandler = function() {
+        var $$text = '';
+         printf("host Handler called\n") ;
+
+        return $$text;
+    }
+    SetFuncRefOnHost.pollen__uses__ = function() {
+        $$bind($units['test57.ClsFuncRef'], 'pollen$used', true);
+    }
+    SetFuncRefOnHost.$$privateInit = function() {
+        SetFuncRefOnHost.flag = true;
+        SetFuncRefOnHost.flag2 = true;
+    }
+    return SetFuncRefOnHost;
+}
+var $$u = $$c();
+$units['test57.SetFuncRefOnHost'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test57.SetFuncRefOnHost'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test57.SetFuncRefOnHost ========
+ */
+
+var $$c = function() {
+    const SetFuncRefOnHost = {};
+    SetFuncRefOnHost.SetFuncRefOnHost = SetFuncRefOnHost
+    SetFuncRefOnHost.$name = 'test57.SetFuncRefOnHost';
+    SetFuncRefOnHost.pollen$used = 0;
+    SetFuncRefOnHost.ClsFuncRef = $units['test57.ClsFuncRef'];
+    SetFuncRefOnHost.targetInit = new $$Ref('test57_SetFuncRefOnHost_targetInit__I');
+    SetFuncRefOnHost.setTheFuncRefOnTarg1 = new $$Ref('test57_SetFuncRefOnHost_setTheFuncRefOnTarg1__I');
+    SetFuncRefOnHost.setTheFuncRefOnTarg2 = new $$Ref('test57_SetFuncRefOnHost_setTheFuncRefOnTarg2__I');
+    SetFuncRefOnHost.setTheFuncRefOnTarg3 = new $$Ref('test57_SetFuncRefOnHost_setTheFuncRefOnTarg3__I');
+    SetFuncRefOnHost.setTheFuncRefOnTarg4 = new $$Ref('test57_SetFuncRefOnHost_setTheFuncRefOnTarg4__I');
+    SetFuncRefOnHost.pollen__run = new $$Ref('test57_SetFuncRefOnHost_pollen__run__E');
+    SetFuncRefOnHost.targetTheHandler = new $$Ref('test57_SetFuncRefOnHost_targetTheHandler__I');
+    SetFuncRefOnHost.pollen__shutdown = new $$Ref('test57_SetFuncRefOnHost_pollen__shutdown__E');
+    SetFuncRefOnHost.$$hostInit = function() {
+        var $$text = '';
+        SetFuncRefOnHost.clsFR = new $units['test57.ClsFuncRef'].ClsFuncRef('test57_SetFuncRefOnHost_clsFR__V'); SetFuncRefOnHost.clsFR.new_host();
+        SetFuncRefOnHost.setTheFuncRefOnHost1((SetFuncRefOnHost.hostTheHandler));
+        SetFuncRefOnHost.setTheFuncRefOnHost2((SetFuncRefOnHost.targetTheHandler));
+        SetFuncRefOnHost.setTheFuncRefOnHost3((SetFuncRefOnHost.hostTheHandler));
+        SetFuncRefOnHost.setTheFuncRefOnHost4((SetFuncRefOnHost.targetTheHandler));
+        return $$text;
+    }
+    SetFuncRefOnHost.setTheFuncRefOnHost1 = function( h ) {
+        var $$text = '';
+        (SetFuncRefOnHost.myHandler1_Host) = (h);
+        return $$text;
+    }
+    SetFuncRefOnHost.setTheFuncRefOnHost2 = function( h ) {
+        var $$text = '';
+        (SetFuncRefOnHost.myHandler2_Host) = (h);
+        return $$text;
+    }
+    SetFuncRefOnHost.setTheFuncRefOnHost3 = function( h ) {
+        var $$text = '';
+        (SetFuncRefOnHost.myHandler3_Targ) = (h);
+        return $$text;
+    }
+    SetFuncRefOnHost.setTheFuncRefOnHost4 = function( h ) {
+        var $$text = '';
+        (SetFuncRefOnHost.myHandler4_Targ) = (h);
+        return $$text;
+    }
+    SetFuncRefOnHost.hostTheHandler = function() {
+        var $$text = '';
+         printf("host Handler called\n") ;
+
+        return $$text;
+    }
+    SetFuncRefOnHost.pollen__uses__ = function() {
+        $$bind($units['test57.ClsFuncRef'], 'pollen$used', true);
+    }
+    SetFuncRefOnHost.$$privateInit = function() {
+        SetFuncRefOnHost.flag = true;
+        SetFuncRefOnHost.flag2 = true;
+    }
+    return SetFuncRefOnHost;
+}
+var $$u = $$c();
+$units['test57.SetFuncRefOnHost'] = $$u;
+$units.push($$u);
+

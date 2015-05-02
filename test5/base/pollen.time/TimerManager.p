@@ -1,0 +1,51 @@
+
+from pollen.interfaces import Timer as TimerI
+from pollen.interfaces import TimerDriver
+from pollen.interfaces import GlobalInterrupts
+from pollen.events import Events
+from pollen.events import Event{uint8} as Event
+
+module TimerManager {
+	
+	public host bindTimerDriver(TimerDriver t) { 
+		hw_timer = t 
+	}
+
+
+	#======================
+	# Private members
+	#======================	
+	host GlobalInterrupts gint
+	host TimerDriver hw_timer
+	host uint8 numTimers = 0
+	Timer timers[numTimers]
+
+	timerISR() {		
+		bool off = true
+
+		for (uint8 i = 0; i < numTimers; i++) {
+			if (timers[i] != 0) {
+				timers[i].elapsed++
+				
+				if (timers[i].elapsed == timers[i].duration) {
+					if (timers[i].expired != 0) {
+						Events.postFromInterrupt(timers[i].expired)
+						if (timers[i].repeat) {
+							timers[i].elapsed = 0
+						} else {
+							timers[i].stop()
+						}					
+					} else {
+						timers[i].stop()
+					}					
+				}
+				off = false
+			}
+		}
+		
+		# all timers are off, turn hardware timer off
+		if (off) {
+			hw_timer.stop()
+		}
+	}
+}

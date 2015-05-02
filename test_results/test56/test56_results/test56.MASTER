@@ -1,0 +1,1714 @@
+pollen version 0.2.137
+pollen version 0.2.137
+test56.TestProg.p, line 41:1, host functions are not allowed as values for function references
+test56.TestProg.p, line 44:1, host functions are not allowed as values for function references
+go to TestProg
+Now run executeable
+1. Init on1_0_fref with assignment, then use it to call On1.on_0(), no args.
+>>In On1.on_0(), no args 
+2. Init on1_fref with assignment, then use it to call On1.on(), with arg=8.
+>>In On1.on(), with arg 8
+3. Init on2_fref on dcln, then use it to call On2.on(), with arg=3.
+>>In On2.on(), with arg 3
+4. Init on2_fref with assignment, then use it to call On3.on(), with arg=7.
+>>In On3.on(), with arg 7
+5. Array of fcn refs: target array, target fcnrefs, target fcns, with arg=array index.
+>>In On1.on(), with arg 0
+>>In On2.on(), with arg 1
+>>In On3.on(), with arg 2
+6. Array of fcn refs: host array, host fcnrefs, target fcns, with arg=array index.
+>>In On3.on(), with arg 0
+>>In On3.on(), with arg 1
+>>In On3.on(), with arg 2
+7. Protocol function type for function ref Array, with arg=array index.
+>>In On1.on(), with arg 0
+>>In On2.on(), with arg 1
+>>In On3.on(), with arg 2
+8. Array of function refs init from function names, with arg=array index.
+>>In On1.on(), with arg 0
+>>In On2.on(), with arg 1
+>>In On3.on(), with arg 2
+>>In On4.on(), with arg 3
+9. Array of function refs init from function names, with arg=array index.
+>>In On1.on(), with arg 0
+>>In On2.on(), with arg 1
+>>In On3.on(), with arg 2
+>>In On5.on(), with arg 3
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test56_On1__s__fileName[] = "On1.p";
+static const char test56_On1__s__3[] = ">>In On1.on_2_0(), host fcn, no args \n";
+static const char test56_On1__s__5[] = "On1";
+static const char test56_On1__s__4[] = ">>In On1.on_2_1(), targ fcn, no args \n";
+static const char test56_On1__s__2[] = ">>In On1.on_0(), no args \n";
+static const char test56_On1__s__0[] = ">>In On1.on(), with arg ";
+static const char test56_On1__s__1[] = "\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test56_On1_on_0__E() {
+    test56_TestProg_pollen__printStr((string)test56_On1__s__2);
+}
+
+void test56_On1_on_2_1__E() {
+    test56_TestProg_pollen__printStr((string)test56_On1__s__4);
+}
+
+void test56_On1_targetInit__I() {
+}
+
+void test56_On1_on__E( uint8 i ) {
+    test56_TestProg_pollen__printStr((string)test56_On1__s__0);
+	test56_TestProg_pollen__printUint((uint32)(i));
+	test56_TestProg_pollen__printStr((string)test56_On1__s__1);
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test56_TestProg_pollen__reset__E();
+void test56_TestProg_pollen__ready__E();
+void test56_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test56_On1_ test56_On1;
+
+/*
+ * ======== struct module definition (unit On1) ========
+ */
+
+struct test56_On1_ {
+};
+typedef struct test56_On1_ test56_On1_;
+
+/*
+ * ======== function members (unit On1) ========
+ */
+
+extern void test56_On1_on_0__E();
+extern void test56_On1_on_2_1__E();
+extern void test56_On1_targetInit__I();
+extern void test56_On1_on__E( uint8 i );
+
+/*
+ * ======== data members (unit On1) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test56_On2__s__fileName[] = "On2.p";
+static const char test56_On2__s__2[] = "On2";
+static const char test56_On2__s__0[] = ">>In On2.on(), with arg ";
+static const char test56_On2__s__1[] = "\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test56_On2_targetInit__I() {
+}
+
+void test56_On2_on__E( uint8 i ) {
+    test56_TestProg_pollen__printStr((string)test56_On2__s__0);
+	test56_TestProg_pollen__printUint((uint32)(i));
+	test56_TestProg_pollen__printStr((string)test56_On2__s__1);
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test56_TestProg_pollen__reset__E();
+void test56_TestProg_pollen__ready__E();
+void test56_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test56_On2_ test56_On2;
+
+/*
+ * ======== struct module definition (unit On2) ========
+ */
+
+struct test56_On2_ {
+};
+typedef struct test56_On2_ test56_On2_;
+
+/*
+ * ======== function members (unit On2) ========
+ */
+
+extern void test56_On2_targetInit__I();
+extern void test56_On2_on__E( uint8 i );
+
+/*
+ * ======== data members (unit On2) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test56_On3__s__fileName[] = "On3.p";
+static const char test56_On3__s__2[] = "On3";
+static const char test56_On3__s__0[] = ">>In On3.on(), with arg ";
+static const char test56_On3__s__1[] = "\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test56_On3_targetInit__I() {
+}
+
+void test56_On3_on__E( uint8 i ) {
+    test56_TestProg_pollen__printStr((string)test56_On3__s__0);
+	test56_TestProg_pollen__printUint((uint32)(i));
+	test56_TestProg_pollen__printStr((string)test56_On3__s__1);
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test56_TestProg_pollen__reset__E();
+void test56_TestProg_pollen__ready__E();
+void test56_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test56_On3_ test56_On3;
+
+/*
+ * ======== struct module definition (unit On3) ========
+ */
+
+struct test56_On3_ {
+};
+typedef struct test56_On3_ test56_On3_;
+
+/*
+ * ======== function members (unit On3) ========
+ */
+
+extern void test56_On3_targetInit__I();
+extern void test56_On3_on__E( uint8 i );
+
+/*
+ * ======== data members (unit On3) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test56_On4__s__fileName[] = "On4.p";
+static const char test56_On4__s__0[] = ">>In On4.on(), with arg ";
+static const char test56_On4__s__2[] = "On4";
+static const char test56_On4__s__1[] = "\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test56_On4_targetInit__I() {
+}
+
+void test56_On4_on__E( uint8 i ) {
+    test56_TestProg_pollen__printStr((string)test56_On4__s__0);
+	test56_TestProg_pollen__printUint((uint32)(i));
+	test56_TestProg_pollen__printStr((string)test56_On4__s__1);
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test56_TestProg_pollen__reset__E();
+void test56_TestProg_pollen__ready__E();
+void test56_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test56_On4_ test56_On4;
+
+/*
+ * ======== struct module definition (unit On4) ========
+ */
+
+struct test56_On4_ {
+};
+typedef struct test56_On4_ test56_On4_;
+
+/*
+ * ======== function members (unit On4) ========
+ */
+
+extern void test56_On4_targetInit__I();
+extern void test56_On4_on__E( uint8 i );
+
+/*
+ * ======== data members (unit On4) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test56_On5__s__fileName[] = "On5.p";
+static const char test56_On5__s__0[] = ">>In On5.on(), with arg ";
+static const char test56_On5__s__2[] = "On5";
+static const char test56_On5__s__1[] = "\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test56_On5_targetInit__I() {
+}
+
+void test56_On5_on__E( uint8 i ) {
+    test56_TestProg_pollen__printStr((string)test56_On5__s__0);
+	test56_TestProg_pollen__printUint((uint32)(i));
+	test56_TestProg_pollen__printStr((string)test56_On5__s__1);
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test56_TestProg_pollen__reset__E();
+void test56_TestProg_pollen__ready__E();
+void test56_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test56_On5_ test56_On5;
+
+/*
+ * ======== struct module definition (unit On5) ========
+ */
+
+struct test56_On5_ {
+};
+typedef struct test56_On5_ test56_On5_;
+
+/*
+ * ======== function members (unit On5) ========
+ */
+
+extern void test56_On5_targetInit__I();
+extern void test56_On5_on__E( uint8 i );
+
+/*
+ * ======== data members (unit On5) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test56_PrintImpl__s__fileName[] = "PrintImpl.p";
+static const char test56_PrintImpl__s__0[] = "PrintImpl";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test56_PrintImpl_printUint__E( uint32 u ) {
+     printf("%u", (unsigned int)u) ;
+
+}
+
+void test56_PrintImpl_printInt__E( int32 i ) {
+     printf("%i", (int)i) ;
+
+}
+
+void test56_PrintImpl_printReal__E( float f ) {
+     printf("%f", (float)f) ;
+
+}
+
+void test56_PrintImpl_printBool__E( bool b ) {
+    if ((b)) {
+         printf("%s", "true") ;
+
+    }
+    else {
+         printf("%s", "false") ;
+
+    }
+}
+
+void test56_PrintImpl_targetInit__I() {
+}
+
+void test56_PrintImpl_printStr__E( string s ) {
+     printf("%s", s) ;
+
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test56_TestProg_pollen__reset__E();
+void test56_TestProg_pollen__ready__E();
+void test56_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test56_PrintImpl_ test56_PrintImpl;
+
+/*
+ * ======== struct module definition (unit PrintImpl) ========
+ */
+
+struct test56_PrintImpl_ {
+};
+typedef struct test56_PrintImpl_ test56_PrintImpl_;
+
+/*
+ * ======== function members (unit PrintImpl) ========
+ */
+
+extern void test56_PrintImpl_printUint__E( uint32 u );
+extern void test56_PrintImpl_printInt__E( int32 i );
+extern void test56_PrintImpl_printReal__E( float f );
+extern void test56_PrintImpl_printBool__E( bool b );
+extern void test56_PrintImpl_targetInit__I();
+extern void test56_PrintImpl_printStr__E( string s );
+
+/*
+ * ======== data members (unit PrintImpl) ========
+ */
+
+#include <std.h>
+
+/*
+ * ======== protocol member test56.TestProg.pollenPrintProxy delegates test56_PrintImpl ========
+ */
+
+#ifndef test56_PrintImpl__M
+#define test56_PrintImpl__M
+#include "../../test56/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef test56_On1__M
+#define test56_On1__M
+#include "../../test56/On1/On1.h"
+#endif
+
+#ifndef test56_On2__M
+#define test56_On2__M
+#include "../../test56/On2/On2.h"
+#endif
+
+#ifndef test56_On3__M
+#define test56_On3__M
+#include "../../test56/On3/On3.h"
+#endif
+
+#ifndef test56_On4__M
+#define test56_On4__M
+#include "../../test56/On4/On4.h"
+#endif
+
+#ifndef test56_On5__M
+#define test56_On5__M
+#include "../../test56/On5/On5.h"
+#endif
+
+#ifndef test56_PrintImpl__M
+#define test56_PrintImpl__M
+#include "../../test56/PrintImpl/PrintImpl.h"
+#endif
+
+#ifndef test56_TestProg__M
+#define test56_TestProg__M
+#include "../../test56/TestProg/TestProg.h"
+#endif
+
+/*
+ * ======== target data definitions (unit On1) ========
+ */
+
+struct test56_On1_ test56_On1 = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit On2) ========
+ */
+
+struct test56_On2_ test56_On2 = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit On3) ========
+ */
+
+struct test56_On3_ test56_On3 = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit On4) ========
+ */
+
+struct test56_On4_ test56_On4 = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit On5) ========
+ */
+
+struct test56_On5_ test56_On5 = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit PrintImpl) ========
+ */
+
+struct test56_PrintImpl_ test56_PrintImpl = { /* module data */
+};
+
+/*
+ * ======== host data definitions (unit TestProg) ========
+ */
+
+const test56_TestProg_on_host_functions__TYPE test56_TestProg_on_host_functions__A[] = {
+    test56_On3_on__E,  /* [0] */
+    test56_On3_on__E,  /* [1] */
+    test56_On3_on__E,  /* [2] */
+};
+
+/*
+ * ======== target data definitions (unit TestProg) ========
+ */
+
+struct test56_TestProg_ test56_TestProg = { /* module data */
+    test56_On1_on__E,    /* on1_fref */
+    test56_On1_on_0__E,    /* on1_0_fref */
+    test56_On2_on__E,    /* on2_fref */
+    test56_On3_on__E,    /* on3_fref */
+    test56_On1_on_0__E,    /* on1_0_hfref */
+    null,                    /* onP_targ_fref */
+    null,                    /* onP_host_fref */
+    test56_On3_on__E,    /* on3_host_fref */
+    null,                    /* on1_fref_2 */
+    null,                    /* on1_fref_3 */
+    test56_On1_on_0__E,    /* on1_0_fref_4 */
+    {
+        test56_On1_on__E,  /* [0] */
+        test56_On2_on__E,  /* [1] */
+        test56_On3_on__E,  /* [2] */
+    },    /* on_functions */
+    {
+        test56_On1_on__E,  /* [0] */
+        test56_On2_on__E,  /* [1] */
+        test56_On3_on__E,  /* [2] */
+    },    /* on_functions_proto */
+    {
+        test56_On1_on__E,  /* [0] */
+        test56_On2_on__E,  /* [1] */
+        test56_On3_on__E,  /* [2] */
+        test56_On4_on__E,  /* [3] */
+    },    /* on_function_by_name */
+    &test56_PrintImpl,    /* pollenPrintProxy */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test56_TestProg_pollen__printBool(bool b) {
+    test56_PrintImpl_printBool__E(b);
+}
+void test56_TestProg_pollen__printInt(int32 i) {
+    test56_PrintImpl_printInt__E(i);
+}
+void test56_TestProg_pollen__printReal(float f) {
+    test56_PrintImpl_printReal__E(f);
+}
+void test56_TestProg_pollen__printUint(uint32 u) {
+    test56_PrintImpl_printUint__E(u);
+}
+void test56_TestProg_pollen__printStr(string s) {
+    test56_PrintImpl_printStr__E(s);
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../test56/On1/On1.c"
+#include "../../test56/On2/On2.c"
+#include "../../test56/On3/On3.c"
+#include "../../test56/On4/On4.c"
+#include "../../test56/On5/On5.c"
+#include "../../test56/PrintImpl/PrintImpl.c"
+#include "../../test56/TestProg/TestProg.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test56_TestProg_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test56_TestProg_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.shutdown(uint8) ========
+ */
+
+void test56_TestProg_pollen__shutdown__E(uint8 i) {
+    volatile int dummy = 0xCAFE;
+    while (dummy) ;
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test56_TestProg_pollen__reset__E();
+    test56_On1_targetInit__I();
+    test56_On2_targetInit__I();
+    test56_On3_targetInit__I();
+    test56_On4_targetInit__I();
+    test56_On5_targetInit__I();
+    test56_PrintImpl_targetInit__I();
+    test56_TestProg_targetInit__I();
+    test56_TestProg_pollen__ready__E();
+    test56_TestProg_pollen__run__E();
+    test56_TestProg_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test56_TestProg__s__fileName[] = "TestProg.p";
+static const char test56_TestProg__s__6[] = "7. Protocol function type for function ref Array, with arg=array index.\n";
+static const char test56_TestProg__s__1[] = "2. Init on1_fref with assignment, then use it to call On1.on(), with arg=8.\n";
+static const char test56_TestProg__s__3[] = "4. Init on2_fref with assignment, then use it to call On3.on(), with arg=7.\n";
+static const char test56_TestProg__s__8[] = "9. Array of function refs init from function names, with arg=array index.\n";
+static const char test56_TestProg__s__9[] = "TestProg";
+static const char test56_TestProg__s__7[] = "8. Array of function refs init from function names, with arg=array index.\n";
+static const char test56_TestProg__s__4[] = "5. Array of fcn refs: target array, target fcnrefs, target fcns, with arg=array index.\n";
+static const char test56_TestProg__s__0[] = "1. Init on1_0_fref with assignment, then use it to call On1.on_0(), no args.\n";
+static const char test56_TestProg__s__5[] = "6. Array of fcn refs: host array, host fcnrefs, target fcns, with arg=array index.\n";
+static const char test56_TestProg__s__2[] = "3. Init on2_fref on dcln, then use it to call On2.on(), with arg=3.\n";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdlib.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test56_TestProg_pollen__run__E() {
+    uint8 i;
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__0);
+    (test56_TestProg_on1_0_fref__V) = (test56_On1_on_0__E);
+    test56_TestProg_on1_0_fref__V();
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__1);
+    (test56_TestProg_on1_fref__V) = (test56_On1_on__E);
+    test56_TestProg_on1_fref__V(8);
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__2);
+    test56_TestProg_on2_fref__V(3);
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__3);
+    (test56_TestProg_on2_fref__V) = (test56_On3_on__E);
+    test56_TestProg_on2_fref__V(7);
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__4);
+    for (i = 0; (i) < 3; (i)++) {
+        (*test56_TestProg_on_functions__A[(i)])(i);
+    }
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__5);
+    for ((i) = 0; (i) < 3; (i)++) {
+        (*test56_TestProg_on_host_functions__A[(i)])(i);
+    }
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__6);
+    for ((i) = 0; (i) < 3; (i)++) {
+        (*test56_TestProg_on_functions_proto__A[(i)])(i);
+    }
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__7);
+    for ((i) = 0; (i) < 4; (i)++) {
+        (*test56_TestProg_on_function_by_name__A[(i)])(i);
+    }
+    test56_TestProg_pollen__printStr((string)test56_TestProg__s__8);
+    (test56_TestProg_on_function_by_name__A[3]) = (test56_On5_on__E);
+    for ((i) = 0; (i) < 4; (i)++) {
+        (*test56_TestProg_on_function_by_name__A[(i)])(i);
+    }
+     exit(0) ;
+
+}
+
+void test56_TestProg_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef test56_On1__M
+#define test56_On1__M
+#include "../../test56/On1/On1.h"
+#endif
+
+#ifndef test56_On2__M
+#define test56_On2__M
+#include "../../test56/On2/On2.h"
+#endif
+
+#ifndef test56_On3__M
+#define test56_On3__M
+#include "../../test56/On3/On3.h"
+#endif
+
+#ifndef test56_On4__M
+#define test56_On4__M
+#include "../../test56/On4/On4.h"
+#endif
+
+#ifndef test56_On5__M
+#define test56_On5__M
+#include "../../test56/On5/On5.h"
+#endif
+
+#ifndef test56_PrintImpl__M
+#define test56_PrintImpl__M
+#include "../../test56/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test56_TestProg_pollen__reset__E();
+void test56_TestProg_pollen__ready__E();
+void test56_TestProg_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test56_TestProg_ test56_TestProg;
+
+/*
+ * ======== struct module definition (unit TestProg) ========
+ */
+
+typedef void (*test56_TestProg_On1_on)(uint8);
+typedef void (*test56_TestProg_On1_on_0)();
+typedef void (*test56_TestProg_On2_on)(uint8);
+typedef void (*test56_TestProg_On3_on)(uint8);
+typedef void (*test56_TestProg_OnP_on)(uint8);
+typedef void (*test56_TestProg_On1_on_2_0)();
+struct test56_PrintImpl_;
+struct test56_TestProg_ {
+    test56_TestProg_On1_on on1_fref;
+    test56_TestProg_On1_on_0 on1_0_fref;
+    test56_TestProg_On2_on on2_fref;
+    test56_TestProg_On3_on on3_fref;
+    test56_TestProg_On1_on_0 on1_0_hfref;
+    test56_TestProg_OnP_on onP_targ_fref;
+    test56_TestProg_OnP_on onP_host_fref;
+    test56_TestProg_On3_on on3_host_fref;
+    test56_TestProg_On1_on_2_0 on1_fref_2;
+    test56_TestProg_On1_on_2_0 on1_fref_3;
+    test56_TestProg_On1_on_0 on1_0_fref_4;
+    test56_TestProg_On3_on on_functions[3];
+    test56_TestProg_OnP_on on_functions_proto[3];
+    test56_TestProg_On3_on on_function_by_name[4];
+    struct test56_PrintImpl_ *pollenPrintProxy;
+};
+typedef struct test56_TestProg_ test56_TestProg_;
+
+/*
+ * ======== host variables (unit TestProg) ========
+ */
+
+typedef test56_TestProg_On3_on test56_TestProg_on_host_functions__TYPE;
+extern const test56_TestProg_on_host_functions__TYPE test56_TestProg_on_host_functions__A[];
+
+/*
+ * ======== function members (unit TestProg) ========
+ */
+
+extern void test56_TestProg_pollen__run__E();
+extern void test56_TestProg_targetInit__I();
+
+/*
+ * ======== data members (unit TestProg) ========
+ */
+
+#define test56_TestProg_on1_fref__V test56_TestProg.on1_fref
+#define test56_TestProg_on1_0_fref__V test56_TestProg.on1_0_fref
+#define test56_TestProg_on2_fref__V test56_TestProg.on2_fref
+#define test56_TestProg_on3_fref__V test56_TestProg.on3_fref
+#define test56_TestProg_on1_0_hfref__V test56_TestProg.on1_0_hfref
+#define test56_TestProg_onP_targ_fref__V test56_TestProg.onP_targ_fref
+#define test56_TestProg_onP_host_fref__V test56_TestProg.onP_host_fref
+#define test56_TestProg_on3_host_fref__V test56_TestProg.on3_host_fref
+#define test56_TestProg_on1_fref_2__V test56_TestProg.on1_fref_2
+#define test56_TestProg_on1_fref_3__V test56_TestProg.on1_fref_3
+#define test56_TestProg_on1_0_fref_4__V test56_TestProg.on1_0_fref_4
+#define test56_TestProg_on_functions__A test56_TestProg.on_functions
+#define test56_TestProg_on_functions_proto__A test56_TestProg.on_functions_proto
+#define test56_TestProg_on_function_by_name__A test56_TestProg.on_function_by_name
+#define test56_TestProg_pollenPrintProxy__V test56_TestProg.pollenPrintProxy
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test56.On1 ========
+ */
+
+var $$c = function() {
+    const On1 = {};
+    On1.On1 = On1
+    On1.$name = 'test56.On1';
+    On1.pollen$used = 0;
+    On1.on = new $$Ref('test56_On1_on__E');
+    On1.on_0 = new $$Ref('test56_On1_on_0__E');
+    On1.on_2_1 = new $$Ref('test56_On1_on_2_1__E');
+    On1.targetInit = new $$Ref('test56_On1_targetInit__I');
+    On1.on_2_0 = function() {
+        var $$text = '';
+        $$printf(">>In On1.on_2_0(), host fcn, no args \n");
+        return $$text;
+    }
+    On1.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On1.pollen__uses__ = function() {
+    }
+    On1.$$privateInit = function() {
+    }
+    return On1;
+}
+var $$u = $$c();
+$units['test56.On1'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test56.On2 ========
+ */
+
+var $$c = function() {
+    const On2 = {};
+    On2.On2 = On2
+    On2.$name = 'test56.On2';
+    On2.pollen$used = 0;
+    On2.on = new $$Ref('test56_On2_on__E');
+    On2.targetInit = new $$Ref('test56_On2_targetInit__I');
+    On2.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On2.pollen__uses__ = function() {
+    }
+    On2.$$privateInit = function() {
+    }
+    return On2;
+}
+var $$u = $$c();
+$units['test56.On2'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test56.On3 ========
+ */
+
+var $$c = function() {
+    const On3 = {};
+    On3.On3 = On3
+    On3.$name = 'test56.On3';
+    On3.pollen$used = 0;
+    On3.on = new $$Ref('test56_On3_on__E');
+    On3.targetInit = new $$Ref('test56_On3_targetInit__I');
+    On3.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On3.pollen__uses__ = function() {
+    }
+    On3.$$privateInit = function() {
+    }
+    return On3;
+}
+var $$u = $$c();
+$units['test56.On3'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test56.On4 ========
+ */
+
+var $$c = function() {
+    const On4 = {};
+    On4.On4 = On4
+    On4.$name = 'test56.On4';
+    On4.pollen$used = 0;
+    On4.on = new $$Ref('test56_On4_on__E');
+    On4.targetInit = new $$Ref('test56_On4_targetInit__I');
+    On4.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On4.pollen__uses__ = function() {
+    }
+    On4.$$privateInit = function() {
+    }
+    return On4;
+}
+var $$u = $$c();
+$units['test56.On4'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test56.On5 ========
+ */
+
+var $$c = function() {
+    const On5 = {};
+    On5.On5 = On5
+    On5.$name = 'test56.On5';
+    On5.pollen$used = 0;
+    On5.on = new $$Ref('test56_On5_on__E');
+    On5.targetInit = new $$Ref('test56_On5_targetInit__I');
+    On5.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On5.pollen__uses__ = function() {
+    }
+    On5.$$privateInit = function() {
+    }
+    return On5;
+}
+var $$u = $$c();
+$units['test56.On5'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== test56.OnP ========
+ */
+
+var $$c = function() {
+    const OnP = {};
+    OnP.OnP = OnP
+    OnP.$name = 'test56.OnP';
+    OnP.pollen$used = 0;
+    OnP.pollen__uses__ = function() {
+    }
+    OnP.$$privateInit = function() {
+    }
+    return OnP;
+}
+var $$u = $$c();
+$units['test56.OnP'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test56.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test56.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test56_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test56_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test56_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test56_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test56_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test56_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test56.PrintImpl'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== test56.OnP ========
+ */
+
+var $$c = function() {
+    const OnP = {};
+    OnP.OnP = OnP
+    OnP.$name = 'test56.OnP';
+    OnP.pollen$used = 0;
+    OnP.pollen__uses__ = function() {
+    }
+    OnP.$$privateInit = function() {
+    }
+    return OnP;
+}
+var $$u = $$c();
+$units['test56.OnP'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test56.On1 ========
+ */
+
+var $$c = function() {
+    const On1 = {};
+    On1.On1 = On1
+    On1.$name = 'test56.On1';
+    On1.pollen$used = 0;
+    On1.on = new $$Ref('test56_On1_on__E');
+    On1.on_0 = new $$Ref('test56_On1_on_0__E');
+    On1.on_2_1 = new $$Ref('test56_On1_on_2_1__E');
+    On1.targetInit = new $$Ref('test56_On1_targetInit__I');
+    On1.on_2_0 = function() {
+        var $$text = '';
+        $$printf(">>In On1.on_2_0(), host fcn, no args \n");
+        return $$text;
+    }
+    On1.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On1.pollen__uses__ = function() {
+    }
+    On1.$$privateInit = function() {
+    }
+    return On1;
+}
+var $$u = $$c();
+$units['test56.On1'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test56.On2 ========
+ */
+
+var $$c = function() {
+    const On2 = {};
+    On2.On2 = On2
+    On2.$name = 'test56.On2';
+    On2.pollen$used = 0;
+    On2.on = new $$Ref('test56_On2_on__E');
+    On2.targetInit = new $$Ref('test56_On2_targetInit__I');
+    On2.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On2.pollen__uses__ = function() {
+    }
+    On2.$$privateInit = function() {
+    }
+    return On2;
+}
+var $$u = $$c();
+$units['test56.On2'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test56.On3 ========
+ */
+
+var $$c = function() {
+    const On3 = {};
+    On3.On3 = On3
+    On3.$name = 'test56.On3';
+    On3.pollen$used = 0;
+    On3.on = new $$Ref('test56_On3_on__E');
+    On3.targetInit = new $$Ref('test56_On3_targetInit__I');
+    On3.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On3.pollen__uses__ = function() {
+    }
+    On3.$$privateInit = function() {
+    }
+    return On3;
+}
+var $$u = $$c();
+$units['test56.On3'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test56.On4 ========
+ */
+
+var $$c = function() {
+    const On4 = {};
+    On4.On4 = On4
+    On4.$name = 'test56.On4';
+    On4.pollen$used = 0;
+    On4.on = new $$Ref('test56_On4_on__E');
+    On4.targetInit = new $$Ref('test56_On4_targetInit__I');
+    On4.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On4.pollen__uses__ = function() {
+    }
+    On4.$$privateInit = function() {
+    }
+    return On4;
+}
+var $$u = $$c();
+$units['test56.On4'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test56.On5 ========
+ */
+
+var $$c = function() {
+    const On5 = {};
+    On5.On5 = On5
+    On5.$name = 'test56.On5';
+    On5.pollen$used = 0;
+    On5.on = new $$Ref('test56_On5_on__E');
+    On5.targetInit = new $$Ref('test56_On5_targetInit__I');
+    On5.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    On5.pollen__uses__ = function() {
+    }
+    On5.$$privateInit = function() {
+    }
+    return On5;
+}
+var $$u = $$c();
+$units['test56.On5'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test56.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test56.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test56_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test56_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test56_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test56_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test56_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test56_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test56.PrintImpl'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test56.TestProg ========
+ */
+
+var $$c = function() {
+    const TestProg = {};
+    TestProg.TestProg = TestProg
+    TestProg.$name = 'test56.TestProg';
+    TestProg.pollen$used = 0;
+    TestProg.On1 = $units['test56.On1'];
+    TestProg.On2 = $units['test56.On2'];
+    TestProg.On3 = $units['test56.On3'];
+    TestProg.On4 = $units['test56.On4'];
+    TestProg.On5 = $units['test56.On5'];
+    TestProg.PrintImpl = $units['test56.PrintImpl'];
+    TestProg.pollen__run = new $$Ref('test56_TestProg_pollen__run__E');
+    TestProg.targetInit = new $$Ref('test56_TestProg_targetInit__I');
+    TestProg.$$hostInit = function() {
+        var $$text = '';
+        TestProg.on_host_functions = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_host_functions__A', false); TestProg.on_host_functions.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on3_host_fref), (TestProg.on3_host_fref), (TestProg.on3_host_fref) ]));
+        TestProg.on_functions = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_functions__A', false); TestProg.on_functions.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on1_fref), (TestProg.on2_fref), (TestProg.on3_fref) ]));
+        TestProg.on_functions_proto = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_functions_proto__A', false); TestProg.on_functions_proto.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on1_fref), (TestProg.on2_fref), (TestProg.on3_fref) ]));
+        TestProg.on_function_by_name = new $$Array(4, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_function_by_name__A', false); TestProg.on_function_by_name.$$assign((new $$Array(4, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ ($units['test56.On1'].on), ($units['test56.On2'].on), ($units['test56.On3'].on), ($units['test56.On4'].on) ]));
+        return $$text;
+    }
+    TestProg.pollen__uses__ = function() {
+        $$bind($units['test56.On1'], 'pollen$used', true);
+        $$bind($units['test56.On2'], 'pollen$used', true);
+        $$bind($units['test56.On3'], 'pollen$used', true);
+        $$bind($units['test56.On4'], 'pollen$used', true);
+        $$bind($units['test56.On5'], 'pollen$used', true);
+        $$bind($units['test56.PrintImpl'], 'pollen$used', true);
+    }
+    TestProg.$$privateInit = function() {
+        TestProg.on1_fref = new $$Ref('test56_On1_on__E');
+        TestProg.on1_0_fref = new $$Ref('test56_On1_on_0__E');
+        TestProg.on2_fref = new $$Ref('test56_On2_on__E');
+        TestProg.on3_fref = new $$Ref('test56_On3_on__E');
+        TestProg.on1_0_hfref = new $$Ref('test56_On1_on_0__E');
+        TestProg.on3_host_fref = new $$Ref('test56_On3_on__E');
+        TestProg.on1_0_fref_4 = new $$Ref('test56_On1_on_0__E');
+var $$v = 'test56_PrintImpl';
+        var $$s = $$bind($units['test56.TestProg'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test56.PrintImpl'].pollen$used = true;}
+
+        TestProg.on_functions = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_functions__A', false); TestProg.on_functions.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on1_fref), (TestProg.on2_fref), (TestProg.on3_fref) ]));
+        TestProg.on_functions_proto = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_functions_proto__A', false); TestProg.on_functions_proto.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on1_fref), (TestProg.on2_fref), (TestProg.on3_fref) ]));
+        TestProg.on_function_by_name = new $$Array(4, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_function_by_name__A', false); TestProg.on_function_by_name.$$assign((new $$Array(4, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ ($units['test56.On1'].on), ($units['test56.On2'].on), ($units['test56.On3'].on), ($units['test56.On4'].on) ]));
+    }
+    return TestProg;
+}
+var $$u = $$c();
+$units['test56.TestProg'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test56.TestProg'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test56.TestProg ========
+ */
+
+var $$c = function() {
+    const TestProg = {};
+    TestProg.TestProg = TestProg
+    TestProg.$name = 'test56.TestProg';
+    TestProg.pollen$used = 0;
+    TestProg.On1 = $units['test56.On1'];
+    TestProg.On2 = $units['test56.On2'];
+    TestProg.On3 = $units['test56.On3'];
+    TestProg.On4 = $units['test56.On4'];
+    TestProg.On5 = $units['test56.On5'];
+    TestProg.PrintImpl = $units['test56.PrintImpl'];
+    TestProg.pollen__run = new $$Ref('test56_TestProg_pollen__run__E');
+    TestProg.targetInit = new $$Ref('test56_TestProg_targetInit__I');
+    TestProg.$$hostInit = function() {
+        var $$text = '';
+        TestProg.on_host_functions = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_host_functions__A', false); TestProg.on_host_functions.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on3_host_fref), (TestProg.on3_host_fref), (TestProg.on3_host_fref) ]));
+        TestProg.on_functions = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_functions__A', false); TestProg.on_functions.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on1_fref), (TestProg.on2_fref), (TestProg.on3_fref) ]));
+        TestProg.on_functions_proto = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_functions_proto__A', false); TestProg.on_functions_proto.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on1_fref), (TestProg.on2_fref), (TestProg.on3_fref) ]));
+        TestProg.on_function_by_name = new $$Array(4, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_function_by_name__A', false); TestProg.on_function_by_name.$$assign((new $$Array(4, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ ($units['test56.On1'].on), ($units['test56.On2'].on), ($units['test56.On3'].on), ($units['test56.On4'].on) ]));
+        return $$text;
+    }
+    TestProg.pollen__uses__ = function() {
+        $$bind($units['test56.On1'], 'pollen$used', true);
+        $$bind($units['test56.On2'], 'pollen$used', true);
+        $$bind($units['test56.On3'], 'pollen$used', true);
+        $$bind($units['test56.On4'], 'pollen$used', true);
+        $$bind($units['test56.On5'], 'pollen$used', true);
+        $$bind($units['test56.PrintImpl'], 'pollen$used', true);
+    }
+    TestProg.$$privateInit = function() {
+        TestProg.on1_fref = new $$Ref('test56_On1_on__E');
+        TestProg.on1_0_fref = new $$Ref('test56_On1_on_0__E');
+        TestProg.on2_fref = new $$Ref('test56_On2_on__E');
+        TestProg.on3_fref = new $$Ref('test56_On3_on__E');
+        TestProg.on1_0_hfref = new $$Ref('test56_On1_on_0__E');
+        TestProg.on3_host_fref = new $$Ref('test56_On3_on__E');
+        TestProg.on1_0_fref_4 = new $$Ref('test56_On1_on_0__E');
+var $$v = 'test56_PrintImpl';
+        var $$s = $$bind($units['test56.TestProg'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test56.PrintImpl'].pollen$used = true;}
+
+        TestProg.on_functions = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_functions__A', false); TestProg.on_functions.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on1_fref), (TestProg.on2_fref), (TestProg.on3_fref) ]));
+        TestProg.on_functions_proto = new $$Array(3, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_functions_proto__A', false); TestProg.on_functions_proto.$$assign((new $$Array(3, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ (TestProg.on1_fref), (TestProg.on2_fref), (TestProg.on3_fref) ]));
+        TestProg.on_function_by_name = new $$Array(4, function($$cn,$$idx){ return 0;}, 'test56_TestProg_on_function_by_name__A', false); TestProg.on_function_by_name.$$assign((new $$Array(4, function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ ($units['test56.On1'].on), ($units['test56.On2'].on), ($units['test56.On3'].on), ($units['test56.On4'].on) ]));
+    }
+    return TestProg;
+}
+var $$u = $$c();
+$units['test56.TestProg'] = $$u;
+$units.push($$u);
+

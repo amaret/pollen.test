@@ -1,0 +1,845 @@
+pollen version 0.2.137
+pollen version 0.2.137
+test35.ATmega328.p, line 1:0, 'atmel.atmega8': The name in the package statement ('atmel.atmega8') must match the current directory name exactly ('test35')
+test35.MetaInterrupt.p, line 1:0, 'atmel.atmega8': The name in the package statement ('atmel.atmega8') must match the current directory name exactly ('test35')
+test35.MetaInterrupt.p, line 53:1, 'TIMER0_COMPA_vect': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.MetaInterrupt.p, line 53:1, 'TIMSK0': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.MetaInterrupt.p, line 53:1, 'OCIE0A': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.MetaInterrupt.p, line 53:1, 'TIFR0': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.MetaInterrupt.p, line 53:1, 'OCF0A': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.ATmega328.p, line 8:22, 'TIMER0_COMPA_vect': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.ATmega328.p, line 8:43, 'TIMSK0': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.ATmega328.p, line 8:53, 'OCIE0A': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.ATmega328.p, line 8:63, 'TIFR0': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.ATmega328.p, line 8:72, 'OCF0A': Using single quotes to enclose a multiple character string is not recommended. Literal will be treated as a string literal enclosed in double quotes.
+test35.ATmega328.p, line 16:15, initialization type mismatch: <uint8, string>
+In file included from ../test35_out/test35/ATmega328/ATmega328-prog.c:54:0:
+../test35_out/test35/ATmega328/../../test35/ATmega328/ATmega328.c: In function 'test35_ATmega328_pollen__run__E':
+../test35_out/test35/ATmega328/../../test35/ATmega328/ATmega328.c:21:7: warning: assignment makes integer from pointer without a cast [enabled by default]
+unknown: No such file or directory
+
+avrdude done.  Thank you.
+
+#include <std.h>
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef test35_Timer0MatchA__M
+#define test35_Timer0MatchA__M
+#include "../../test35/Timer0MatchA/Timer0MatchA.h"
+#endif
+
+#ifndef test35_ATmega328__M
+#define test35_ATmega328__M
+#include "../../test35/ATmega328/ATmega328.h"
+#endif
+
+/*
+ * ======== target data definitions (unit Timer0MatchA) ========
+ */
+
+struct test35_Timer0MatchA_ test35_Timer0MatchA = { /* module data */
+    null,                    /* handler */
+};
+
+/*
+ * ======== target data definitions (unit ATmega328) ========
+ */
+
+struct test35_ATmega328_ test35_ATmega328 = { /* module data */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test35_ATmega328_pollen__printBool(bool b) {
+}
+void test35_ATmega328_pollen__printInt(int32 i) {
+}
+void test35_ATmega328_pollen__printReal(float f) {
+}
+void test35_ATmega328_pollen__printUint(uint32 u) {
+}
+void test35_ATmega328_pollen__printStr(string s) {
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../test35/Timer0MatchA/Timer0MatchA.c"
+#include "../../test35/ATmega328/ATmega328.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test35_ATmega328_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test35_ATmega328_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.shutdown(uint8) ========
+ */
+
+void test35_ATmega328_pollen__shutdown__E(uint8 i) {
+    volatile int dummy = 0xCAFE;
+    while (dummy) ;
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test35_ATmega328_pollen__reset__E();
+    test35_Timer0MatchA_targetInit__I();
+    test35_ATmega328_targetInit__I();
+    test35_ATmega328_pollen__ready__E();
+    test35_ATmega328_pollen__run__E();
+    test35_ATmega328_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test35_ATmega328__s__fileName[] = "ATmega328.p";
+static const char test35_ATmega328__s__0[] = "TIMER0_COMPA_vect";
+static const char test35_ATmega328__s__6[] = "ATmega328";
+static const char test35_ATmega328__s__2[] = "OCIE0A";
+static const char test35_ATmega328__s__4[] = "OCF0A";
+static const char test35_ATmega328__s__3[] = "TIFR0";
+static const char test35_ATmega328__s__1[] = "TIMSK0";
+static const char test35_ATmega328__s__5[] = "x";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test35_ATmega328_pollen__run__E() {
+    byte c;
+    c = test35_ATmega328__s__5;
+}
+
+void test35_ATmega328_start__I() {
+    test35_Timer0MatchA_enable__E();
+}
+
+void test35_ATmega328_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef test35_Timer0MatchA__M
+#define test35_Timer0MatchA__M
+#include "../../test35/Timer0MatchA/Timer0MatchA.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test35_ATmega328_pollen__reset__E();
+void test35_ATmega328_pollen__ready__E();
+void test35_ATmega328_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test35_ATmega328_ test35_ATmega328;
+
+/*
+ * ======== struct module definition (unit ATmega328) ========
+ */
+
+struct test35_ATmega328_ {
+};
+typedef struct test35_ATmega328_ test35_ATmega328_;
+
+/*
+ * ======== function members (unit ATmega328) ========
+ */
+
+extern void test35_ATmega328_pollen__run__E();
+extern void test35_ATmega328_start__I();
+extern void test35_ATmega328_targetInit__I();
+
+/*
+ * ======== data members (unit ATmega328) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test35_Timer0MatchA__s__fileName[] = "Timer0MatchA.p";
+static const char test35_Timer0MatchA__s__1[] = "TIMER0_COMPA_vect";
+static const char test35_Timer0MatchA__s__3[] = "OCIE0A";
+static const char test35_Timer0MatchA__s__5[] = "OCF0A";
+static const char test35_Timer0MatchA__s__4[] = "TIFR0";
+static const char test35_Timer0MatchA__s__2[] = "TIMSK0";
+static const char test35_Timer0MatchA__s__0[] = "Timer0MatchA";
+
+/*
+ * ======== code injections ========
+ */
+
+  
+      ISR( TIMER0_COMPA_vect ) { 
+         (test35_Timer0MatchA_handler__V)();
+      }   
+  
+
+/*
+ * ======== function definitions ========
+ */
+
+void test35_Timer0MatchA_enable__E() {
+    TIMSK0 |= (1 << OCIE0A);
+}
+
+void test35_Timer0MatchA_disable__E() {
+    TIMSK0 &= ~(1 << OCIE0A);
+}
+
+bool test35_Timer0MatchA_isEnabled__E() {
+    return(  TIMSK0 & (1 << OCIE0A)  );
+}
+
+void test35_Timer0MatchA_clear__E() {
+    TIFR0 &= ~(1 << OCF0A);
+}
+
+void test35_Timer0MatchA_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test35_ATmega328_pollen__reset__E();
+void test35_ATmega328_pollen__ready__E();
+void test35_ATmega328_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== header injections ========
+ */
+
+ #include <avr/interrupt.h> 
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test35_Timer0MatchA_ test35_Timer0MatchA;
+
+/*
+ * ======== struct module definition (unit Timer0MatchA) ========
+ */
+
+typedef void (*test35_Timer0MatchA_InterruptHandler_isr)();
+struct test35_Timer0MatchA_ {
+    test35_Timer0MatchA_InterruptHandler_isr handler;
+};
+typedef struct test35_Timer0MatchA_ test35_Timer0MatchA_;
+
+/*
+ * ======== function members (unit Timer0MatchA) ========
+ */
+
+extern void test35_Timer0MatchA_enable__E();
+extern void test35_Timer0MatchA_disable__E();
+extern bool test35_Timer0MatchA_isEnabled__E();
+extern void test35_Timer0MatchA_clear__E();
+extern void test35_Timer0MatchA_targetInit__I();
+
+/*
+ * ======== const definitions ========
+ */
+
+#define test35_Timer0MatchA_name (test35_Timer0MatchA__s__1)
+#define test35_Timer0MatchA_enableRegister (test35_Timer0MatchA__s__2)
+#define test35_Timer0MatchA_enableBit (test35_Timer0MatchA__s__3)
+#define test35_Timer0MatchA_clearRegister (test35_Timer0MatchA__s__4)
+#define test35_Timer0MatchA_clearBit (test35_Timer0MatchA__s__5)
+
+/*
+ * ======== data members (unit Timer0MatchA) ========
+ */
+
+#define test35_Timer0MatchA_handler__V test35_Timer0MatchA.handler
+
+/*
+ * ======== pollen.hardware.InterruptHandler ========
+ */
+
+var $$c = function() {
+    const InterruptHandler = {};
+    InterruptHandler.InterruptHandler = InterruptHandler
+    InterruptHandler.$name = 'pollen.hardware.InterruptHandler';
+    InterruptHandler.pollen$used = 0;
+    InterruptHandler.pollen__uses__ = function() {
+    }
+    InterruptHandler.$$privateInit = function() {
+    }
+    return InterruptHandler;
+}
+var $$u = $$c();
+$units['pollen.hardware.InterruptHandler'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.hardware.InterruptHandler ========
+ */
+
+var $$c = function() {
+    const InterruptHandler = {};
+    InterruptHandler.InterruptHandler = InterruptHandler
+    InterruptHandler.$name = 'pollen.hardware.InterruptHandler';
+    InterruptHandler.pollen$used = 0;
+    InterruptHandler.pollen__uses__ = function() {
+    }
+    InterruptHandler.$$privateInit = function() {
+    }
+    return InterruptHandler;
+}
+var $$u = $$c();
+$units['pollen.hardware.InterruptHandler'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test35.Timer0MatchA ========
+ */
+
+var $$c = function() {
+    const Timer0MatchA = {};
+    Timer0MatchA.Timer0MatchA = Timer0MatchA
+    Timer0MatchA.$name = 'test35.Timer0MatchA';
+    Timer0MatchA.pollen$used = 0;
+    Timer0MatchA.enable = new $$Ref('test35_Timer0MatchA_enable__E');
+    Timer0MatchA.disable = new $$Ref('test35_Timer0MatchA_disable__E');
+    Timer0MatchA.clear = new $$Ref('test35_Timer0MatchA_clear__E');
+    Timer0MatchA.isEnabled = new $$Ref('test35_Timer0MatchA_isEnabled__E');
+    Timer0MatchA.targetInit = new $$Ref('test35_Timer0MatchA_targetInit__I');
+    Timer0MatchA.name = "TIMER0_COMPA_vect";
+    Timer0MatchA.enableRegister = "TIMSK0";
+    Timer0MatchA.enableBit = "OCIE0A";
+    Timer0MatchA.clearRegister = "TIFR0";
+    Timer0MatchA.clearBit = "OCF0A";
+    Timer0MatchA.setHandlerOnHost = function( h ) {
+        var $$text = '';
+        (Timer0MatchA.handler) = (h);
+        return $$text;
+    }
+    Timer0MatchA.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Timer0MatchA.pollen__uses__ = function() {
+    }
+    Timer0MatchA.$$privateInit = function() {
+    }
+    return Timer0MatchA;
+}
+var $$u = $$c();
+$units['test35.Timer0MatchA'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test35.ATmega328 ========
+ */
+
+var $$c = function() {
+    const ATmega328 = {};
+    ATmega328.ATmega328 = ATmega328
+    ATmega328.$name = 'test35.ATmega328';
+    ATmega328.pollen$used = 0;
+    ATmega328.Timer0MatchA = $units['test35.Timer0MatchA'];
+    ATmega328.start = new $$Ref('test35_ATmega328_start__I');
+    ATmega328.pollen__run = new $$Ref('test35_ATmega328_pollen__run__E');
+    ATmega328.targetInit = new $$Ref('test35_ATmega328_targetInit__I');
+    ATmega328.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    ATmega328.pollen__uses__ = function() {
+        $$bind($units['test35.Timer0MatchA'], 'pollen$used', true);
+    }
+    ATmega328.$$privateInit = function() {
+    }
+    return ATmega328;
+}
+var $$u = $$c();
+$units['test35.ATmega328'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test35.ATmega328'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test35.ATmega328 ========
+ */
+
+var $$c = function() {
+    const ATmega328 = {};
+    ATmega328.ATmega328 = ATmega328
+    ATmega328.$name = 'test35.ATmega328';
+    ATmega328.pollen$used = 0;
+    ATmega328.Timer0MatchA = $units['test35.Timer0MatchA'];
+    ATmega328.start = new $$Ref('test35_ATmega328_start__I');
+    ATmega328.pollen__run = new $$Ref('test35_ATmega328_pollen__run__E');
+    ATmega328.targetInit = new $$Ref('test35_ATmega328_targetInit__I');
+    ATmega328.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    ATmega328.pollen__uses__ = function() {
+        $$bind($units['test35.Timer0MatchA'], 'pollen$used', true);
+    }
+    ATmega328.$$privateInit = function() {
+    }
+    return ATmega328;
+}
+var $$u = $$c();
+$units['test35.ATmega328'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test35.Timer0MatchA ========
+ */
+
+var $$c = function() {
+    const Timer0MatchA = {};
+    Timer0MatchA.Timer0MatchA = Timer0MatchA
+    Timer0MatchA.$name = 'test35.Timer0MatchA';
+    Timer0MatchA.pollen$used = 0;
+    Timer0MatchA.enable = new $$Ref('test35_Timer0MatchA_enable__E');
+    Timer0MatchA.disable = new $$Ref('test35_Timer0MatchA_disable__E');
+    Timer0MatchA.clear = new $$Ref('test35_Timer0MatchA_clear__E');
+    Timer0MatchA.isEnabled = new $$Ref('test35_Timer0MatchA_isEnabled__E');
+    Timer0MatchA.targetInit = new $$Ref('test35_Timer0MatchA_targetInit__I');
+    Timer0MatchA.name = "TIMER0_COMPA_vect";
+    Timer0MatchA.enableRegister = "TIMSK0";
+    Timer0MatchA.enableBit = "OCIE0A";
+    Timer0MatchA.clearRegister = "TIFR0";
+    Timer0MatchA.clearBit = "OCF0A";
+    Timer0MatchA.setHandlerOnHost = function( h ) {
+        var $$text = '';
+        (Timer0MatchA.handler) = (h);
+        return $$text;
+    }
+    Timer0MatchA.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    Timer0MatchA.pollen__uses__ = function() {
+    }
+    Timer0MatchA.$$privateInit = function() {
+    }
+    return Timer0MatchA;
+}
+var $$u = $$c();
+$units['test35.Timer0MatchA'] = $$u;
+$units.push($$u);
+

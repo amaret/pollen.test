@@ -1,0 +1,48 @@
+
+module Cpu {
+
+  host uint32 freq = 0
+  host uint32 getFreq() {
+    return freq
+  }
+  host setFreq(uint32 f) {
+    freq = f
+  }
+
+}
+
+----
+import Cpu
+module Uart {
+  host uint32 uart_freq = 0
+  host Uart() {
+    uart_freq = Cpu.getFreq()
+  }
+
+}
+----
+
+import Cpu
+import Uart
+composition Mcu {
+
+  export Cpu
+
+  host Mcu() {
+    Cpu.setFreq(7)
+  }
+
+}
+----
+from Mcu import Cpu
+module TestProg {
+
+  host uint32 test_freq = 0
+
+  host TestProg() {
+    test_freq = Cpu.getFreq()
+  }
+
+}
+
+

@@ -1,0 +1,71 @@
+Problems Translate:
+Arguments are not cast to the formal type for classes. 
+Note with meta types the types can have the same structure and different names.
+
+Arguments that are ptrs to structs are loaded as structs. Should use'&'. Grep 
+on addrOf for this functionality for binaryExpr.
+
+Not translating to 'this' ptr:
+  public setData(T data) {
+        @data = data
+  }
+
+Problems Execution:
+
+Code overview:
+
+DispatcherTest will create a queue of events.
+The constructor will initialize a set of events.
+pollen.run in DispatcherTest will post the events.
+
+The Dispatcher has an event queue.
+The queue will be initialized to empty events. 
+The Dispatcher will add and remove events to the Queue.
+When an event is removed, its handler is exec'd. 
+This dispatching is in a while(true) loop. 
+So it will never exit if the queue is empty.
+That seems like a bug because it isn't interruptible.
+
+
+
+Notes:
+
+This is the dcln of a fcn reference field in Event classd:
+  EH.handle(T) handler 
+In Dispatcher.p I call it via Typed Member 'e':
+  e.handle(someData)
+Two questions:
+  Why is the name in the call handle instead of handler?  Does this reflect c?
+    No. There is a handle() method in event which calls the handler.
+  What about the 'this' ptr? does it need to be passed? 
+    The 'this' ptr is added to call to class methods. Problem: the fcn 
+    reference may be to a module or class function. How can I know? 
+    Maybe punt on this for now. 
+    If I am calling a function e.handle() where e is a class reference and 
+    handle is a 
+    function reference, I know from the call that it needs a 'this' ptr. 
+    The rule could be:
+      fcnref()     // call does not get 'this' ptr, 
+		   // assumed to be to a module function
+      e.fcnref()   // call gets 'this' ptr
+    That means this form of 'in class' function calls: fcnref() where 
+    @fcnref() is implicit is disallowed.
+
+Problem:
+  This syntax does not allow for function references that return values.
+
+Can add priority later. Also make it interrupt driven.
+
+Some implementations have Event implement EventHandler. Why? That couples them together. 
+Current test has the test driver implementing EventHandler. 
+
+Note that if handle() in EventHandler takes a parameter, and Event
+contains a function reference to handle() then either the parameter type
+to handle() is known (a bad thing) or it is a meta type.
+In the current test it is the same meta type which instantiates Event.
+If it is different, then Event needs two meta type parameters.
+
+I am not sure why the DispatcherTest calls Dispatcher.run() over
+and over as the latter is a infinite loop.
+
+

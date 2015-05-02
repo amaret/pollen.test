@@ -1,0 +1,28 @@
+!-- 
+
+  First-in-first-out (FIFO) data structure implemented as an array of fixed length. 
+  
+--! 
+meta {type E, type T = uint8}
+
+class Queue {
+
+  host E elements [3] = { new E(), new E(), new E() }
+  host uint8 el_non_meta [3] = { 1, 2, 3 }
+  host T capacity
+
+  public host Queue(T capacity) {
+        @capacity = capacity
+        //@elements = E[capacity]
+  }
+
+  
+  public E remove() {
+    E e =  null
+
+    //e = elements[3]
+    
+    return e
+  }
+  
+}

@@ -1,0 +1,33 @@
+----
+Global Interrupts module for msp430
+
+----
+package mcu.ti.msp430
+
+from pollen.interfaces import GlobalInterrupts as GI
+
+module GlobalInterrupts implements GI {
+
+	# This will be replaced with a more intelligent approach
+ 	+{ #include <msp430g2231.h> }+
+ 	+{ #include <legacymsp430.h> }+
+
+	public bool disable() {
+		uint16 x = 0
+		# This is specific to msp430-gcc		
+		+{x}+ = +{ __read_status_register() }+
+		+{dint()}+
+		return (x & +{GIE}+) != 0 ? true : false
+	}
+    
+    public enable() {
+		+{eint()}+
+    }
+    
+    public restore( bool state ) {
+		if (state == true) {		# GIE was enabled
+			enable()
+		}
+    }
+
+}

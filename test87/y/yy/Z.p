@@ -1,0 +1,5 @@
+module z {
+
+  public foo() {}
+
+}

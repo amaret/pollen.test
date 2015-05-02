@@ -1,0 +1,18 @@
+module M {
+  foo() {}
+  bar() {}
+}
+import M as N   
+composition C1 {
+  export N.foo
+  #export N.bar
+}
+from C1 import N  # gets foo in exportFcns
+# TEST N.bar() should get message is not exported
+module Test1 {
+   test1() {
+      N.foo()
+      N.bar()
+   }
+   pollen.run() {}
+}

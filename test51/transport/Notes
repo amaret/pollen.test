@@ -1,0 +1,5 @@
+Buffer.p
+
+   maxSize is preset
+   should allow host fcns to init contents so dlen gets dcln init and then may be incr 
+     by host fcns

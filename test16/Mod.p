@@ -1,0 +1,6 @@
+module Mod {
+
+  foo() { }
+  bar() { }
+
+}

@@ -1,0 +1,171 @@
+import GlobalInterrupts as GImod
+import ComposPreset
+import SwitchTest
+import Cls1
+import Cls2
+import Cls3
+import ModFix
+import MoreArrays
+import ArrayAssign
+import ShortClassAccessInModule
+
+from pollen.interfaces import GlobalInterrupts as GI
+# TEST array creation and initialization, host & target
+# TEST protocol binding
+# TEST a couple of simple print invocations
+# TEST host constructors
+module BlinkMilli {
+
+        // public  - should I support this?
+        class led {
+          uint8 red = 1
+          uint8 green
+          uint8 blue
+          uint8 test_led() {
+            blue = 2
+          }
+          host led(uint8 j) { blue = j}
+          led() { red = 3 }
+          public uint8 foo(uint8 p) {
+            return 2
+          }
+        }
+
+        host uint8 myVar = 1
+        host uint8 fooby() { 
+            myVar = 3
+            return 7 
+        }
+
+        host uint8[3] myVarArr = { fooby(), fooby(), myVar }
+
+        host new led hll(9)
+        new led tll()
+        host new Cls3 testNest()
+        host new Cls2 testcls2()
+        host led ledArr[2] = { new led(2) }
+        host led leds[3] = { null, null, null}
+        host uint8 hostarr[4] = {1,2,3,4}
+        uint8 nonhostarr[4] = {1,2,3,4}
+        uint8 chkarr[] = {1,
+                          2,
+                          3,
+                          4}
+        uint8 chkarr2[]
+        uint8 chkarr3[3] = {1}
+        uint8 chkarr4[2] = {1,2}
+        host uint8 hostarr2d[8][2]
+        GI gi
+        uint8 nonhostVarTest = 9
+        host uint8 chkarr5[nonhostVarTest]
+        uint8 chkarr6[nonhostVarTest]
+        host uint8 hostVarTest2 = 9
+        host uint8 chkarr7[hostVarTest2]
+        uint8 chkarr8[hostVarTest2]
+        host uint8 hostVarNotRefdInTarget = 3  // should be const
+        host uint8 hostVarRefdInTarget = 4  // should NOT be const
+        //host uint8 chkarr9[]
+        string thing = "yy"
+
+        foobar(uint8[] p) { }
+
+        host uint8 initialBlue = 33
+        
+        host new Cls1 ccc(initialBlue)
+
+        public BlinkMilli() {
+        }
+
+        host BlinkMilli() {
+          nonhostVarTest = GImod.getHostVar()
+          bindGlobalInterrupts()
+          GImod.setHostVar(2)
+        }
+        put(uint8 i) { }
+        host hput(uint8 i) { }
+
+        host bindGlobalInterrupts() {
+
+          gi := GImod
+        
+          uint8 nesthostarr[4] = {1,2,3,4}
+          hostarr[0] = 0
+          hostarr[1] = 3
+          uint8 i = 0
+          i = hostarr[i++]
+          @hput(hostarr[i++])
+          GImod.setHostVar(7)
+        }
+
+        test_str(string x) {
+            hostVarRefdInTarget = 7
+            print x
+            return
+        }
+     
+        uint8 test(bool f)  {
+           uint8 t = hll.red
+           @put(nonhostarr[t++])
+           t = tll.red
+           t = tll.test_led()
+           //t = tll.foo(t)
+           t = ledArr[0].foo(t)
+           t = ledArr[0].red
+           gi.enable()
+           print log f
+           print err true +  3
+           // GImod.giVar = 2 won't resolve: private
+           test_str("tst")
+           test_str(thing)
+           return 3
+        }
+
+        bool chkArray(uint8 y) {
+          uint8 arr[2] = {1,2}
+          uint8 arr2d[8][2]
+          //arr = {1,2} causes a syntax error (initializer only allowed on dcln)
+          { 
+                arr[1] = test(true) // a block
+          }     
+        }    
+
+        pollen.run() {
+
+            //string s = "str"
+            //if (s == 'yyz') {
+            //    print s
+            //}
+
+                { // block 1
+                  bool flag = true
+                  if (flag) {
+                     flag = false
+                  }
+                }
+                { // block 2
+                  bool flag = false
+                  if (flag) {
+                     flag = false
+                  }
+                }
+        //+{ const struct x { int i; } xs; }+
+        //+{ #define constref &xs; }+
+        //+{ const struct x* constref= &xs; }+
+        //+{ const struct x xs2; }+
+
+        }    
+  markUsed()  {
+    // or the code isn't included
+    testNest.markUsed()
+    ccc.markUsed()
+    testcls2.markUsed()
+    GImod.markUsed()
+    ModFix.markUsed()
+    MoreArrays.markUsed()
+    ArrayAssign.markUsed()
+    ShortClassAccessInModule.markUsed()
+    SwitchTest.switch_test(1)
+  }
+
+}
+

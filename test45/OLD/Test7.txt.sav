@@ -1,0 +1,59 @@
+Issue
+  import composb as N
+  compos a
+  ---
+  from a import N            // N is not a module but a composition
+  compos c                   // Should I restrict this form to from compos import module ?
+  ---
+
+module M { # Core
+  foo() {}
+  bar() {}
+}
+import M 
+composition C9 { # ATMega328
+  export M
+  export M.foo
+  export M.bar
+}
+import C9 as N   
+composition C7 { # Board
+  export N
+  export N.foo
+  // If 'export N' causes imports of C9 (import of M) to be added to the symbol tableof C7
+  // then N can have multiple import nodes associated with 'N'. If C9 has 
+  // In unit U: If I export a composition with 'export c' 
+  //     then add all the exported functions of the module imports of c to the unit U.
+  //     if there are symbol table collisions flag as an error. 
+  //     What about imports of compositions?
+  //     If I import a composition, add its fcns to the symbol table.
+  //     NO, don't. They must be exported.
+  // In unit U: If I export a composition with 'export c.foo' 
+  //     find an import in composition c which has foo in the export list and add that fcn to unit U.
+  //     (Note there could be more than one but I will ignore that.)
+  // Also: change the UnitNode.ImportSymbols() loop to not copy functions.
+
+  // UnitNode.importSymbols():
+  // There is a problem with dumping stuff in the symbol table: it doesn't stop. 
+  // If C imports B which imports A, and A exports a fcn, B will get it. What stops C
+  // from getting it? I should use the UnitNode.getExportFcns and ignore what is in the symtab.
+  // That means for export node:
+  // export N.foo    // N not an import, it must be IN an import, lookup N and get the import
+  //   for it, add foo to the LOCAL import. 
+  // Ditto for all exportfcns, now they are being added uplevel sometimes.
+  // export N  
+
+
+}
+import C7   // should bar be put on this import as an exported function?
+composition C8 extends C7 {  # Environment
+  export N.bar
+}
+import C8
+module Test7  {  # BlinkEnv
+  test() {
+    N.foo() // not found
+    N.bar() // found
+  }
+  pollen.run() { }
+}

@@ -1,0 +1,8 @@
+no-op test, does not work or translate.
+used to try to figure out how to qualify meta arguments in an import with the meta parameter of the meta type.
+
+import EventHandler{Event.T} as EH
+meta {type T}
+class Event ...
+
+but dropped before making any progress.

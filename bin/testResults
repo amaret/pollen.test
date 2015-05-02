@@ -1,0 +1,94 @@
+#!/bin/bash
+# set -v -x
+# Called only from testPollen.
+# Concat all .h .c output files from xlation for a test.
+# Diff against a master.
+# Report results.
+# Empty results mean no regressions.
+# Parameters (required):
+# parameter 1 test directory (root for all tests)
+# parameter 2 test number
+# parameter 3 output from translator (e.g. error messages)
+# parameter 4 test description 
+# parameter 5 pollen.jar path
+
+export TSTID=`date "+%y%m%d%H%M%S"`
+export SAVE_RESULTS_DIR=../../pollen-testresults/test_results #not required
+
+if [ $# -ne 5 ]
+then
+    echo "Missing required parameter for testResults"
+    exit 1
+fi
+
+export MSG="testResults required file missing or invalid arg: "
+#echo "args: " $1, $2, $3, $4
+if [ ! -e $1 ] ; then MSG+="arg1"; echo $MSG ; exit 1 ; fi
+if [   -z $2 ] ; then MSG+="arg2"; echo $MSG ; exit 1 ; fi
+if [ ! -e $3 ] ; then MSG+="arg3"; echo $MSG ; exit 1 ; fi
+if [ ! -e $4 ] ; then MSG+="arg4"; echo $MSG ; exit 1 ; fi
+if [ ! -e $4 ] ; then MSG+="arg4"; echo $MSG ; exit 1 ; fi
+if [   -z $5 ] ; then MSG+="pollen.jar" ; echo $MSG; exit 1 ; fi
+export TSTOUT="$4"
+export POLLEN="$5"
+
+if [[ ! -s $1/test_results/$2/$2_results ]]
+then \
+  mkdir $1/test_results/$2
+  mkdir $1/test_results/$2/$2_results
+  echo "Creating test results dir for $2"
+fi
+
+# this should set up the masters to be used by this script after a git pull
+if [[ -s $1/test_results/$2.MASTER ]]
+then \
+	mv $1/test_results/$2.MASTER $1/test_results/$2/$2_results/$2.MASTER
+fi
+
+if [[ ! -s $1/test_results/$2/$2_results/$2.MASTER ]]
+then \
+  echo "Creating master for $2"
+  cd $1/$2_out
+  java -jar ${POLLEN} -v > $1/test_results/$2/$2_results/$2.MASTER
+  cat $3 >> $1/test_results/$2/$2_results/$2.MASTER
+
+
+  find . -name \*.[ch] \
+     -exec cat -s {} \; >> $1/test_results/$2/$2_results/$2.MASTER
+  find . -name \*.js \
+     -exec cat -s {} \; >> $1/test_results/$2/$2_results/$2.MASTER
+fi
+
+             
+if [ ! -e $1/$2_out ] ; then mkdir $1/$2_out; fi
+cd $1/$2_out
+
+java -jar ${POLLEN} -v > $1/test_results/$2/$2_results/$2.$TSTID
+
+cat $3 >> $1/test_results/$2/$2_results/$2.$TSTID
+find . -name \*.[ch] \
+     -exec cat -s {} \; >> $1/test_results/$2/$2_results/$2.$TSTID
+find . -name \*.js \
+     -exec cat -s {} \; >> $1/test_results/$2/$2_results/$2.$TSTID
+diff $1/test_results/$2/$2_results/$2.$TSTID \
+     $1/test_results/$2/$2_results/$2.MASTER  > $1/test_results/$2/$2_results/diff.$TSTID
+
+if [ -e ${SAVE_RESULTS_DIR} ] 
+then
+     cp $1/test_results/$2/$2_results/$2.$TSTID \
+         ${SAVE_RESULTS_DIR}/$2/$2_results/$2.$TSTID
+     cp $1/test_results/$2/$2_results/diff.$TSTID \
+         ${SAVE_RESULTS_DIR}/$2/$2_results/diff.$TSTID
+fi
+
+if [[ -s $1/test_results/$2/$2_results/diff.$TSTID ]]
+then \
+   cat $TSTOUT
+   echo "=================================================================="
+   echo "Test results for latest $2 ('<') show difference from master ('>')"
+   cat  $1/test_results/$2/$2_results/diff.$TSTID 
+else  # success is silent
+   rm $1/test_results/$2/$2_results/$2.$TSTID
+   rm $1/test_results/$2/$2_results/diff.$TSTID       
+fi
+

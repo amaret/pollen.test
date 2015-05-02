@@ -1,0 +1,5 @@
+module Lifecycle {
+
+  public testLife() { }
+
+}

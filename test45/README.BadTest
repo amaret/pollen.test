@@ -1,0 +1,32 @@
+5/2/2014
+Trying to find the composition inheritance bug I came up with this. 
+
+
+module M {
+  public foo() {}
+  public bar() {}
+}
+------
+import M as N   
+composition C1 {
+  export N.foo
+}
+------
+import C1  
+composition C10 extends C1 { 
+  export C1.bar     // BADTEST because C1.bar is not available for export. 
+}                   // the error here: 'exported function not found."
+------
+import C10 as Z 
+import C10 
+# TEST Use extends to resolve
+# TEST P.foo should not resolve
+module Test9 {
+  test() {
+    Z.foo() # resolves via extends
+    Z.bar()
+    C10.foo() # resolves via extends
+    C10.bar()
+  }
+  pollen.run() { }
+}

@@ -1,0 +1,57 @@
+// Export function name resolution
+// This example shows how the resolution of Mcu.reset must 
+// handle the chain of imports/exports.
+// The program is TestImporExport.p
+// if line marked '<--- here' is commented out
+// the function name will not resolve.
+---- Atmega328p.p ----
+module Atmega328p {
+	public reset() { }
+	public wait(uint32 us) { }
+	public host uint32 getSystemFrequency() { 
+		return @sysFreq 
+	}
+	public setSystemFrequency(uint32 hz) {
+		@sysFreq = hz
+	}
+	#--------------------------------==
+	# Private data members 
+	#--------------------------------==
+	uint32 sysFreq
+}
+
+---- Mcu.p ----
+import Atmega328p
+composition Mcu {
+	#------------------------=
+	# Mcu Methods
+	#------------------------=
+	export Atmega328p.reset // <--- here
+}
+
+---- Duemilanove.p ----
+import Mcu
+composition Duemilanove {
+        export Mcu	
+}
+
+---- Environment.p ----
+import Duemilanove as Board
+from Board import Mcu
+composition Environment {	
+	export Mcu
+}
+
+---- TestImporExport.p ----
+import Environment as Env
+from Env import Mcu 
+module TestImporExport {
+      
+	pollen.run() {
+	   pollen.reset()
+	}
+	
+	pollen.reset() { 
+           Mcu.reset() 
+        }	
+}

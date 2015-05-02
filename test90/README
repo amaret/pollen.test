@@ -1,0 +1,4 @@
+This test gets errors 10/6/14 because update of bundles not complete for localhost. 
+
+local.parts.ColorLed.p, line 0:0, 'local.parts.ColorLed.p': missing package 'bijou.parts'
+local.parts.ColorLed.p, line 53:0, 'Color': not a type

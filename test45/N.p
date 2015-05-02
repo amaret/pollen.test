@@ -1,0 +1,3 @@
+module N {
+  public bar() {}
+}

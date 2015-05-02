@@ -1,0 +1,67 @@
+module M {
+  foo() {}
+  bar() {}
+}
+import M 
+composition C9 {
+  export M
+  export M.foo
+  export M.bar
+}
+#import C9  as N
+from C9  import M as N // replaced by import M above with key 'N'
+   // M is exported
+   // foo is inserted into symtab: export functions of c7
+   // bar is inserted into symtab: export functions of c7
+   // and exportFcn list.
+composition C7 {
+  export N
+}
+from C7 import N
+#import C7
+composition C8 extends C7 { 
+  #export N.bar 
+  export N     // causes all N functions to be added to import and to symtab
+               // subsequent importSymbols() does this again. Because the import is exported.
+}
+import C8
+  // C7 is composition so bring in its composition functions from the exportFcn list
+  // this brings in foo, bar
+  // bring in the symtab entries if the import is NOT exported.
+module Test7  {
+  test() {
+    N.foo() 
+    #Q.bar()
+    N.bar()
+  }
+  pollen.run() { }
+}
+module M {
+  foo() {}
+  bar() {}
+}
+import M 
+composition C9 {
+  export M
+  export M.foo
+  export M.bar
+}
+import C9  as N
+#from C9  import M as N
+composition C7 {
+  export N
+}
+#from C7 import N
+import C7
+composition C8 extends C7 { 
+  export N.bar
+}
+import C8
+module Test7  {
+  test() {
+    N.foo() 
+    #Q.bar()
+    N.bar()
+  }
+  pollen.run() { }
+}

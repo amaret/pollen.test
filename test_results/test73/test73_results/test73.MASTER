@@ -1,0 +1,1890 @@
+pollen version 0.2.137
+pollen version 0.2.137
+virtual.mcu.Cpu.p, line 50:1, (warning) 'sysFreq': host variable is the target of an assignment in a target function.
+EventQueue created with initial capacity = 0
+EventQueue setting new capacity =1
+Newsroom event registered. Event capacity = 1
+EventQueue setting new capacity =2
+Newsroom event registered. Event capacity = 2
+pollen.event.EventQueue.p, line 11:1, (warning) Array 'elements' has computed size. The final value for the computed size for all instances of the array will be the last one calculated.
+In file included from ../test73_out/test73/Test_16/Test_16-prog.c:133:
+../test73_out/test73/Test_16/../../virtual.mcu/ConsolePrint/ConsolePrint.c:26:20: warning: format specifies type 'unsigned long' but the argument has type 'uint32' (aka 'unsigned int') [-Wformat]
+     printf("%lu", u) ;
+             ~~~   ^
+             %u
+../test73_out/test73/Test_16/../../virtual.mcu/ConsolePrint/ConsolePrint.c:36:20: warning: format specifies type 'long' but the argument has type 'int32' (aka 'int') [-Wformat]
+     printf("%li", i) ;
+             ~~~   ^
+             %i
+2 warnings generated.
+Now run executeable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+Tick1
+GlobalInterrupts enable
+Tick2
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+GlobalInterrupts enable
+GlobalInterrupts disable
+Shutdown
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_event_Event__s__fileName[] = "Event.p";
+static const char pollen_event_Event__s__0[] = "Event";
+
+/*
+ * ======== function definitions ========
+ */
+
+void pollen_event_Event_Event_setHandler__E( pollen_event_Event_ this, pollen_event_Event_HP_handler h ) {
+    this->eventHandler = (h);
+}
+
+void pollen_event_Event_Event_postFromInterrupt__E( pollen_event_Event_ this ) {
+    pollen_event_Newsroom_postFromInterrupt__E(this);
+}
+
+void pollen_event_Event_Event_post__E( pollen_event_Event_ this ) {
+    pollen_event_Newsroom_post__E(this);
+}
+
+void pollen_event_Event_Event_fire__E( pollen_event_Event_ this ) {
+    if (this->eventHandler != null) {
+        this->eventHandler();
+    }
+}
+
+pollen_event_Event_ pollen_event_Event_Event_new___E( pollen_event_Event_ this, pollen_event_Event_HP_handler h ) {
+    this->eventHandler = (h);
+    return this;
+}
+
+pollen_event_Event_HP_handler pollen_event_Event_Event_getHandler__E( pollen_event_Event_ this ) {
+    return(  this->eventHandler  );
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef pollen_event_Newsroom__M
+#define pollen_event_Newsroom__M
+#include "../../pollen.event/Newsroom/Newsroom.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test73_Test_16_pollen__reset__E();
+void test73_Test_16_pollen__ready__E();
+void test73_Test_16_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== class definition (unit Event) ========
+ */
+
+typedef void (*pollen_event_Event_HP_handler)();
+struct pollen_event_Event {
+    pollen_event_Event_HP_handler eventHandler;
+};
+typedef struct pollen_event_Event pollen_event_Event;
+typedef struct pollen_event_Event* pollen_event_Event_;
+
+/*
+ * ======== function members (unit Event) ========
+ */
+
+extern void pollen_event_Event_Event_setHandler__E( pollen_event_Event_ this, pollen_event_Event_HP_handler h );
+extern void pollen_event_Event_Event_postFromInterrupt__E( pollen_event_Event_ this );
+extern void pollen_event_Event_Event_post__E( pollen_event_Event_ this );
+extern void pollen_event_Event_Event_fire__E( pollen_event_Event_ this );
+extern pollen_event_Event_ pollen_event_Event_Event_new___E( pollen_event_Event_ this, pollen_event_Event_HP_handler h );
+extern pollen_event_Event_HP_handler pollen_event_Event_Event_getHandler__E( pollen_event_Event_ this );
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_event_EventQueue__s__fileName[] = "EventQueue.p";
+static const char pollen_event_EventQueue__s__2[] = "EventQueue setting new capacity =";
+static const char pollen_event_EventQueue__s__3[] = "EventQueue";
+static const char pollen_event_EventQueue__s__0[] = "EventQueue created with initial capacity = ";
+static const char pollen_event_EventQueue__s__1[] = "\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+bool pollen_event_EventQueue_EventQueue_add__E( pollen_event_EventQueue_ this, struct pollen_event_Event*  e ) {
+    if (this->length < this->capacity) {
+        this->elements[(this->tail)] = (e);
+        ++(this->tail);
+        ++(this->length);
+        if ((this->tail) == (this->capacity)) {
+            (this->tail) = 0;
+        }
+        return(  true  );
+    }
+    else {
+        return(  false  );
+    }
+}
+
+bool pollen_event_EventQueue_EventQueue_isEmpty__E( pollen_event_EventQueue_ this ) {
+    return(  (this->length) == 0  );
+}
+
+uint8 pollen_event_EventQueue_EventQueue_getLength__E( pollen_event_EventQueue_ this ) {
+    return(  this->length  );
+}
+
+pollen_event_EventQueue_ pollen_event_EventQueue_EventQueue_new___E( pollen_event_EventQueue_ this ) {
+    return this;
+}
+
+pollen_event_Event_ pollen_event_EventQueue_EventQueue_remove__E( pollen_event_EventQueue_ this ) {
+    pollen_event_Event_ e;
+    e = null;
+    if (this->length != 0) {
+        (e) = this->elements[(this->head)];
+        ++(this->head);
+        --(this->length);
+        if ((this->head) == (this->capacity)) {
+            (this->head) = 0;
+        }
+    }
+    return(  (e)  );
+}
+
+pollen_event_Event_ pollen_event_EventQueue_EventQueue_peek__E( pollen_event_EventQueue_ this ) {
+    if (!pollen_event_EventQueue_EventQueue_isEmpty__E(this)) {
+        return(  (this->elements[(this->head)])  );
+    }
+    else {
+        return(  null  );
+    }
+}
+
+uint8 pollen_event_EventQueue_EventQueue_getCapacity__E( pollen_event_EventQueue_ this ) {
+    return(  this->capacity  );
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef pollen_event_Event__M
+#define pollen_event_Event__M
+#include "../../pollen.event/Event/Event.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test73_Test_16_pollen__reset__E();
+void test73_Test_16_pollen__ready__E();
+void test73_Test_16_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== class definition (unit EventQueue) ========
+ */
+
+struct pollen_event_Event;
+struct pollen_event_EventQueue {
+    uint8 capacity;
+    struct pollen_event_Event*  elements[2] /* capacity */;
+    uint8 length;
+    uint8 head;
+    uint8 tail;
+};
+typedef struct pollen_event_EventQueue pollen_event_EventQueue;
+typedef struct pollen_event_EventQueue* pollen_event_EventQueue_;
+
+/*
+ * ======== host variables (unit EventQueue) ========
+ */
+
+typedef uint8 pollen_event_EventQueue_capacity__TYPE;
+extern pollen_event_EventQueue_capacity__TYPE pollen_event_EventQueue_capacity__V;
+
+/*
+ * ======== function members (unit EventQueue) ========
+ */
+
+extern bool pollen_event_EventQueue_EventQueue_add__E( pollen_event_EventQueue_ this, struct pollen_event_Event*  e );
+extern bool pollen_event_EventQueue_EventQueue_isEmpty__E( pollen_event_EventQueue_ this );
+extern uint8 pollen_event_EventQueue_EventQueue_getLength__E( pollen_event_EventQueue_ this );
+extern pollen_event_EventQueue_ pollen_event_EventQueue_EventQueue_new___E( pollen_event_EventQueue_ this );
+extern struct pollen_event_Event*  pollen_event_EventQueue_EventQueue_remove__E( pollen_event_EventQueue_ this );
+extern struct pollen_event_Event*  pollen_event_EventQueue_EventQueue_peek__E( pollen_event_EventQueue_ this );
+extern uint8 pollen_event_EventQueue_EventQueue_getCapacity__E( pollen_event_EventQueue_ this );
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char pollen_event_Newsroom__s__fileName[] = "Newsroom.p";
+static const char pollen_event_Newsroom__s__2[] = "Newsroom";
+static const char pollen_event_Newsroom__s__1[] = "\n";
+static const char pollen_event_Newsroom__s__0[] = "Newsroom event registered. Event capacity = ";
+
+/*
+ * ======== function definitions ========
+ */
+
+void pollen_event_Newsroom_postFromInterrupt__E( struct pollen_event_Event*  event ) {
+    pollen_event_EventQueue_EventQueue_add__E(&(pollen_event_Newsroom_events__V), (event));
+}
+
+void pollen_event_Newsroom_dispatch__I() {
+    pollen_event_Event_ e;
+    e = null;
+    (e) = pollen_event_EventQueue_EventQueue_remove__E(&(pollen_event_Newsroom_events__V));
+    while ((e) != null) {
+        virtual_mcu_GlobalInterrupts_enable__E();
+        pollen_event_Event_Event_fire__E(e);
+        (e) = pollen_event_EventQueue_EventQueue_remove__E(&(pollen_event_Newsroom_events__V));
+    }
+}
+
+void pollen_event_Newsroom_post__E( struct pollen_event_Event*  event ) {
+    virtual_mcu_GlobalInterrupts_disable__E();
+    pollen_event_EventQueue_EventQueue_add__E(&(pollen_event_Newsroom_events__V), (event));
+    virtual_mcu_GlobalInterrupts_enable__E();
+}
+
+void pollen_event_Newsroom_run__E() {
+    uint32 counter;
+    virtual_mcu_GlobalInterrupts_enable__E();
+    counter = 0;
+    while (true) {
+        virtual_mcu_GlobalInterrupts_disable__E();
+        pollen_event_Newsroom_dispatch__I();
+        (counter)++;
+        if ((counter) > 10) {
+            break;
+        }
+        virtual_mcu_GlobalInterrupts_enable__E();
+    }
+}
+
+void pollen_event_Newsroom_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef pollen_event_Event__M
+#define pollen_event_Event__M
+#include "../../pollen.event/Event/Event.h"
+#endif
+
+#ifndef pollen_event_EventQueue__M
+#define pollen_event_EventQueue__M
+#include "../../pollen.event/EventQueue/EventQueue.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test73_Test_16_pollen__reset__E();
+void test73_Test_16_pollen__ready__E();
+void test73_Test_16_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct pollen_event_Newsroom_ pollen_event_Newsroom;
+
+/*
+ * ======== struct module definition (unit Newsroom) ========
+ */
+
+struct pollen_event_EventQueue;
+struct virtual_mcu_GlobalInterrupts_;
+struct pollen_event_Newsroom_ {
+    struct virtual_mcu_GlobalInterrupts_ *GI;
+};
+typedef struct pollen_event_Newsroom_ pollen_event_Newsroom_;
+
+/*
+ * ======== host variables (unit Newsroom) ========
+ */
+
+typedef struct pollen_event_EventQueue pollen_event_Newsroom_events__TYPE;
+extern pollen_event_Newsroom_events__TYPE pollen_event_Newsroom_events__V;
+
+/*
+ * ======== function members (unit Newsroom) ========
+ */
+
+struct pollen_event_Event;
+extern void pollen_event_Newsroom_postFromInterrupt__E( struct pollen_event_Event*  event );
+extern void pollen_event_Newsroom_dispatch__I();
+extern void pollen_event_Newsroom_post__E( struct pollen_event_Event*  event );
+extern void pollen_event_Newsroom_run__E();
+extern void pollen_event_Newsroom_targetInit__I();
+
+/*
+ * ======== data members (unit Newsroom) ========
+ */
+
+#define pollen_event_Newsroom_events__V pollen_event_Newsroom_events
+#define pollen_event_Newsroom_GI__V pollen_event_Newsroom.GI
+#include <std.h>
+
+/*
+ * ======== protocol member pollen.event.Newsroom.GI delegates virtual_mcu_GlobalInterrupts ========
+ */
+
+#ifndef virtual_mcu_GlobalInterrupts__M
+#define virtual_mcu_GlobalInterrupts__M
+#include "../../virtual.mcu/GlobalInterrupts/GlobalInterrupts.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef virtual_mcu_GlobalInterrupts__M
+#define virtual_mcu_GlobalInterrupts__M
+#include "../../virtual.mcu/GlobalInterrupts/GlobalInterrupts.h"
+#endif
+
+#ifndef virtual_mcu_ConsolePrint__M
+#define virtual_mcu_ConsolePrint__M
+#include "../../virtual.mcu/ConsolePrint/ConsolePrint.h"
+#endif
+
+#ifndef pollen_event_Event__M
+#define pollen_event_Event__M
+#include "../../pollen.event/Event/Event.h"
+#endif
+
+#ifndef pollen_event_EventQueue__M
+#define pollen_event_EventQueue__M
+#include "../../pollen.event/EventQueue/EventQueue.h"
+#endif
+
+#ifndef pollen_event_Newsroom__M
+#define pollen_event_Newsroom__M
+#include "../../pollen.event/Newsroom/Newsroom.h"
+#endif
+
+#ifndef test73_Test_16__M
+#define test73_Test_16__M
+#include "../../test73/Test_16/Test_16.h"
+#endif
+
+/*
+ * ======== target data definitions (unit GlobalInterrupts) ========
+ */
+
+struct virtual_mcu_GlobalInterrupts_ virtual_mcu_GlobalInterrupts = { /* module data */
+};
+
+/*
+ * ======== target data definitions (unit ConsolePrint) ========
+ */
+
+struct virtual_mcu_ConsolePrint_ virtual_mcu_ConsolePrint = { /* module data */
+    "[95m",                 /* HEADER */
+    "[94m",                 /* OKBLUE */
+    "[92m",                 /* OKGREEN */
+    "[93m",                 /* WARNING */
+    "[91m",                 /* FAIL */
+    "[0m",                  /* ENDC */
+};
+
+/*
+ * ======== host data definitions (unit Newsroom) ========
+ */
+
+pollen_event_Newsroom_events__TYPE pollen_event_Newsroom_events__V = /* pollen.event.EventQueue object init */
+{
+    (uint8)0x2,              /* capacity */
+    {
+        null,  /* [0] */
+        null,  /* [1] */
+    },    /* elements */
+    (uint8)0x0,              /* length */
+    (uint8)0x0,              /* head */
+    (uint8)0x0,              /* tail */
+};
+
+/*
+ * ======== target data definitions (unit Newsroom) ========
+ */
+
+struct pollen_event_Newsroom_ pollen_event_Newsroom = { /* module data */
+    &virtual_mcu_GlobalInterrupts,    /* GI */
+};
+
+/*
+ * ======== host data definitions (unit Test_16) ========
+ */
+
+test73_Test_16_e1__TYPE test73_Test_16_e1__V = /* pollen.event.Event object init */
+{
+    test73_Test_16_tick1__I,    /* eventHandler */
+};
+test73_Test_16_e2__TYPE test73_Test_16_e2__V = /* pollen.event.Event object init */
+{
+    test73_Test_16_tick2__I,    /* eventHandler */
+};
+
+/*
+ * ======== target data definitions (unit Test_16) ========
+ */
+
+struct test73_Test_16_ test73_Test_16 = { /* module data */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test73_Test_16_pollen__printBool(bool b) {
+}
+void test73_Test_16_pollen__printInt(int32 i) {
+}
+void test73_Test_16_pollen__printReal(float f) {
+}
+void test73_Test_16_pollen__printUint(uint32 u) {
+}
+void test73_Test_16_pollen__printStr(string s) {
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../virtual.mcu/GlobalInterrupts/GlobalInterrupts.c"
+#include "../../virtual.mcu/ConsolePrint/ConsolePrint.c"
+#include "../../pollen.event/Event/Event.c"
+#include "../../pollen.event/EventQueue/EventQueue.c"
+#include "../../pollen.event/Newsroom/Newsroom.c"
+#include "../../test73/Test_16/Test_16.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test73_Test_16_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test73_Test_16_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test73_Test_16_pollen__reset__E();
+    virtual_mcu_GlobalInterrupts_targetInit__I();
+    virtual_mcu_ConsolePrint_targetInit__I();
+    pollen_event_Newsroom_targetInit__I();
+    test73_Test_16_targetInit__I();
+    test73_Test_16_pollen__ready__E();
+    test73_Test_16_pollen__run__E();
+    test73_Test_16_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test73_Test_16__s__fileName[] = "Test_16.p";
+static const char test73_Test_16__s__2[] = "Shutdown\n";
+static const char test73_Test_16__s__3[] = "Test_16";
+static const char test73_Test_16__s__0[] = "Tick1\n";
+static const char test73_Test_16__s__1[] = "Tick2\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test73_Test_16_pollen__run__E() {
+    pollen_event_Event_Event_post__E(&(test73_Test_16_e1__V));
+    pollen_event_Event_Event_post__E(&(test73_Test_16_e2__V));
+    pollen_event_Newsroom_run__E();
+}
+
+void test73_Test_16_tick2__I() {
+    virtual_mcu_ConsolePrint_printStr__E(test73_Test_16__s__1);
+}
+
+void test73_Test_16_tick1__I() {
+    virtual_mcu_ConsolePrint_printStr__E(test73_Test_16__s__0);
+}
+
+void test73_Test_16_pollen__shutdown__E( uint8 id ) {
+    virtual_mcu_ConsolePrint_printStr__E(test73_Test_16__s__2);
+}
+
+void test73_Test_16_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef virtual_mcu_GlobalInterrupts__M
+#define virtual_mcu_GlobalInterrupts__M
+#include "../../virtual.mcu/GlobalInterrupts/GlobalInterrupts.h"
+#endif
+
+#ifndef virtual_mcu_ConsolePrint__M
+#define virtual_mcu_ConsolePrint__M
+#include "../../virtual.mcu/ConsolePrint/ConsolePrint.h"
+#endif
+
+#ifndef pollen_event_Newsroom__M
+#define pollen_event_Newsroom__M
+#include "../../pollen.event/Newsroom/Newsroom.h"
+#endif
+
+#ifndef pollen_event_Event__M
+#define pollen_event_Event__M
+#include "../../pollen.event/Event/Event.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test73_Test_16_pollen__reset__E();
+void test73_Test_16_pollen__ready__E();
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test73_Test_16_ test73_Test_16;
+
+/*
+ * ======== struct module definition (unit Test_16) ========
+ */
+
+struct pollen_event_Event;
+struct test73_Test_16_ {
+};
+typedef struct test73_Test_16_ test73_Test_16_;
+
+/*
+ * ======== host variables (unit Test_16) ========
+ */
+
+typedef struct pollen_event_Event test73_Test_16_e1__TYPE;
+extern test73_Test_16_e1__TYPE test73_Test_16_e1__V;
+typedef struct pollen_event_Event test73_Test_16_e2__TYPE;
+extern test73_Test_16_e2__TYPE test73_Test_16_e2__V;
+
+/*
+ * ======== function members (unit Test_16) ========
+ */
+
+extern void test73_Test_16_pollen__run__E();
+extern void test73_Test_16_tick2__I();
+extern void test73_Test_16_tick1__I();
+extern void test73_Test_16_pollen__shutdown__E( uint8 id );
+extern void test73_Test_16_targetInit__I();
+
+/*
+ * ======== data members (unit Test_16) ========
+ */
+
+#define test73_Test_16_e1__V test73_Test_16_e1
+#define test73_Test_16_e2__V test73_Test_16_e2
+
+/*
+ * ======== string literals ========
+ */
+
+static const char virtual_mcu_ConsolePrint__s__fileName[] = "ConsolePrint.p";
+static const char virtual_mcu_ConsolePrint__s__2[] = "\033[92m";
+static const char virtual_mcu_ConsolePrint__s__4[] = "\033[91m";
+static const char virtual_mcu_ConsolePrint__s__0[] = "\033[95m";
+static const char virtual_mcu_ConsolePrint__s__1[] = "\033[94m";
+static const char virtual_mcu_ConsolePrint__s__3[] = "\033[93m";
+static const char virtual_mcu_ConsolePrint__s__5[] = "\033[0m";
+static const char virtual_mcu_ConsolePrint__s__6[] = "ConsolePrint";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void virtual_mcu_ConsolePrint_printUint__E( uint32 u ) {
+     printf("%lu", u) ;
+
+}
+
+void virtual_mcu_ConsolePrint_printReal__E( float f ) {
+     printf("%f", (float)f) ;
+
+}
+
+void virtual_mcu_ConsolePrint_printInt__E( int32 i ) {
+     printf("%li", i) ;
+
+}
+
+void virtual_mcu_ConsolePrint_printBool__E( bool b ) {
+    if ((b)) {
+         printf("true") ;
+
+    }
+    else {
+         printf("false") ;
+
+    }
+}
+
+void virtual_mcu_ConsolePrint_targetInit__I() {
+}
+
+void virtual_mcu_ConsolePrint_printStr__E( string s ) {
+     printf("%s", s) ;
+
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test73_Test_16_pollen__reset__E();
+void test73_Test_16_pollen__ready__E();
+void test73_Test_16_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct virtual_mcu_ConsolePrint_ virtual_mcu_ConsolePrint;
+
+/*
+ * ======== struct module definition (unit ConsolePrint) ========
+ */
+
+struct virtual_mcu_ConsolePrint_ {
+    const string HEADER;
+    const string OKBLUE;
+    const string OKGREEN;
+    const string WARNING;
+    const string FAIL;
+    const string ENDC;
+};
+typedef struct virtual_mcu_ConsolePrint_ virtual_mcu_ConsolePrint_;
+
+/*
+ * ======== function members (unit ConsolePrint) ========
+ */
+
+extern void virtual_mcu_ConsolePrint_printUint__E( uint32 u );
+extern void virtual_mcu_ConsolePrint_printReal__E( float f );
+extern void virtual_mcu_ConsolePrint_printInt__E( int32 i );
+extern void virtual_mcu_ConsolePrint_printBool__E( bool b );
+extern void virtual_mcu_ConsolePrint_targetInit__I();
+extern void virtual_mcu_ConsolePrint_printStr__E( string s );
+
+/*
+ * ======== const definitions ========
+ */
+
+#define virtual_mcu_ConsolePrint_HEADER (virtual_mcu_ConsolePrint__s__0)
+#define virtual_mcu_ConsolePrint_OKBLUE (virtual_mcu_ConsolePrint__s__1)
+#define virtual_mcu_ConsolePrint_OKGREEN (virtual_mcu_ConsolePrint__s__2)
+#define virtual_mcu_ConsolePrint_WARNING (virtual_mcu_ConsolePrint__s__3)
+#define virtual_mcu_ConsolePrint_FAIL (virtual_mcu_ConsolePrint__s__4)
+#define virtual_mcu_ConsolePrint_ENDC (virtual_mcu_ConsolePrint__s__5)
+
+/*
+ * ======== data members (unit ConsolePrint) ========
+ */
+
+#define virtual_mcu_ConsolePrint_HEADER__V virtual_mcu_ConsolePrint.HEADER
+#define virtual_mcu_ConsolePrint_OKBLUE__V virtual_mcu_ConsolePrint.OKBLUE
+#define virtual_mcu_ConsolePrint_OKGREEN__V virtual_mcu_ConsolePrint.OKGREEN
+#define virtual_mcu_ConsolePrint_WARNING__V virtual_mcu_ConsolePrint.WARNING
+#define virtual_mcu_ConsolePrint_FAIL__V virtual_mcu_ConsolePrint.FAIL
+#define virtual_mcu_ConsolePrint_ENDC__V virtual_mcu_ConsolePrint.ENDC
+
+/*
+ * ======== string literals ========
+ */
+
+static const char virtual_mcu_GlobalInterrupts__s__fileName[] = "GlobalInterrupts.p";
+static const char virtual_mcu_GlobalInterrupts__s__0[] = "GlobalInterrupts";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void virtual_mcu_GlobalInterrupts_enable__E() {
+     printf("GlobalInterrupts enable\n") ;
+
+}
+
+void virtual_mcu_GlobalInterrupts_disable__E() {
+     printf("GlobalInterrupts disable\n") ;
+
+}
+
+void virtual_mcu_GlobalInterrupts_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test73_Test_16_pollen__reset__E();
+void test73_Test_16_pollen__ready__E();
+void test73_Test_16_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct virtual_mcu_GlobalInterrupts_ virtual_mcu_GlobalInterrupts;
+
+/*
+ * ======== struct module definition (unit GlobalInterrupts) ========
+ */
+
+struct virtual_mcu_GlobalInterrupts_ {
+};
+typedef struct virtual_mcu_GlobalInterrupts_ virtual_mcu_GlobalInterrupts_;
+
+/*
+ * ======== function members (unit GlobalInterrupts) ========
+ */
+
+extern void virtual_mcu_GlobalInterrupts_enable__E();
+extern void virtual_mcu_GlobalInterrupts_disable__E();
+extern void virtual_mcu_GlobalInterrupts_targetInit__I();
+
+/*
+ * ======== data members (unit GlobalInterrupts) ========
+ */
+
+
+/*
+ * ======== CLASS pollen.event.Event ========
+ */
+
+var $$c = function() {
+    const Event = {};
+    Event.Event = Event
+    Event.$name = 'pollen.event.Event';
+    Event.pollen$used = 0;
+    Event.Newsroom = $units['pollen.event.Newsroom'];
+    Event.Event$$id = 1;
+    Event.Event = function(cn) {
+        this.$$id = Event.Event$$id++;
+        this.$$cname = cn ? cn : 'pollen_event_Event_Event__'+this.$$id+'__S';
+        this.$$tname = 'pollen_event_Event_Event';
+        this.$$uname = 'pollen.event.Event';
+        this.eventHandler = null;
+    }
+    Event.Event.prototype = new $$Struct('pollen.event.Event.Event');
+    Event.Event.prototype.$$isAggFld = {};
+    Event.Event.prototype.$$isAggFld.eventHandler = false;
+    Event.Event.prototype.new_host = function( h ) {
+        var $$text = '';
+        this.$$privateInit();
+        if (arguments.length == 1) {
+                this.eventHandler = (h);
+                $units['pollen.event.Newsroom'].registerEventOnHost();
+        }
+        this.$$hostInitLastPass();
+        return this;
+    }
+    Event.Event.prototype.setHandlerOnHost = function( h ) {
+        var $$text = '';
+        this.eventHandler = (h);
+        $units['pollen.event.Newsroom'].registerEventOnHost();
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    Event.pollen__uses__ = function() {
+        $$bind($units['pollen.event.Newsroom'], 'pollen$used', true);
+    }
+    Event.Event.prototype.$$privateInit = function() {
+    }
+    Event.Event.prototype.$$hostInitLastPass = function() {
+    }
+    return Event;
+}
+var $$u = $$c();
+$units['pollen.event.Event'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== CLASS pollen.event.EventQueue ========
+ */
+
+var $$c = function() {
+    const EventQueue = {};
+    EventQueue.EventQueue = EventQueue
+    EventQueue.$name = 'pollen.event.EventQueue';
+    EventQueue.pollen$used = 0;
+    EventQueue.Event = $units['pollen.event.Event'];
+    EventQueue.EventQueue$$id = 1;
+    EventQueue.EventQueue = function(cn) {
+        this.$$id = EventQueue.EventQueue$$id++;
+        this.$$cname = cn ? cn : 'pollen_event_EventQueue_EventQueue__'+this.$$id+'__S';
+        this.$$tname = 'pollen_event_EventQueue_EventQueue';
+        this.$$uname = 'pollen.event.EventQueue';
+        this.capacity = 1;
+        this.length = 0;
+        this.head = 0;
+        this.tail = 0;
+    }
+    EventQueue.EventQueue.prototype = new $$Struct('pollen.event.EventQueue.EventQueue');
+    EventQueue.EventQueue.prototype.$$isAggFld = {};
+    EventQueue.EventQueue.prototype.$$isAggFld.capacity = false;
+    EventQueue.EventQueue.prototype.$$isAggFld.elements = true;
+    EventQueue.EventQueue.prototype.$$isAggFld.length = false;
+    EventQueue.EventQueue.prototype.$$isAggFld.head = false;
+    EventQueue.EventQueue.prototype.$$isAggFld.tail = false;
+    EventQueue.EventQueue.prototype.new_host = function( max ) {
+        var $$text = '';
+        this.$$privateInit();
+        if (arguments.length == 1) {
+                this.length = 0;
+                this.head = 0;
+                this.tail = 0;
+                this.capacity = (max);
+                $$printf("EventQueue created with initial capacity = ", this.capacity, "\n");
+        }
+        this.$$hostInitLastPass();
+        return this;
+    }
+    EventQueue.EventQueue.prototype.setCapacityOnHost = function( capacity ) {
+        var $$text = '';
+        this.capacity = (capacity);
+        $$printf("EventQueue setting new capacity =", this.capacity, "\n");
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    EventQueue.EventQueue.prototype.getCapacityOnHost = function() {
+        var $$text = '';
+        return(  this.capacity  );
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    EventQueue.pollen__uses__ = function() {
+        $$bind($units['pollen.event.Event'], 'pollen$used', true);
+    }
+    EventQueue.EventQueue.prototype.$$privateInit = function() {
+        this.capacity = 1;
+        this.length = 0;
+        this.head = 0;
+        this.tail = 0;
+    }
+    EventQueue.EventQueue.prototype.$$hostInitLastPass = function() {
+        this.elements = new $$Array((this.capacity), function($$cn,$$idx){ return 0;}, 'pollen_event_EventQueue_elements__A', false); this.elements.$$assign((new $$Array((this.capacity), function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ null ]));
+    }
+    return EventQueue;
+}
+var $$u = $$c();
+$units['pollen.event.EventQueue'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.event.HandlerProtocol ========
+ */
+
+var $$c = function() {
+    const HandlerProtocol = {};
+    HandlerProtocol.HandlerProtocol = HandlerProtocol
+    HandlerProtocol.$name = 'pollen.event.HandlerProtocol';
+    HandlerProtocol.pollen$used = 0;
+    HandlerProtocol.pollen__uses__ = function() {
+    }
+    HandlerProtocol.$$privateInit = function() {
+    }
+    return HandlerProtocol;
+}
+var $$u = $$c();
+$units['pollen.event.HandlerProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE pollen.event.Newsroom ========
+ */
+
+var $$c = function() {
+    const Newsroom = {};
+    Newsroom.Newsroom = Newsroom
+    Newsroom.$name = 'pollen.event.Newsroom';
+    Newsroom.pollen$used = 0;
+    Newsroom.Event = $units['pollen.event.Event'];
+    Newsroom.EventQueue = $units['pollen.event.EventQueue'];
+    Newsroom.targetInit = new $$Ref('pollen_event_Newsroom_targetInit__I');
+    Newsroom.post = new $$Ref('pollen_event_Newsroom_post__E');
+    Newsroom.postFromInterrupt = new $$Ref('pollen_event_Newsroom_postFromInterrupt__E');
+    Newsroom.run = new $$Ref('pollen_event_Newsroom_run__E');
+    Newsroom.dispatch = new $$Ref('pollen_event_Newsroom_dispatch__I');
+    Newsroom.$$hostInit = function() {
+        var $$text = '';
+        Newsroom.events = new $units['pollen.event.EventQueue'].EventQueue('pollen_event_Newsroom_events__V'); Newsroom.events.new_host(0);
+        return $$text;
+    }
+    Newsroom.registerEventOnHost = function() {
+        var $$text = '';
+        Newsroom.events.setCapacityOnHost(Newsroom.events.getCapacityOnHost() + 1);
+        $$printf("Newsroom event registered. Event capacity = ", Newsroom.events.getCapacityOnHost(), "\n");
+        return $$text;
+    }
+    Newsroom.pollen__uses__ = function() {
+        $$bind($units['pollen.event.Event'], 'pollen$used', true);
+        $$bind($units['pollen.event.EventQueue'], 'pollen$used', true);
+    }
+    Newsroom.$$privateInit = function() {
+        Newsroom.GI = 0;
+    }
+    return Newsroom;
+}
+var $$u = $$c();
+$units['pollen.event.Newsroom'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware.GlobalInterruptsProtocol ========
+ */
+
+var $$c = function() {
+    const GlobalInterruptsProtocol = {};
+    GlobalInterruptsProtocol.GlobalInterruptsProtocol = GlobalInterruptsProtocol
+    GlobalInterruptsProtocol.$name = 'pollen.hardware.GlobalInterruptsProtocol';
+    GlobalInterruptsProtocol.pollen$used = 0;
+    GlobalInterruptsProtocol.pollen__uses__ = function() {
+    }
+    GlobalInterruptsProtocol.$$privateInit = function() {
+    }
+    return GlobalInterruptsProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.GlobalInterruptsProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.hardware.GlobalInterruptsProtocol ========
+ */
+
+var $$c = function() {
+    const GlobalInterruptsProtocol = {};
+    GlobalInterruptsProtocol.GlobalInterruptsProtocol = GlobalInterruptsProtocol
+    GlobalInterruptsProtocol.$name = 'pollen.hardware.GlobalInterruptsProtocol';
+    GlobalInterruptsProtocol.pollen$used = 0;
+    GlobalInterruptsProtocol.pollen__uses__ = function() {
+    }
+    GlobalInterruptsProtocol.$$privateInit = function() {
+    }
+    return GlobalInterruptsProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.GlobalInterruptsProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE virtual.mcu.GlobalInterrupts ========
+ */
+
+var $$c = function() {
+    const GlobalInterrupts = {};
+    GlobalInterrupts.GlobalInterrupts = GlobalInterrupts
+    GlobalInterrupts.$name = 'virtual.mcu.GlobalInterrupts';
+    GlobalInterrupts.pollen$used = 0;
+    GlobalInterrupts.enable = new $$Ref('virtual_mcu_GlobalInterrupts_enable__E');
+    GlobalInterrupts.disable = new $$Ref('virtual_mcu_GlobalInterrupts_disable__E');
+    GlobalInterrupts.targetInit = new $$Ref('virtual_mcu_GlobalInterrupts_targetInit__I');
+    GlobalInterrupts.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    GlobalInterrupts.pollen__uses__ = function() {
+    }
+    GlobalInterrupts.$$privateInit = function() {
+    }
+    return GlobalInterrupts;
+}
+var $$u = $$c();
+$units['virtual.mcu.GlobalInterrupts'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE virtual.mcu.ConsolePrint ========
+ */
+
+var $$c = function() {
+    const ConsolePrint = {};
+    ConsolePrint.ConsolePrint = ConsolePrint
+    ConsolePrint.$name = 'virtual.mcu.ConsolePrint';
+    ConsolePrint.pollen$used = 0;
+    ConsolePrint.printBool = new $$Ref('virtual_mcu_ConsolePrint_printBool__E');
+    ConsolePrint.printReal = new $$Ref('virtual_mcu_ConsolePrint_printReal__E');
+    ConsolePrint.printInt = new $$Ref('virtual_mcu_ConsolePrint_printInt__E');
+    ConsolePrint.printUint = new $$Ref('virtual_mcu_ConsolePrint_printUint__E');
+    ConsolePrint.printStr = new $$Ref('virtual_mcu_ConsolePrint_printStr__E');
+    ConsolePrint.targetInit = new $$Ref('virtual_mcu_ConsolePrint_targetInit__I');
+    ConsolePrint.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    ConsolePrint.pollen__uses__ = function() {
+    }
+    ConsolePrint.$$privateInit = function() {
+        ConsolePrint.HEADER = "\033[95m";
+        ConsolePrint.OKBLUE = "\033[94m";
+        ConsolePrint.OKGREEN = "\033[92m";
+        ConsolePrint.WARNING = "\033[93m";
+        ConsolePrint.FAIL = "\033[91m";
+        ConsolePrint.ENDC = "\033[0m";
+    }
+    return ConsolePrint;
+}
+var $$u = $$c();
+$units['virtual.mcu.ConsolePrint'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.event.HandlerProtocol ========
+ */
+
+var $$c = function() {
+    const HandlerProtocol = {};
+    HandlerProtocol.HandlerProtocol = HandlerProtocol
+    HandlerProtocol.$name = 'pollen.event.HandlerProtocol';
+    HandlerProtocol.pollen$used = 0;
+    HandlerProtocol.pollen__uses__ = function() {
+    }
+    HandlerProtocol.$$privateInit = function() {
+    }
+    return HandlerProtocol;
+}
+var $$u = $$c();
+$units['pollen.event.HandlerProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== CLASS pollen.event.Event ========
+ */
+
+var $$c = function() {
+    const Event = {};
+    Event.Event = Event
+    Event.$name = 'pollen.event.Event';
+    Event.pollen$used = 0;
+    Event.Newsroom = $units['pollen.event.Newsroom'];
+    Event.Event$$id = 1;
+    Event.Event = function(cn) {
+        this.$$id = Event.Event$$id++;
+        this.$$cname = cn ? cn : 'pollen_event_Event_Event__'+this.$$id+'__S';
+        this.$$tname = 'pollen_event_Event_Event';
+        this.$$uname = 'pollen.event.Event';
+        this.eventHandler = null;
+    }
+    Event.Event.prototype = new $$Struct('pollen.event.Event.Event');
+    Event.Event.prototype.$$isAggFld = {};
+    Event.Event.prototype.$$isAggFld.eventHandler = false;
+    Event.Event.prototype.new_host = function( h ) {
+        var $$text = '';
+        this.$$privateInit();
+        if (arguments.length == 1) {
+                this.eventHandler = (h);
+                $units['pollen.event.Newsroom'].registerEventOnHost();
+        }
+        this.$$hostInitLastPass();
+        return this;
+    }
+    Event.Event.prototype.setHandlerOnHost = function( h ) {
+        var $$text = '';
+        this.eventHandler = (h);
+        $units['pollen.event.Newsroom'].registerEventOnHost();
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    Event.pollen__uses__ = function() {
+        $$bind($units['pollen.event.Newsroom'], 'pollen$used', true);
+    }
+    Event.Event.prototype.$$privateInit = function() {
+    }
+    Event.Event.prototype.$$hostInitLastPass = function() {
+    }
+    return Event;
+}
+var $$u = $$c();
+$units['pollen.event.Event'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== CLASS pollen.event.EventQueue ========
+ */
+
+var $$c = function() {
+    const EventQueue = {};
+    EventQueue.EventQueue = EventQueue
+    EventQueue.$name = 'pollen.event.EventQueue';
+    EventQueue.pollen$used = 0;
+    EventQueue.Event = $units['pollen.event.Event'];
+    EventQueue.EventQueue$$id = 1;
+    EventQueue.EventQueue = function(cn) {
+        this.$$id = EventQueue.EventQueue$$id++;
+        this.$$cname = cn ? cn : 'pollen_event_EventQueue_EventQueue__'+this.$$id+'__S';
+        this.$$tname = 'pollen_event_EventQueue_EventQueue';
+        this.$$uname = 'pollen.event.EventQueue';
+        this.capacity = 1;
+        this.length = 0;
+        this.head = 0;
+        this.tail = 0;
+    }
+    EventQueue.EventQueue.prototype = new $$Struct('pollen.event.EventQueue.EventQueue');
+    EventQueue.EventQueue.prototype.$$isAggFld = {};
+    EventQueue.EventQueue.prototype.$$isAggFld.capacity = false;
+    EventQueue.EventQueue.prototype.$$isAggFld.elements = true;
+    EventQueue.EventQueue.prototype.$$isAggFld.length = false;
+    EventQueue.EventQueue.prototype.$$isAggFld.head = false;
+    EventQueue.EventQueue.prototype.$$isAggFld.tail = false;
+    EventQueue.EventQueue.prototype.new_host = function( max ) {
+        var $$text = '';
+        this.$$privateInit();
+        if (arguments.length == 1) {
+                this.length = 0;
+                this.head = 0;
+                this.tail = 0;
+                this.capacity = (max);
+                $$printf("EventQueue created with initial capacity = ", this.capacity, "\n");
+        }
+        this.$$hostInitLastPass();
+        return this;
+    }
+    EventQueue.EventQueue.prototype.setCapacityOnHost = function( capacity ) {
+        var $$text = '';
+        this.capacity = (capacity);
+        $$printf("EventQueue setting new capacity =", this.capacity, "\n");
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    EventQueue.EventQueue.prototype.getCapacityOnHost = function() {
+        var $$text = '';
+        return(  this.capacity  );
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    EventQueue.pollen__uses__ = function() {
+        $$bind($units['pollen.event.Event'], 'pollen$used', true);
+    }
+    EventQueue.EventQueue.prototype.$$privateInit = function() {
+        this.capacity = 1;
+        this.length = 0;
+        this.head = 0;
+        this.tail = 0;
+    }
+    EventQueue.EventQueue.prototype.$$hostInitLastPass = function() {
+        this.elements = new $$Array((this.capacity), function($$cn,$$idx){ return 0;}, 'pollen_event_EventQueue_elements__A', false); this.elements.$$assign((new $$Array((this.capacity), function($$cn,$$idx){ return 0;}, '__new_'+($$Array.$$idx++)+'__A', false)).$$assign([ null ]));
+    }
+    return EventQueue;
+}
+var $$u = $$c();
+$units['pollen.event.EventQueue'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE pollen.event.Newsroom ========
+ */
+
+var $$c = function() {
+    const Newsroom = {};
+    Newsroom.Newsroom = Newsroom
+    Newsroom.$name = 'pollen.event.Newsroom';
+    Newsroom.pollen$used = 0;
+    Newsroom.Event = $units['pollen.event.Event'];
+    Newsroom.EventQueue = $units['pollen.event.EventQueue'];
+    Newsroom.targetInit = new $$Ref('pollen_event_Newsroom_targetInit__I');
+    Newsroom.post = new $$Ref('pollen_event_Newsroom_post__E');
+    Newsroom.postFromInterrupt = new $$Ref('pollen_event_Newsroom_postFromInterrupt__E');
+    Newsroom.run = new $$Ref('pollen_event_Newsroom_run__E');
+    Newsroom.dispatch = new $$Ref('pollen_event_Newsroom_dispatch__I');
+    Newsroom.$$hostInit = function() {
+        var $$text = '';
+        Newsroom.events = new $units['pollen.event.EventQueue'].EventQueue('pollen_event_Newsroom_events__V'); Newsroom.events.new_host(0);
+        return $$text;
+    }
+    Newsroom.registerEventOnHost = function() {
+        var $$text = '';
+        Newsroom.events.setCapacityOnHost(Newsroom.events.getCapacityOnHost() + 1);
+        $$printf("Newsroom event registered. Event capacity = ", Newsroom.events.getCapacityOnHost(), "\n");
+        return $$text;
+    }
+    Newsroom.pollen__uses__ = function() {
+        $$bind($units['pollen.event.Event'], 'pollen$used', true);
+        $$bind($units['pollen.event.EventQueue'], 'pollen$used', true);
+    }
+    Newsroom.$$privateInit = function() {
+        Newsroom.GI = 0;
+    }
+    return Newsroom;
+}
+var $$u = $$c();
+$units['pollen.event.Newsroom'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== COMPOSITION virtual.LocalHost ========
+ */
+
+var $$c = function() {
+    const LocalHost = {};
+    LocalHost.LocalHost = LocalHost
+    LocalHost.$name = 'virtual.LocalHost';
+    LocalHost.pollen$used = 0;
+    LocalHost.GlobalInterrupts = $units['virtual.mcu.GlobalInterrupts'];
+    LocalHost.Print = $units['virtual.mcu.ConsolePrint'];
+    LocalHost.Newsroom = $units['pollen.event.Newsroom'];
+    LocalHost.$$hostInit = function() {
+        var $$text = '';
+        var $$v = 'virtual_mcu_GlobalInterrupts';
+        var $$s = $$bind($units['virtual.LocalHost'], 'Newsroom.GI', $$v);{ $$v.pollen$used = true;
+        $units['virtual.mcu.GlobalInterrupts'].pollen$used = true;}
+
+        return $$text;
+    }
+    return LocalHost;
+}
+var $$u = $$c();
+$units['virtual.LocalHost'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test73.Test_16 ========
+ */
+
+var $$c = function() {
+    const Test_16 = {};
+    Test_16.Test_16 = Test_16
+    Test_16.$name = 'test73.Test_16';
+    Test_16.pollen$used = 0;
+    Test_16.Event = $units['pollen.event.Event'];
+    Test_16.pollen__run = new $$Ref('test73_Test_16_pollen__run__E');
+    Test_16.tick1 = new $$Ref('test73_Test_16_tick1__I');
+    Test_16.tick2 = new $$Ref('test73_Test_16_tick2__I');
+    Test_16.pollen__shutdown = new $$Ref('test73_Test_16_pollen__shutdown__E');
+    Test_16.targetInit = new $$Ref('test73_Test_16_targetInit__I');
+    Test_16.$$hostInit = function() {
+        var $$text = '';
+        Test_16.e1 = new $units['pollen.event.Event'].Event('test73_Test_16_e1__V');
+        Test_16.e2 = new $units['pollen.event.Event'].Event('test73_Test_16_e2__V');
+        (Test_16.e1) = new $units['pollen.event.Event'].Event().new_host((Test_16.tick1));
+        (Test_16.e2) = new $units['pollen.event.Event'].Event().new_host((Test_16.tick2));
+        return $$text;
+    }
+    Test_16.pollen__uses__ = function() {
+        $$bind($units['virtual.mcu.GlobalInterrupts'], 'pollen$used', true);
+        $$bind($units['virtual.mcu.ConsolePrint'], 'pollen$used', true);
+        $$bind($units['pollen.event.Newsroom'], 'pollen$used', true);
+        $$bind($units['pollen.event.Event'], 'pollen$used', true);
+    }
+    Test_16.$$privateInit = function() {
+    }
+    return Test_16;
+}
+var $$u = $$c();
+$units['test73.Test_16'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test73.Test_16'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test73.Test_16 ========
+ */
+
+var $$c = function() {
+    const Test_16 = {};
+    Test_16.Test_16 = Test_16
+    Test_16.$name = 'test73.Test_16';
+    Test_16.pollen$used = 0;
+    Test_16.Event = $units['pollen.event.Event'];
+    Test_16.pollen__run = new $$Ref('test73_Test_16_pollen__run__E');
+    Test_16.tick1 = new $$Ref('test73_Test_16_tick1__I');
+    Test_16.tick2 = new $$Ref('test73_Test_16_tick2__I');
+    Test_16.pollen__shutdown = new $$Ref('test73_Test_16_pollen__shutdown__E');
+    Test_16.targetInit = new $$Ref('test73_Test_16_targetInit__I');
+    Test_16.$$hostInit = function() {
+        var $$text = '';
+        Test_16.e1 = new $units['pollen.event.Event'].Event('test73_Test_16_e1__V');
+        Test_16.e2 = new $units['pollen.event.Event'].Event('test73_Test_16_e2__V');
+        (Test_16.e1) = new $units['pollen.event.Event'].Event().new_host((Test_16.tick1));
+        (Test_16.e2) = new $units['pollen.event.Event'].Event().new_host((Test_16.tick2));
+        return $$text;
+    }
+    Test_16.pollen__uses__ = function() {
+        $$bind($units['virtual.mcu.GlobalInterrupts'], 'pollen$used', true);
+        $$bind($units['virtual.mcu.ConsolePrint'], 'pollen$used', true);
+        $$bind($units['pollen.event.Newsroom'], 'pollen$used', true);
+        $$bind($units['pollen.event.Event'], 'pollen$used', true);
+    }
+    Test_16.$$privateInit = function() {
+    }
+    return Test_16;
+}
+var $$u = $$c();
+$units['test73.Test_16'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== COMPOSITION virtual.LocalHost ========
+ */
+
+var $$c = function() {
+    const LocalHost = {};
+    LocalHost.LocalHost = LocalHost
+    LocalHost.$name = 'virtual.LocalHost';
+    LocalHost.pollen$used = 0;
+    LocalHost.GlobalInterrupts = $units['virtual.mcu.GlobalInterrupts'];
+    LocalHost.Print = $units['virtual.mcu.ConsolePrint'];
+    LocalHost.Newsroom = $units['pollen.event.Newsroom'];
+    LocalHost.$$hostInit = function() {
+        var $$text = '';
+        var $$v = 'virtual_mcu_GlobalInterrupts';
+        var $$s = $$bind($units['virtual.LocalHost'], 'Newsroom.GI', $$v);{ $$v.pollen$used = true;
+        $units['virtual.mcu.GlobalInterrupts'].pollen$used = true;}
+
+        return $$text;
+    }
+    return LocalHost;
+}
+var $$u = $$c();
+$units['virtual.LocalHost'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE virtual.mcu.ConsolePrint ========
+ */
+
+var $$c = function() {
+    const ConsolePrint = {};
+    ConsolePrint.ConsolePrint = ConsolePrint
+    ConsolePrint.$name = 'virtual.mcu.ConsolePrint';
+    ConsolePrint.pollen$used = 0;
+    ConsolePrint.printBool = new $$Ref('virtual_mcu_ConsolePrint_printBool__E');
+    ConsolePrint.printReal = new $$Ref('virtual_mcu_ConsolePrint_printReal__E');
+    ConsolePrint.printInt = new $$Ref('virtual_mcu_ConsolePrint_printInt__E');
+    ConsolePrint.printUint = new $$Ref('virtual_mcu_ConsolePrint_printUint__E');
+    ConsolePrint.printStr = new $$Ref('virtual_mcu_ConsolePrint_printStr__E');
+    ConsolePrint.targetInit = new $$Ref('virtual_mcu_ConsolePrint_targetInit__I');
+    ConsolePrint.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    ConsolePrint.pollen__uses__ = function() {
+    }
+    ConsolePrint.$$privateInit = function() {
+        ConsolePrint.HEADER = "\033[95m";
+        ConsolePrint.OKBLUE = "\033[94m";
+        ConsolePrint.OKGREEN = "\033[92m";
+        ConsolePrint.WARNING = "\033[93m";
+        ConsolePrint.FAIL = "\033[91m";
+        ConsolePrint.ENDC = "\033[0m";
+    }
+    return ConsolePrint;
+}
+var $$u = $$c();
+$units['virtual.mcu.ConsolePrint'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE virtual.mcu.GlobalInterrupts ========
+ */
+
+var $$c = function() {
+    const GlobalInterrupts = {};
+    GlobalInterrupts.GlobalInterrupts = GlobalInterrupts
+    GlobalInterrupts.$name = 'virtual.mcu.GlobalInterrupts';
+    GlobalInterrupts.pollen$used = 0;
+    GlobalInterrupts.enable = new $$Ref('virtual_mcu_GlobalInterrupts_enable__E');
+    GlobalInterrupts.disable = new $$Ref('virtual_mcu_GlobalInterrupts_disable__E');
+    GlobalInterrupts.targetInit = new $$Ref('virtual_mcu_GlobalInterrupts_targetInit__I');
+    GlobalInterrupts.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    GlobalInterrupts.pollen__uses__ = function() {
+    }
+    GlobalInterrupts.$$privateInit = function() {
+    }
+    return GlobalInterrupts;
+}
+var $$u = $$c();
+$units['virtual.mcu.GlobalInterrupts'] = $$u;
+$units.push($$u);
+

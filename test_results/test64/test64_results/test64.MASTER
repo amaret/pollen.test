@@ -1,0 +1,1016 @@
+pollen version 0.2.137
+pollen version 0.2.137
+go to TestFuncRefPass
+Now run executeable
+YES!!
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test61_PrintImpl__s__fileName[] = "PrintImpl.p";
+static const char test61_PrintImpl__s__0[] = "PrintImpl";
+
+/*
+ * ======== code injections ========
+ */
+
+ #include <stdio.h> 
+
+/*
+ * ======== function definitions ========
+ */
+
+void test61_PrintImpl_printUint__E( uint32 u ) {
+     printf("%u", (unsigned int)u) ;
+
+}
+
+void test61_PrintImpl_printInt__E( int32 i ) {
+     printf("%i", (int)i) ;
+
+}
+
+void test61_PrintImpl_printReal__E( float f ) {
+     printf("%f", (float)f) ;
+
+}
+
+void test61_PrintImpl_printBool__E( bool b ) {
+    if ((b)) {
+         printf("%s", "true") ;
+
+    }
+    else {
+         printf("%s", "false") ;
+
+    }
+}
+
+void test61_PrintImpl_targetInit__I() {
+}
+
+void test61_PrintImpl_printStr__E( string s ) {
+     printf("%s", s) ;
+
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test64_TestFuncRefPass_pollen__reset__E();
+void test64_TestFuncRefPass_pollen__ready__E();
+void test64_TestFuncRefPass_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test61_PrintImpl_ test61_PrintImpl;
+
+/*
+ * ======== struct module definition (unit PrintImpl) ========
+ */
+
+struct test61_PrintImpl_ {
+};
+typedef struct test61_PrintImpl_ test61_PrintImpl_;
+
+/*
+ * ======== function members (unit PrintImpl) ========
+ */
+
+extern void test61_PrintImpl_printUint__E( uint32 u );
+extern void test61_PrintImpl_printInt__E( int32 i );
+extern void test61_PrintImpl_printReal__E( float f );
+extern void test61_PrintImpl_printBool__E( bool b );
+extern void test61_PrintImpl_targetInit__I();
+extern void test61_PrintImpl_printStr__E( string s );
+
+/*
+ * ======== data members (unit PrintImpl) ========
+ */
+
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test64_FuncRefClass__s__fileName[] = "FuncRefClass.p";
+static const char test64_FuncRefClass__s__0[] = "FuncRefClass";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test64_FuncRefClass_FuncRefClass_test__E( test64_FuncRefClass_ this ) {
+    this->myHandler();
+}
+
+test64_FuncRefClass_ test64_FuncRefClass_FuncRefClass_new___E( test64_FuncRefClass_ this ) {
+    return this;
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test64_TestFuncRefPass_pollen__reset__E();
+void test64_TestFuncRefPass_pollen__ready__E();
+void test64_TestFuncRefPass_pollen__shutdown__E(uint8 i);
+
+/*
+ * ======== class definition (unit FuncRefClass) ========
+ */
+
+typedef void (*test64_FuncRefClass_HP_handler)();
+struct test64_FuncRefClass {
+    test64_FuncRefClass_HP_handler myHandler;
+};
+typedef struct test64_FuncRefClass test64_FuncRefClass;
+typedef struct test64_FuncRefClass* test64_FuncRefClass_;
+
+/*
+ * ======== function members (unit FuncRefClass) ========
+ */
+
+extern void test64_FuncRefClass_FuncRefClass_test__E( test64_FuncRefClass_ this );
+extern test64_FuncRefClass_ test64_FuncRefClass_FuncRefClass_new___E( test64_FuncRefClass_ this );
+
+#include <std.h>
+
+/*
+ * ======== protocol member test64.TestFuncRefPass.pollenPrintProxy delegates test61_PrintImpl ========
+ */
+
+#ifndef test61_PrintImpl__M
+#define test61_PrintImpl__M
+#include "../../test61/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== unit headers ========
+ */
+
+#ifndef test64_FuncRefClass__M
+#define test64_FuncRefClass__M
+#include "../../test64/FuncRefClass/FuncRefClass.h"
+#endif
+
+#ifndef test61_PrintImpl__M
+#define test61_PrintImpl__M
+#include "../../test61/PrintImpl/PrintImpl.h"
+#endif
+
+#ifndef test64_TestFuncRefPass__M
+#define test64_TestFuncRefPass__M
+#include "../../test64/TestFuncRefPass/TestFuncRefPass.h"
+#endif
+
+/*
+ * ======== target data definitions (unit PrintImpl) ========
+ */
+
+struct test61_PrintImpl_ test61_PrintImpl = { /* module data */
+};
+
+/*
+ * ======== host data definitions (unit TestFuncRefPass) ========
+ */
+
+test64_TestFuncRefPass_f__TYPE test64_TestFuncRefPass_f__V = /* test64.FuncRefClass object init */
+{
+    test64_TestFuncRefPass_foo__I,    /* myHandler */
+};
+
+/*
+ * ======== target data definitions (unit TestFuncRefPass) ========
+ */
+
+struct test64_TestFuncRefPass_ test64_TestFuncRefPass = { /* module data */
+    null,                    /* myHandler */
+    &test61_PrintImpl,    /* pollenPrintProxy */
+};
+
+/*
+ * ======== pollen print ========
+ */
+
+void test64_TestFuncRefPass_pollen__printBool(bool b) {
+    test61_PrintImpl_printBool__E(b);
+}
+void test64_TestFuncRefPass_pollen__printInt(int32 i) {
+    test61_PrintImpl_printInt__E(i);
+}
+void test64_TestFuncRefPass_pollen__printReal(float f) {
+    test61_PrintImpl_printReal__E(f);
+}
+void test64_TestFuncRefPass_pollen__printUint(uint32 u) {
+    test61_PrintImpl_printUint__E(u);
+}
+void test64_TestFuncRefPass_pollen__printStr(string s) {
+    test61_PrintImpl_printStr__E(s);
+}
+
+/*
+ * ======== module functions ========
+ */
+
+#include "../../test64/FuncRefClass/FuncRefClass.c"
+#include "../../test61/PrintImpl/PrintImpl.c"
+#include "../../test64/TestFuncRefPass/TestFuncRefPass.c"
+
+/*
+ * ======== pollen.reset() ========
+ */
+
+void test64_TestFuncRefPass_pollen__reset__E() {
+    /* empty default */
+}
+
+/*
+ * ======== pollen.ready() ========
+ */
+
+void test64_TestFuncRefPass_pollen__ready__E() {
+    /* empty default */
+}
+
+/*
+ * ======== main() ========
+ */
+
+int main() {
+    test64_TestFuncRefPass_pollen__reset__E();
+    test61_PrintImpl_targetInit__I();
+    test64_TestFuncRefPass_targetInit__I();
+    test64_TestFuncRefPass_pollen__ready__E();
+    test64_TestFuncRefPass_pollen__run__E();
+    test64_TestFuncRefPass_pollen__shutdown__E(0);
+}
+
+/*
+ * ======== string literals ========
+ */
+
+static const char test64_TestFuncRefPass__s__fileName[] = "TestFuncRefPass.p";
+static const char test64_TestFuncRefPass__s__1[] = "TestFuncRefPass";
+static const char test64_TestFuncRefPass__s__0[] = "YES!!\n";
+
+/*
+ * ======== function definitions ========
+ */
+
+void test64_TestFuncRefPass_pollen__run__E() {
+    (test64_TestFuncRefPass_myHandler__V) = (test64_TestFuncRefPass_foo__I);
+    test64_FuncRefClass_FuncRefClass_test__E(&(test64_TestFuncRefPass_f__V));
+}
+
+void test64_TestFuncRefPass_foo__I() {
+    test64_TestFuncRefPass_pollen__printStr((string)test64_TestFuncRefPass__s__0);
+}
+
+void test64_TestFuncRefPass_pollen__shutdown__E( uint8 id ) {
+}
+
+void test64_TestFuncRefPass_targetInit__I() {
+}
+
+
+/*
+ * ======== imports ========
+ */
+
+#ifndef test64_FuncRefClass__M
+#define test64_FuncRefClass__M
+#include "../../test64/FuncRefClass/FuncRefClass.h"
+#endif
+
+#ifndef test61_PrintImpl__M
+#define test61_PrintImpl__M
+#include "../../test61/PrintImpl/PrintImpl.h"
+#endif
+
+/*
+ * ======== forward declarations for intrinsics ========
+ */
+
+void test64_TestFuncRefPass_pollen__reset__E();
+void test64_TestFuncRefPass_pollen__ready__E();
+
+/*
+ * ======== extern definition ========
+ */
+
+extern struct test64_TestFuncRefPass_ test64_TestFuncRefPass;
+
+/*
+ * ======== struct module definition (unit TestFuncRefPass) ========
+ */
+
+typedef void (*test64_TestFuncRefPass_HP_handler)();
+struct test64_FuncRefClass;
+struct test61_PrintImpl_;
+struct test64_TestFuncRefPass_ {
+    test64_TestFuncRefPass_HP_handler myHandler;
+    struct test61_PrintImpl_ *pollenPrintProxy;
+};
+typedef struct test64_TestFuncRefPass_ test64_TestFuncRefPass_;
+
+/*
+ * ======== host variables (unit TestFuncRefPass) ========
+ */
+
+typedef struct test64_FuncRefClass test64_TestFuncRefPass_f__TYPE;
+extern test64_TestFuncRefPass_f__TYPE test64_TestFuncRefPass_f__V;
+
+/*
+ * ======== function members (unit TestFuncRefPass) ========
+ */
+
+extern void test64_TestFuncRefPass_pollen__run__E();
+extern void test64_TestFuncRefPass_foo__I();
+extern void test64_TestFuncRefPass_pollen__shutdown__E( uint8 id );
+extern void test64_TestFuncRefPass_targetInit__I();
+
+/*
+ * ======== data members (unit TestFuncRefPass) ========
+ */
+
+#define test64_TestFuncRefPass_myHandler__V test64_TestFuncRefPass.myHandler
+#define test64_TestFuncRefPass_f__V test64_TestFuncRefPass_f
+#define test64_TestFuncRefPass_pollenPrintProxy__V test64_TestFuncRefPass.pollenPrintProxy
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== MODULE test61.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test61.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test61_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test61_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test61_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test61_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test61_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test61_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test61.PrintImpl'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== CLASS test64.FuncRefClass ========
+ */
+
+var $$c = function() {
+    const FuncRefClass = {};
+    FuncRefClass.FuncRefClass = FuncRefClass
+    FuncRefClass.$name = 'test64.FuncRefClass';
+    FuncRefClass.pollen$used = 0;
+    FuncRefClass.FuncRefClass$$id = 1;
+    FuncRefClass.FuncRefClass = function(cn) {
+        this.$$id = FuncRefClass.FuncRefClass$$id++;
+        this.$$cname = cn ? cn : 'test64_FuncRefClass_FuncRefClass__'+this.$$id+'__S';
+        this.$$tname = 'test64_FuncRefClass_FuncRefClass';
+        this.$$uname = 'test64.FuncRefClass';
+        this.myHandler = 0;
+    }
+    FuncRefClass.FuncRefClass.prototype = new $$Struct('test64.FuncRefClass.FuncRefClass');
+    FuncRefClass.FuncRefClass.prototype.$$isAggFld = {};
+    FuncRefClass.FuncRefClass.prototype.$$isAggFld.myHandler = false;
+    FuncRefClass.FuncRefClass.prototype.new_host = function( h ) {
+        var $$text = '';
+        this.$$privateInit();
+        if (arguments.length == 1) {
+                this.myHandler = (h);
+        }
+        this.$$hostInitLastPass();
+        return this;
+    }
+    FuncRefClass.FuncRefClass.prototype.setHandlerOnHost = function( h ) {
+        var $$text = '';
+        this.myHandler = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    FuncRefClass.pollen__uses__ = function() {
+    }
+    FuncRefClass.FuncRefClass.prototype.$$privateInit = function() {
+    }
+    FuncRefClass.FuncRefClass.prototype.$$hostInitLastPass = function() {
+    }
+    return FuncRefClass;
+}
+var $$u = $$c();
+$units['test64.FuncRefClass'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== test64.HandlerProtocol ========
+ */
+
+var $$c = function() {
+    const HandlerProtocol = {};
+    HandlerProtocol.HandlerProtocol = HandlerProtocol
+    HandlerProtocol.$name = 'test64.HandlerProtocol';
+    HandlerProtocol.pollen$used = 0;
+    HandlerProtocol.pollen__uses__ = function() {
+    }
+    HandlerProtocol.$$privateInit = function() {
+    }
+    return HandlerProtocol;
+}
+var $$u = $$c();
+$units['test64.HandlerProtocol'] = $$u;
+$units.push($$u);
+
+
+/*
+ * ======== prologue ========
+ */
+
+function $$alignof() {
+	return arguments.length > 0 ? arguments[0][1] : 0
+}
+
+function $$printf() {
+    var out = Packages.com.amaret.pollen.parser.ParseUnit.current().getOutputStream();
+
+    var res = [];
+    var result = "";
+
+    for (var i = 0; i < arguments.length; i++) {
+        var a = arguments[i]
+        if (typeof a == 'number') {
+            a = Math.round(a) == a ? java.lang.Long(a) : java.lang.Double(a)
+        }
+        else if (typeof a == 'object' && a != null) {
+            a = a.toString()
+        }
+	result += a
+    }
+    res.push(result);
+    out.printf.apply(out, res)
+}
+function debug_line(where, obj) {
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+}
+function debug(where, obj) {
+        
+        //$$printf("DBG:" + where + " for unit " + obj.$name + "\n")
+
+                // old:
+        //var names = "";
+        //for (var name in obj) {
+        //      names += "   DBG:" + name + ": ";
+        //      names += obj[name] + '\n';
+        //
+        //$$printf(names)
+}
+
+// obj is the unit
+// sel is the field in unit being assigned to
+// val is the assigned value
+function $$bind( obj, sel, val ) {
+
+    debug_line("entering $$bind ", obj)
+
+    if (!('$$bound' in obj)) {
+        obj.$$bound = {};
+    }
+    if (!obj.$$bound[sel]) {
+        obj[sel] = val;
+        obj.$$bound[sel] = true;
+        debug_line("...in $$bind, set " + sel + " to " + val, obj)
+
+    }
+    debug_line("exiting $$bind ", obj)
+
+    return obj[sel];
+}
+
+function $$sizeof() {
+	var a0 = -1
+	var sz = 0
+	var d
+	for (var i = 0; i < arguments.length; i++) {
+		var ti = arguments[i]
+		if (a0 == -1) {
+			a0 = ti[1];
+		}
+        if ((d = sz % ti[1]) != 0) {
+            sz += ti[1] - d;
+        }
+        sz += ti[0];
+	}
+    if ((d = sz % a0) != 0) {
+        sz += a0 - d;
+    }
+    return sz
+}
+
+function $$Array( dim, baseD, cname, aggFlg ) {
+    this.$$baseD = baseD;
+    this.$$category = '$$Array';
+    this.$$dim = dim
+    this.$$elems = [];
+    this.$$cname = cname
+    this.$$aggFlg = aggFlg
+    if (dim > 0) {
+        for (var i = 0; i < dim; i++) {
+            this.$$elems[i] = this.$$baseD(this.$$cname, i);
+        }
+    }
+    this.$$len = this.$$elems.length
+    this.$$virgin = (this.$$len == 0)
+}
+
+$$Array.prototype.$$assign = function( arr ) {
+    var src = arr instanceof Array ? arr : arr instanceof $$Array ? arr.$$elems : [];
+    var dst = this.$$elems;
+    this.length = src.length;
+    this.extend();
+    for (var i = 0; i < this.$$len; i++) {
+        if (i == src.length) break;
+        if (this.$$aggFlg) {
+            dst[i].$$assign(src[i]);
+        }
+        else {
+            dst[i] = src[i];
+        }
+    }
+    return this;
+}
+
+$$Array.prototype.extend = function() {
+    if (this.$$dim < 0 && this.$$len > this.$$elems.length) {
+        for (var k = this.$$elems.length; k < this.$$len; k++) {
+            this.$$elems[k] = this.$$baseD(this.$$cname, k);
+        }
+    }
+    this.$$virgin = false;
+}
+    
+
+$$Array.prototype.get = function( idx ) {
+    this.extend()
+    return this.$$elems[idx];
+}
+
+$$Array.prototype.set = function ( idx, val ) {
+    if (idx < 0 || idx >= this.$$len) {
+        return undefined;
+    }
+    if (this.$$virgin) {
+        this.extend();
+    }
+    return (this.$$elems[idx] = val);
+}
+
+$$Array.prototype.toString = function() {
+    if (this.$$virgin && this.$$len > 0) {
+        return '[...' + this.$$len + ']';
+    }
+    var res = '[';
+    var sep = '';
+    for (var i = 0; i < this.$$len; i++) {
+        res += sep + this.$$elems[i].toString();
+        sep = ",";
+    }
+    return res + ']';
+}
+
+$$Array.prototype.__defineGetter__('length', function() {
+    return this.$$len;
+})
+
+$$Array.prototype.__defineSetter__('length', function( len ) {
+    if (this.$$dim < 0 && len > this.$$len) {
+        this.$$len = len;
+    }
+    return this.$$len;
+})
+
+$$Array.$$idx = 1
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// used for functions
+function $$Ref( t ) {
+    this.$$category = '$$Ref';
+    this.$$text = t;
+}
+
+function $$Struct( qn ) {
+    this.$$category = '$$Struct';
+    this.$$qname = qn;
+}
+
+$$Struct.prototype.$$assign = function( str ) {
+    for (var fld in this) {
+        if (str[fld] === undefined) {
+            continue;
+        }
+        var isAgg = this.$$isAggFld[fld];
+        if (isAgg === false) {
+            this[fld] = str[fld];
+        }
+        else if (isAgg === true) {
+            this[fld].$$assign(str[fld]);
+        }
+    }
+    return this
+}
+
+$$Struct.prototype.toString = function() {
+    return "struct " + this.$$qname;
+}
+
+// legacy, unused. 
+// In Em, triggered by '&' Em operator.
+$$Ref.prototype.toString = function() {
+    return "&" + this.$$text;
+}
+
+const $units = [];
+
+/*
+ * ======== pollen.hardware.SleepWakeProtocol ========
+ */
+
+var $$c = function() {
+    const SleepWakeProtocol = {};
+    SleepWakeProtocol.SleepWakeProtocol = SleepWakeProtocol
+    SleepWakeProtocol.$name = 'pollen.hardware.SleepWakeProtocol';
+    SleepWakeProtocol.pollen$used = 0;
+    SleepWakeProtocol.$$privateInit = function() {
+    }
+    return SleepWakeProtocol;
+}
+var $$u = $$c();
+$units['pollen.hardware.SleepWakeProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.utils.DynamicMemoryProtocol ========
+ */
+
+var $$c = function() {
+    const DynamicMemoryProtocol = {};
+    DynamicMemoryProtocol.DynamicMemoryProtocol = DynamicMemoryProtocol
+    DynamicMemoryProtocol.$name = 'pollen.utils.DynamicMemoryProtocol';
+    DynamicMemoryProtocol.pollen$used = 0;
+    DynamicMemoryProtocol.$$privateInit = function() {
+    }
+    return DynamicMemoryProtocol;
+}
+var $$u = $$c();
+$units['pollen.utils.DynamicMemoryProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== test64.HandlerProtocol ========
+ */
+
+var $$c = function() {
+    const HandlerProtocol = {};
+    HandlerProtocol.HandlerProtocol = HandlerProtocol
+    HandlerProtocol.$name = 'test64.HandlerProtocol';
+    HandlerProtocol.pollen$used = 0;
+    HandlerProtocol.pollen__uses__ = function() {
+    }
+    HandlerProtocol.$$privateInit = function() {
+    }
+    return HandlerProtocol;
+}
+var $$u = $$c();
+$units['test64.HandlerProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== CLASS test64.FuncRefClass ========
+ */
+
+var $$c = function() {
+    const FuncRefClass = {};
+    FuncRefClass.FuncRefClass = FuncRefClass
+    FuncRefClass.$name = 'test64.FuncRefClass';
+    FuncRefClass.pollen$used = 0;
+    FuncRefClass.FuncRefClass$$id = 1;
+    FuncRefClass.FuncRefClass = function(cn) {
+        this.$$id = FuncRefClass.FuncRefClass$$id++;
+        this.$$cname = cn ? cn : 'test64_FuncRefClass_FuncRefClass__'+this.$$id+'__S';
+        this.$$tname = 'test64_FuncRefClass_FuncRefClass';
+        this.$$uname = 'test64.FuncRefClass';
+        this.myHandler = 0;
+    }
+    FuncRefClass.FuncRefClass.prototype = new $$Struct('test64.FuncRefClass.FuncRefClass');
+    FuncRefClass.FuncRefClass.prototype.$$isAggFld = {};
+    FuncRefClass.FuncRefClass.prototype.$$isAggFld.myHandler = false;
+    FuncRefClass.FuncRefClass.prototype.new_host = function( h ) {
+        var $$text = '';
+        this.$$privateInit();
+        if (arguments.length == 1) {
+                this.myHandler = (h);
+        }
+        this.$$hostInitLastPass();
+        return this;
+    }
+    FuncRefClass.FuncRefClass.prototype.setHandlerOnHost = function( h ) {
+        var $$text = '';
+        this.myHandler = (h);
+        this.$$hostInitLastPass();
+        return $$text;
+    }
+    FuncRefClass.pollen__uses__ = function() {
+    }
+    FuncRefClass.FuncRefClass.prototype.$$privateInit = function() {
+    }
+    FuncRefClass.FuncRefClass.prototype.$$hostInitLastPass = function() {
+    }
+    return FuncRefClass;
+}
+var $$u = $$c();
+$units['test64.FuncRefClass'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== pollen.output.PrintProtocol ========
+ */
+
+var $$c = function() {
+    const PrintProtocol = {};
+    PrintProtocol.PrintProtocol = PrintProtocol
+    PrintProtocol.$name = 'pollen.output.PrintProtocol';
+    PrintProtocol.pollen$used = 0;
+    PrintProtocol.$$privateInit = function() {
+    }
+    return PrintProtocol;
+}
+var $$u = $$c();
+$units['pollen.output.PrintProtocol'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test61.PrintImpl ========
+ */
+
+var $$c = function() {
+    const PrintImpl = {};
+    PrintImpl.PrintImpl = PrintImpl
+    PrintImpl.$name = 'test61.PrintImpl';
+    PrintImpl.pollen$used = 0;
+    PrintImpl.printBool = new $$Ref('test61_PrintImpl_printBool__E');
+    PrintImpl.printInt = new $$Ref('test61_PrintImpl_printInt__E');
+    PrintImpl.printReal = new $$Ref('test61_PrintImpl_printReal__E');
+    PrintImpl.printUint = new $$Ref('test61_PrintImpl_printUint__E');
+    PrintImpl.printStr = new $$Ref('test61_PrintImpl_printStr__E');
+    PrintImpl.targetInit = new $$Ref('test61_PrintImpl_targetInit__I');
+    PrintImpl.$$hostInit = function() {
+        var $$text = '';
+        return $$text;
+    }
+    PrintImpl.pollen__uses__ = function() {
+    }
+    PrintImpl.$$privateInit = function() {
+    }
+    return PrintImpl;
+}
+var $$u = $$c();
+$units['test61.PrintImpl'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== MODULE test64.TestFuncRefPass ========
+ */
+
+var $$c = function() {
+    const TestFuncRefPass = {};
+    TestFuncRefPass.TestFuncRefPass = TestFuncRefPass
+    TestFuncRefPass.$name = 'test64.TestFuncRefPass';
+    TestFuncRefPass.pollen$used = 0;
+    TestFuncRefPass.FuncRefClass = $units['test64.FuncRefClass'];
+    TestFuncRefPass.PrintImpl = $units['test61.PrintImpl'];
+    TestFuncRefPass.pollen__run = new $$Ref('test64_TestFuncRefPass_pollen__run__E');
+    TestFuncRefPass.foo = new $$Ref('test64_TestFuncRefPass_foo__I');
+    TestFuncRefPass.pollen__shutdown = new $$Ref('test64_TestFuncRefPass_pollen__shutdown__E');
+    TestFuncRefPass.targetInit = new $$Ref('test64_TestFuncRefPass_targetInit__I');
+    TestFuncRefPass.$$hostInit = function() {
+        var $$text = '';
+        TestFuncRefPass.f = new $units['test64.FuncRefClass'].FuncRefClass('test64_TestFuncRefPass_f__V'); TestFuncRefPass.f.new_host((TestFuncRefPass.foo));
+        return $$text;
+    }
+    TestFuncRefPass.pollen__uses__ = function() {
+        $$bind($units['test64.FuncRefClass'], 'pollen$used', true);
+        $$bind($units['test61.PrintImpl'], 'pollen$used', true);
+    }
+    TestFuncRefPass.$$privateInit = function() {
+var $$v = 'test61_PrintImpl';
+        var $$s = $$bind($units['test64.TestFuncRefPass'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test61.PrintImpl'].pollen$used = true;}
+
+    }
+    return TestFuncRefPass;
+}
+var $$u = $$c();
+$units['test64.TestFuncRefPass'] = $$u;
+$units.push($$u);
+
+/*
+ * ======== epilogue ========
+ */
+
+$units['test64.TestFuncRefPass'].pollen$used = true;
+
+// note that the first loop runs twice. This was needed
+// because a later occurring module used an earlier occurring
+// module. Complex code may require more work to resolve 
+// uses: could iterate the array until there is a pass where
+// no new uses are discovered.
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ ", u)
+        u.pollen__uses__();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if (u.pollen$used && 'pollen__uses__' in u) {
+        debug_line("  pollen__uses__ pass 2", u)
+        u.pollen__uses__();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$privateInit' in u) {
+        debug_line("  privateInit ", u)
+        u.$$privateInit();
+    }
+}
+
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('pollen__presets__' in u) {
+        debug_line("  pollen__presets ", u)
+        u.pollen__presets__();
+    }
+}
+// note that the order below calls main_unit hostInit last
+// this causes the more top level composition initializers to 
+// run last, thus taking precedence.
+for (var i = 0; i < $units.length;  i++) {
+//for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInit' in u) {
+        debug_line("  HOST INIT ", u)
+        u.$$hostInit();
+    }
+}
+for (var i = $units.length - 1; i >= 0; i--) {
+    var u = $units[i];
+    if ('$$hostInitLastPass' in u) {
+        debug_line("  HOST INIT LAST PASS ", u)
+        u.$$hostInitLastPass();
+    }
+}
+
+/*
+ * ======== MODULE test64.TestFuncRefPass ========
+ */
+
+var $$c = function() {
+    const TestFuncRefPass = {};
+    TestFuncRefPass.TestFuncRefPass = TestFuncRefPass
+    TestFuncRefPass.$name = 'test64.TestFuncRefPass';
+    TestFuncRefPass.pollen$used = 0;
+    TestFuncRefPass.FuncRefClass = $units['test64.FuncRefClass'];
+    TestFuncRefPass.PrintImpl = $units['test61.PrintImpl'];
+    TestFuncRefPass.pollen__run = new $$Ref('test64_TestFuncRefPass_pollen__run__E');
+    TestFuncRefPass.foo = new $$Ref('test64_TestFuncRefPass_foo__I');
+    TestFuncRefPass.pollen__shutdown = new $$Ref('test64_TestFuncRefPass_pollen__shutdown__E');
+    TestFuncRefPass.targetInit = new $$Ref('test64_TestFuncRefPass_targetInit__I');
+    TestFuncRefPass.$$hostInit = function() {
+        var $$text = '';
+        TestFuncRefPass.f = new $units['test64.FuncRefClass'].FuncRefClass('test64_TestFuncRefPass_f__V'); TestFuncRefPass.f.new_host((TestFuncRefPass.foo));
+        return $$text;
+    }
+    TestFuncRefPass.pollen__uses__ = function() {
+        $$bind($units['test64.FuncRefClass'], 'pollen$used', true);
+        $$bind($units['test61.PrintImpl'], 'pollen$used', true);
+    }
+    TestFuncRefPass.$$privateInit = function() {
+var $$v = 'test61_PrintImpl';
+        var $$s = $$bind($units['test64.TestFuncRefPass'], 'pollenPrintProxy', $$v);{ $$v.pollen$used = true;
+        $units['test61.PrintImpl'].pollen$used = true;}
+
+    }
+    return TestFuncRefPass;
+}
+var $$u = $$c();
+$units['test64.TestFuncRefPass'] = $$u;
+$units.push($$u);
+
