@@ -1,0 +1,324 @@
+Have a wakeup and shutdown pattern! 
+
+- Color walk, random sparkles, twinkly (like fire, but twinkly)
+
+===============================================================================
+
+Three animations.
+-----------------
+
+Turn on
+Play Device On Animation
+
+Play First Animation
+
+  if [double click]
+    enter monochrome animation
+
+  if [one click]
+
+Play Second Animation
+
+  if [double click]
+    enter monochrome animation
+
+  if [one click]
+
+Play Third Animation
+
+  if [double click]
+    enter monochrome animation
+
+  if [one click]
+
+Play Device Off Animation
+Turn off
+
+===============================================================================
+
+
+Single click transitions between animations,  and sleep state. 
+Double click during any animation turns on monochrome mode
+  - user selects color
+  - user selects brightness
+  - animation runs in selected color with variations in brightness (up to selected brightness0
+
+
+
+
+- Python templates for email reporting
+
+- cursor scroller
+  - I want something that mimics a ball rolling on a surface, 
+    it takes some momentum to get it moving
+    it accelerates
+    it decelerates 
+
+
+
+We need to know direction
+  Forward / Back
+  Right / Left
+
+  Velocity - rate of change of numbers (derivitive)
+  Acceleration - derivitive of velocity
+
+
+  We need to have:
+    - an acceleration curve ()
+      from where we start to the end of where we're going (current position to end of current direction)
+
+      call function with: current position, start position, ending position
+      returns 
+
+    the path of the led (I think hsv and we just move through h space)
+
+
+
+
+    while button is pressed: 
+
+      save current color position
+      save current brightness position
+      update brightness 
+      update position
+
+
+  First attempt:
+    Linear walk through the numbers, 
+      Use a timer to increment the 'cursor' in the given direction the user is moving
+
+    at a frequency of 10x / second: 
+      if accel.direction == forward:
+        increment brightness position
+      elif accel.direction == backward:
+        decrement brightness position
+      elif accel.direction == right:
+        increment color position
+      elif accel.direction == right:
+        decrement color position
+
+
+
+  Second attempt:
+    Accelerated walk through numbers
+      Use accelerometer information to slide through the colors with acceleration and deceleration 
+
+      get value of accelerometer
+      if value is changed significantly (say +/- 5)
+        stop timer
+        set new timer tick frequency 
+        start timer
+
+      at a timer frequency: 
+        if accel.direction == forward:
+          increment brightness position
+        elif accel.direction == backward:
+          decrement brightness position
+        elif accel.direction == right:
+          increment color position
+        elif accel.direction == right:
+          decrement color position
+
+
+
+--------------------
+
+Two options - 
+
+1) we have a read and write function, and by setting additional flags you can interact with lower level aspects of the protocol
+
+2) we have a transfer function that allows you to transfer multiple messages at a time
+  - the transfer function could control the flags from the first method and just be a simplification. 
+
+
+
+
+
+
+
+
+I2C Notes
+
+WE ARE ONLY SUPPORTING SINGLE MASTER MODE FOR STARTERS
+  - Not sure about support for 10-bit addressing. (Possibly)
+
+I2C Driver
+-----------
+
+The I2C driver has three components to it. Two are portable and reusable on any hardware that has an I2C interface. The third is platform specific and provides the lower level functions that the rest of the driver requires. 
+
+I2C devices communicate with each other using I2C Messages. The message encapsulates the destination address of the message, read and write data buffers and the state of any ongoing I2C transfer / transaction. 
+
+Users of the driver should only need to utilize I2C messages which are managed by the underlying I2C manager module. The I2C manager module manages the I2C interface, its state, and is ultimately responsible for doing managing transfers. 
+
+The lowest level part of the driver are hardware specific functions that interface to the hardware.
+
+
+I2C Manager
+-----------
+
+Members: 
+  - bus frequency
+  - clock ratio
+  - enabled
+  - master / slave
+
+
+
+I2C Message
+------------
+
+  - address (destination / slave address if in master mode, self address if in slave mode )
+  - flags
+  - references to incoming and outgoing data buffers
+  - length of data in incoming / outgoing buffers
+
+
+
+---------------------
+
+      // Single Byte Write
+      //  ST ADDR+W REG DATA SP
+      //
+      // Multi Byte Write
+      // ST ADDR+W REG DATA [AK] DATA .. [AK] SP
+
+      // Single Byte Read
+      //   ST ADDR+W REG SR ADDR+R DATA NAK SP
+      //
+      //  MultiByte Read
+      //   ST ADDR+W REG SR ADDR+R DATA AK ... AK DATA NAK SP
+
+
+
+
+
+
+
+Each interface has a structure that holds the state of an ongoing transfer. This struct is used over and over.
+The struct has: 
+  - TransferState
+  - TransferResult
+  - offset into the currently used buffer
+  - index of the current buffer to use (incoming or outgoing) (something like 0, or 1)
+  - a reference to the message 
+
+
+
+
+
+
+
+
+Functions available for I2C from linux kernel: 
+int i2c_master_send(const struct i2c_client *client, const char *buf, int count);
+int i2c_master_recv(const struct i2c_client *client, char *buf, int count);
+
+int i2c_transfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num);
+int __i2c_transfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num);    /* Unlocked flavor */
+
+For SMBus the following functions exist: 
+read_byte
+write_byte
+read_byte_data
+write_byte_data
+read_word_data
+write_word_data
+i2c_smbus_read_block_data
+i2c_smbus_write_block_data
+i2c_smbus_read_i2c_block_data
+i2c_smbus_write_i2c_block_data
+i2c_smbus_xfer(Address, Flags, Read/Write, Command, )
+
+
+What I am calling the 'provider' the linux kernel calls 'algorithm' i.e. a specific implementation of the device specific functions
+
+
+
+// Accelerometer info
+
+// Three modes: off, standby, active
+
+Mode control register: 0x07 (MODE)
+Sampling options (samples per second): 1, 2, 4, 8, 16, 32, 64, 120 (for auto sleep)
+For auto wake ranges are: 1, 2, 4, 8, 16, 32 samples per second
+Sample rate register: SR (0x08)
+XOUT (0x00), YOUT (0x01), and ZOUT (0x02) registers
+
+// Functions
+
+setSlaveAddress
+set10BitAddressing
+setIgnoreNAK          // ignore the NAK
+setNoStart            // no start condition / Can skip repeated start sequence
+readByte
+writeByte
+readWord
+writeWord
+readBlock
+writeBlock
+
+// something about I2C functions... not sure what they are..
+
+readWrite   // do combined read/write transaction without stop in between.  
+            // receives an array of i2c messages (and num messages) i2c message is 
+
+
+-----
+
+read32
+write32
+sendNextMsg
+sendNextByte
+recvNextMsg
+recvNextByte
+masterXfer        // transfer messages
+
+
+i2c_msg is a struct that represents an I2C transaction segment beginning with a START condition
+
+struct i2c_msg {
+  __u16 addr;
+  __u16 flags;
+#define I2C_M_TEN   0x0010                // ten bit addressing
+#define I2C_M_RD    0x0001                // read
+#define I2C_M_NOSTART   0x4000            // no start condition (skip it)
+#define I2C_M_REV_DIR_ADDR  0x2000        // This toggles the Rd/Wr flag. That is, if you want to do a write, but need to emit an Rd instead of a Wr, or vice versa, you set this flag 
+#define I2C_M_IGNORE_NAK  0x1000          // ignores the NAK and continues sending
+#define I2C_M_NO_RD_ACK   0x0800          // read and skip acknowledge / nack bit
+#define I2C_M_RECV_LEN    0x0400          // 
+  __u16 len;
+  __u8 * buf;
+};  
+
+--------------
+
+Alternative API for I2C - from http://gnublin.org/gnublin-api/doc/html_en/i2c_8h_source.html
+
+initialize
+initialize with slave address
+setAddress
+getAddress
+getErrorMessage
+int receive(unsigned char *RxBuf, int length);
+int receive(unsigned char RegisterAddress, unsigned char *RxBuf, int length);
+int send(unsigned char *TxBuf, int length);
+int send(unsigned char RegisterAddress, unsigned char *TxBuf, int length);
+int send(unsigned char value);
+
+
+-------------------
+
+mbed i2c api: 
+void  frequency (int hz) -   Set the frequency of the I2C interface. 
+int   read (int address, char *data, int length, bool repeated=false) -   Read from an I2C slave. 
+int   read (int ack) -  Read a single byte from the I2C bus.
+int   write (int address, const char *data, int length, bool repeated=false) -   Write to an I2C slave
+int   write (int data) -  Write single byte out on the I2C bus.
+void  start (void) -  Creates a start condition on the I2C bus. 
+void  stop (void) -   Creates a stop condition on the I2C bus. 
+
+
+reading bits, bytes, word, words
+

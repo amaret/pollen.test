@@ -1,0 +1,8 @@
+
+module NullProgram {
+  
+  pollen.run() {
+
+  }
+  
+}

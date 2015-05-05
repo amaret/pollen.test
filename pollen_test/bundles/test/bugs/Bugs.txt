@@ -1,0 +1,28 @@
+January 14, 2015: THESE BUGS HAVE ALL BEEN SUBMITTED AS ISSUES> 
+
+BUGS
+-how do I return an array from a function and assign it to a local variable in my function / module / class? 
+
+- must fix "modules used" issue. A module is used when it is imported AND it has a function called on that module, OR it has an intrinsic in it. 
+
+- when two packages from two different bundles have the same name (say midimod) then the translator gives weird errors as to imported files not being able to be found! Its really annoying to track this down. If there was a way to alert the user as to the discovery of two different packages with the same name and issue an error or some way to fix it, that should happen.
+
+- inheritance of compositions isn't working properly. I don't have a test case, but when trying to reach for a module that comes from a composition that extended another composition, it does not work. 
+
+
+---------
+
+- Can't seem to have a multiline function call: 
+
+NOT OK: 
+  public host RGBMatrixLed(uint8 rcolumn, uint8 rrow, 
+                           uint8 gcolumn, uint8 grow, 
+                           uint8 bcolumn, uint8 brow) {
+
+
+OK: 
+  public host RGBMatrixLed(uint8 rcolumn, uint8 rrow, uint8 gcolumn, uint8 grow, uint8 bcolumn, uint8 brow) {
+
+
+
+- The way host variables SHOULD work is that if a host variable is accessed in a target function that is never called - that host variable should be optimized out as a constant...

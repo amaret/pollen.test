@@ -1,0 +1,6 @@
+
+protocol FakeProto {
+  
+  host foo()
+
+}
